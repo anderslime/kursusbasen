@@ -45,33 +45,8 @@ class MandatoryDataExtractor
     extract(:evaluation_form)
   end
 
-  private
-
   def extract(title_key)
-    strip_and_chomp(content_column_for_title(title_key).text)
-  end
-
-  def content_column_for_title(title_key)
-    Array(row_for_title(title_key)).fetch(1) { OpenStruct.new(:text => nil) }
-  end
-
-  def row_for_title(title_key)
-    page_row_columns.find do |first_col, second_col|
-      first_col && strip_and_chomp(first_col.text) == row_titles[title_key]
-    end
-  end
-
-  def strip_and_chomp(text)
-    return nil unless text
-    text.strip.chomp
-  end
-
-  def page_row_columns
-    page_rows.map {|row| row.search("td") }
-  end
-
-  def page_rows
-    @page_rows ||= page.search(".CourseViewer table")[2].search("tr")
+    ColumnContentExtractor.new(page).content(row_titles[title_key])
   end
 
   def row_titles
@@ -85,7 +60,8 @@ class MandatoryDataExtractor
       :exam_form => "Evalueringsform:",
       :exam_duration => "Eksamens varighed:",
       :exam_aid => "Hjælpemidler:",
-      :evaluation_form => "Bedømmelsesform:"
+      :evaluation_form => "Bedømmelsesform:",
+      :qualified_prereq => "Faglige forudsætninger:",
     }
   end
 end

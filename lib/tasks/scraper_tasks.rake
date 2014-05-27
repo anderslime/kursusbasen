@@ -47,6 +47,18 @@ namespace :scrape do
       litteratur = text_extractor.litteratur
       remarks = text_extractor.remarks
 
+      # Prereqs
+      preqreq_extractor = LegacyPrerequisitesExtractor.new(page)
+      point_block = preqreq_extractor.point_block
+      mandatory_prerequisites = preqreq_extractor.mandatory_prerequisites
+      optional_prerequisites = preqreq_extractor.optional_prerequisites
+      qualified_prerequisites = preqreq_extractor.qualified_prerequisites
+
+      # Institut
+      institute_extractor = InstituteExtractor.new(page)
+      institute_dtu_id = institute_extractor.dtu_id
+      institute_title = institute_extractor.title
+
       if debug
         puts course_number
         puts title
@@ -64,6 +76,12 @@ namespace :scrape do
         puts exam_duration
         puts exam_aid
         puts evaluation_form
+        puts point_block
+        puts mandatory_prerequisites
+        puts optional_prerequisites
+        puts qualified_prerequisites
+        puts institute_dtu_id
+        puts institute_title
       end
     end
   end
