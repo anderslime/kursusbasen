@@ -25,6 +25,26 @@ class MandatoryDataExtractor
     extract(:registration)
   end
 
+  def exam_schedule
+    extract(:exam_schedule)
+  end
+
+  def exam_form
+    extract(:exam_form)
+  end
+
+  def exam_duration
+    extract(:exam_duration)
+  end
+
+  def exam_aid
+    extract(:exam_aid)
+  end
+
+  def evaluation_form
+    extract(:evaluation_form)
+  end
+
   private
 
   def extract(title_key)
@@ -60,7 +80,12 @@ class MandatoryDataExtractor
       :duration => "Kursets varighed:",
       :former_course => "Tidligere kursus:",
       :participant_limit => "Deltagerbegrænsning:",
-      :registration => "Tilmelding:"
+      :registration => "Tilmelding:",
+      :exam_schedule => "Date of examination:",
+      :exam_form => "Type of assessment:",
+      :exam_duration => "Exam duration:",
+      :exam_aid => "Aid:",
+      :evaluation_form => "Evaluation:"
     }
   end
 end

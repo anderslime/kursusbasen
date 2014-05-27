@@ -33,6 +33,13 @@ namespace :scrape do
       participant_limit = mandatory_extractor.participant_limit
       registration = mandatory_extractor.registration
 
+      # Evaluation data
+      exam_schedule = mandatory_extractor.exam_schedule
+      exam_form = mandatory_extractor.exam_form
+      exam_duration = mandatory_extractor.exam_duration
+      exam_aid = mandatory_extractor.exam_aid
+      evaluation_form = mandatory_extractor.evaluation_form
+
       # Text attributes
       text_extractor = TextDataExtractor.new(page)
       content = text_extractor.content
@@ -52,6 +59,11 @@ namespace :scrape do
         puts course_ojectives
         puts litteratur
         puts remarks
+        puts exam_schedule
+        puts exam_form
+        puts exam_duration
+        puts exam_aid
+        puts evaluation_form
       end
     end
   end
