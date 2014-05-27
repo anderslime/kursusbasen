@@ -1,16 +1,19 @@
 class RowContentExtractor
-  attr_reader :page
+  attr_reader :page, :skip_rows
 
-  def initialize(page)
-    @page = page
+  def initialize(page, skip_rows = 1)
+    @page      = page
+    @skip_rows = skip_rows
   end
 
   def content(attribute_text)
+    extracted_content_node = content_node(attribute_text)
+    extracted_content_node && extracted_content_node.text
+  end
+
+  def content_node(attribute_text)
     row_index = row_index(attribute_text)
-    if row_index
-      extracted_content_node = page_rows[row_index + 1]
-      extracted_content_node && extracted_content_node.text
-    end
+    row_index && page_rows[row_index + skip_rows]
   end
 
   private
