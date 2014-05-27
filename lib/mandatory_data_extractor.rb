@@ -81,11 +81,11 @@ class MandatoryDataExtractor
       :former_course => "Tidligere kursus:",
       :participant_limit => "Deltagerbegrænsning:",
       :registration => "Tilmelding:",
-      :exam_schedule => "Date of examination:",
-      :exam_form => "Type of assessment:",
-      :exam_duration => "Exam duration:",
-      :exam_aid => "Aid:",
-      :evaluation_form => "Evaluation:"
+      :exam_schedule => "Eksamensplacering:",
+      :exam_form => "Evalueringsform:",
+      :exam_duration => "Eksamens varighed:",
+      :exam_aid => "Hjælpemidler:",
+      :evaluation_form => "Bedømmelsesform:"
     }
   end
 end
