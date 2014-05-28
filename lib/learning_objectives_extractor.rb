@@ -14,6 +14,6 @@ class LearningObjectivesExtractor
   private
 
   def objectives_content
-    @objectives_content ||= RowContentExtractor.new(page, 2).content_node("Læringsmål:")
+    @objectives_content ||= SectionContentExtractor.new(page).content_node("Læringsmål:")
   end
 end
