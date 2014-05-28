@@ -67,6 +67,11 @@ namespace :scrape do
       responsible_extractor = ResponsiblesExtractor.new(page)
       responsibles = responsible_extractor.responsibles
 
+      # Website
+      website_extractor = WebsiteExtractor.new(page)
+      website = website_extractor.website
+      puts website
+
       if debug
         puts course_number
         puts title

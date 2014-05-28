@@ -9,6 +9,10 @@ class ColumnContentExtractor
     strip_and_chomp(content_element(attribute_text).text)
   end
 
+  def content_node(attribute_text)
+    Array(row(attribute_text)).fetch(1) { nil }
+  end
+
   private
 
   def content_element(attribute_text)
