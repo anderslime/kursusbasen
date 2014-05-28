@@ -40,6 +40,6 @@ class ColumnContentExtractor
   end
 
   def page_rows
-    @page_rows ||= page.search(".CourseViewer table")[2].search("tr")
+    @page_rows ||= page.search(".CourseViewer table").search("tr")
   end
 end

@@ -17,8 +17,8 @@ class LegacyPrerequisitesExtractor
     extract(:optional_prerequisites)
   end
 
-  def qualified_prerequisites
-    extract(:qualified_prerequisites)
+  def recommended_prerequisites
+    extract(:recommended_prerequisites)
   end
 
   private
@@ -66,7 +66,7 @@ class LegacyPrerequisitesExtractor
     {
       :point_block => "Pointspærring:",
       :mandatory_prerequisites => "Obligatoriske forudsætninger:",
-      :qualified_prerequisites => "Faglige forudsætninger:",
+      :recommended_prerequisites => "Anbefalede forudsætninger:",
       :optional_prerequisites => "Ønskelige forudsætninger:"
     }
   end

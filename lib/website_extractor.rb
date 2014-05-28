@@ -6,7 +6,7 @@ class WebsiteExtractor
   end
 
   def website
-    content_node.at_css("a")[:href]
+    content_node && content_node.at_css("a")[:href]
   end
 
   private

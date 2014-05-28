@@ -24,7 +24,7 @@ class TextDataExtractor
   private
 
   def extract(title_key)
-    RowContentExtractor.new(page).content(attribute_titles[title_key])
+    SectionContentExtractor.new(page).content(attribute_titles[title_key])
   end
 
   def attribute_titles

@@ -52,7 +52,7 @@ namespace :scrape do
       point_block = preqreq_extractor.point_block
       mandatory_prerequisites = preqreq_extractor.mandatory_prerequisites
       optional_prerequisites = preqreq_extractor.optional_prerequisites
-      qualified_prerequisites = preqreq_extractor.qualified_prerequisites
+      recommended_prerequisites = preqreq_extractor.recommended_prerequisites
 
       # Institut
       institute_extractor = InstituteExtractor.new(page)
@@ -72,8 +72,8 @@ namespace :scrape do
       website = website_extractor.website
 
       # Keywords
-      keywords_extractor = KeywordsExtractor.new(page)
-      keywords = keywords_extractor.keywords
+      # keywords_extractor = KeywordsExtractor.new(page)
+      # keywords = keywords_extractor.keywords
 
       # Schedule
       schedule_extractor = ScheduleExtractor.new(page, "Skemaplacering:")
@@ -84,33 +84,17 @@ namespace :scrape do
       exam_schedule = exam_schedule_extractor.schedule
 
       if debug
-        puts course_number
-        puts title
-        puts ects_points
-        puts duration
-        puts teaching_form
-        puts former_course
-        puts participant_limit
-        puts registration
-        puts content
-        puts course_ojectives
-        puts litteratur
-        puts remarks
-        puts exam_schedule
-        puts exam_form
-        puts exam_duration
-        puts exam_aid
-        puts evaluation_form
-        puts point_block
-        puts mandatory_prerequisites
-        puts optional_prerequisites
-        puts qualified_prerequisites
-        puts institute_dtu_id
-        puts institute_title
-        puts learning_objectives
-        puts responsibles.inspect
-        puts website
-        puts schedule
+        [
+          :course_number, :title, :ects_points, :duration, :teaching_form, :former_course,
+          :participant_limit, :registration, :content, :course_ojectives, :litteratur,
+          :remarks, :exam_schedule, :exam_form, :exam_duration, :exam_aid,
+          :evaluation_form, :point_block, :mandatory_prerequisites,
+          :optional_prerequisites, :recommended_prerequisites, :institute_dtu_id,
+          :institute_title, :learning_objectives, :responsibles, :website, :schedule
+        ].each do |variable|
+          puts "==========#{variable}:=========="
+          puts eval(variable.to_s).inspect
+        end
       end
     end
   end

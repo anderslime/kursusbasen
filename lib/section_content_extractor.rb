@@ -7,8 +7,10 @@ class SectionContentExtractor
 
   def content(attribute_text)
     node = content_node(attribute_text)
-    title_text = node.search("h3").text
-    node.text[title_text.length..-1]
+    if node
+      title_text = node.search("h3").text
+      node.text[title_text.length..-1]
+    end
   end
 
   def content_node(attribute_text)
