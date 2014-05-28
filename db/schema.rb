@@ -11,18 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140528191210) do
+ActiveRecord::Schema.define(version: 20140528193635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "course_pages", force: true do |t|
-    t.integer  "course_number", null: false
+    t.string   "course_number", null: false
     t.text     "page",          null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "semester_year"
+    t.string   "url"
   end
 
+  add_index "course_pages", ["course_number", "semester_year"], name: "index_course_pages_on_course_number_and_semester_year", using: :btree
   add_index "course_pages", ["course_number"], name: "index_course_pages_on_course_number", using: :btree
 
   create_table "course_translations", force: true do |t|
