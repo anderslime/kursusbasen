@@ -21,13 +21,18 @@ class ColumnContentExtractor
 
   def row(attribute_text)
     page_row_columns.find do |first_col, second_col|
-      first_col && strip_and_chomp(first_col.text) == attribute_text
+      first_col && normalize_text(first_col.text) == normalize_text(attribute_text)
     end
   end
 
   def strip_and_chomp(text)
     return nil unless text
     text.strip.chomp
+  end
+
+  def normalize_text(text)
+    return nil unless text
+    text.gsub(/\n|\s/, "").chomp.strip
   end
 
   def page_row_columns

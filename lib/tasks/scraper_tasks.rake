@@ -32,9 +32,9 @@ namespace :scrape do
       former_course = mandatory_extractor.former_course
       participant_limit = mandatory_extractor.participant_limit
       registration = mandatory_extractor.registration
+      ects_points = mandatory_extractor.ects_points
 
       # Evaluation data
-      exam_schedule = mandatory_extractor.exam_schedule
       exam_form = mandatory_extractor.exam_form
       exam_duration = mandatory_extractor.exam_duration
       exam_aid = mandatory_extractor.exam_aid
@@ -75,9 +75,18 @@ namespace :scrape do
       keywords_extractor = KeywordsExtractor.new(page)
       keywords = keywords_extractor.keywords
 
+      # Schedule
+      schedule_extractor = ScheduleExtractor.new(page, "Skemaplacering:")
+      schedule = schedule_extractor.schedule
+
+      # Exam schedule
+      exam_schedule_extractor = ScheduleExtractor.new(page, "Eksamensplacering:")
+      exam_schedule = exam_schedule_extractor.schedule
+
       if debug
         puts course_number
         puts title
+        puts ects_points
         puts duration
         puts teaching_form
         puts former_course
@@ -101,6 +110,7 @@ namespace :scrape do
         puts learning_objectives
         puts responsibles.inspect
         puts website
+        puts schedule
       end
     end
   end

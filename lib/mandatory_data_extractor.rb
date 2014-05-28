@@ -25,10 +25,6 @@ class MandatoryDataExtractor
     extract(:registration)
   end
 
-  def exam_schedule
-    extract(:exam_schedule)
-  end
-
   def exam_form
     extract(:exam_form)
   end
@@ -45,6 +41,12 @@ class MandatoryDataExtractor
     extract(:evaluation_form)
   end
 
+  def ects_points
+    extract(:ects_points)
+  end
+
+  private
+
   def extract(title_key)
     ColumnContentExtractor.new(page).content(row_titles[title_key])
   end
@@ -56,12 +58,12 @@ class MandatoryDataExtractor
       :former_course => "Tidligere kursus:",
       :participant_limit => "Deltagerbegrænsning:",
       :registration => "Tilmelding:",
-      :exam_schedule => "Eksamensplacering:",
       :exam_form => "Evalueringsform:",
       :exam_duration => "Eksamens varighed:",
       :exam_aid => "Hjælpemidler:",
       :evaluation_form => "Bedømmelsesform:",
       :qualified_prereq => "Faglige forudsætninger:",
+      :ects_points => "Point (ECTS )"
     }
   end
 end
