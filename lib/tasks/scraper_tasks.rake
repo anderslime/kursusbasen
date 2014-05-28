@@ -70,7 +70,10 @@ namespace :scrape do
       # Website
       website_extractor = WebsiteExtractor.new(page)
       website = website_extractor.website
-      puts website
+
+      # Keywords
+      keywords_extractor = KeywordsExtractor.new(page)
+      keywords = keywords_extractor.keywords
 
       if debug
         puts course_number
@@ -97,6 +100,7 @@ namespace :scrape do
         puts institute_title
         puts learning_objectives
         puts responsibles.inspect
+        puts website
       end
     end
   end
