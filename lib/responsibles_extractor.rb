@@ -50,7 +50,7 @@ class ResponsiblesExtractor
 
   def responsibles_content_node
     @responsibles_content_node ||=
-      RowContentExtractor.new(page).content_node("Kursusansvarlig:")
+      SectionContentExtractor.new(page).content_node("Kursusansvarlig:")
   end
 
 end
