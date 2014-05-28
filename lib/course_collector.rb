@@ -1,8 +1,12 @@
 class CourseCollector
   def course_pages
-    course_urls.first(10).each do |url|
+    course_urls.each do |url|
       yield url, extract_course_number(url), "2013-2014"
     end
+  end
+
+  def amount_of_courses
+    course_urls.length
   end
 
   private
@@ -18,7 +22,7 @@ class CourseCollector
   end
 
   def get_course_list_page
-    agent.get(course_list_url)
+    @get_course_list_page ||= agent.get(course_list_url)
   end
 
   def course_list_url

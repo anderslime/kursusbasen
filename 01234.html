@@ -1,0 +1,487 @@
+
+<html id="ctl00_Html1" test="TEST" __expr-val-dir="ltr" dir="ltr">
+<head id="ctl00_Head1"><meta name="GENERATOR" content="Microsoft SharePoint" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Expires" content="0" /><title>
+	DTU Kursusbasen
+</title>
+    <div style="display: none">
+        
+	Home - 01234
+
+    </div>
+    <script src="/_layouts/1033/init.js?rev=Ka0M56iE8XkO9CM6Yg9q6w%3D%3D"></script>
+<script type="text/javascript" language="javascript" src="/_layouts/1030/core.js?rev=E41IQ8sC3d5MBs1mezJASw%3D%3D" defer></script>
+<script type="text/javascript" language="javascript" src="/_layouts/1030/non_ie.js?rev=yfNry4hY0Gwa%2FPDNGrqXVg%3D%3D"></script>
+<link rel="stylesheet" type="text/css" href="/_layouts/1030/styles/core.css?rev=%2By2ngVVtYG6ro83XXE%2BrAA%3D%3D"/>
+<link rel="stylesheet" type="text/css" href="/_layouts/1033/STYLES/CourseCatalogBranding/styles.css"/>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+    
+	<META Name="CollaborationServer" Content="SharePoint Team Web Site">
+	<script type="text/javascript">
+	var navBarHelpOverrideKey = "wssmain";
+	</script>
+<link rel="stylesheet" type="text/css" href="/_layouts/1033/STYLES/CourseCatalogBranding/styles.css" /><link rel="SHORTCUT ICON" href="/_layouts/images/CourseCatalogBranding/favicon.ico" type="image/x-icon" />
+    
+    <script type="text/javascript" src="/_layouts/CourseCatalog/TjekForBrokenLink.js"></script>    
+
+    <script type="text/javascript">
+        $(function () {
+            var groups = [];
+
+            $($("#studiebox tr td").html().split("<br>")).each(function () {
+                if (this == "") {
+                    return;
+                }
+                var found = false;
+                var key = this.split(",")[0];
+                var me = { id: key, values: [this] };
+                for (var i = 0; i < groups.length; i++) {
+                    if (groups[i].id == me.id) {
+                        groups[i].values.push(me.values[0]); found = true;
+                    }
+                }
+                if (!found) {
+                    groups.push(me);
+                }
+
+            });
+
+			var str = "";
+			$(groups).each(function () {
+				if(this.values.length>3){
+					str += "<span class='expander' style='color:#039;cursor:pointer'>" + this.id + ", se flere<br/></span>";
+					$(this.values).each(
+						function () {
+							str += "<span style='display:none'>" + this + "<br/></span>";
+						});
+				}else{
+					$(this.values).each(
+						function () {
+							str += "<span>" + this + "<br/></span>";
+						});	
+				}
+			});
+			$("#studiebox tr td").html(str);
+			$(".expander").click(function () {
+				var node = $(this).nextUntil(".expander").show();
+				$(this).hide()
+			});
+        });
+    </script>
+</head>
+<body scroll="yes" align="center" onload="javascript:if (typeof(_spBodyOnLoadWrapper) != 'undefined') _spBodyOnLoadWrapper();">
+    <form name="aspnetForm" method="post" action="default.aspx?menulanguage=da" id="aspnetForm">
+<input type="hidden" name="MSO_PageHashCode" id="MSO_PageHashCode" value="11-1339411722" />
+<input type="hidden" name="MSOWebPartPage_PostbackSource" id="MSOWebPartPage_PostbackSource" value="" />
+<input type="hidden" name="MSOTlPn_SelectedWpId" id="MSOTlPn_SelectedWpId" value="" />
+<input type="hidden" name="MSOTlPn_View" id="MSOTlPn_View" value="0" />
+<input type="hidden" name="MSOTlPn_ShowSettings" id="MSOTlPn_ShowSettings" value="False" />
+<input type="hidden" name="MSOGallery_SelectedLibrary" id="MSOGallery_SelectedLibrary" value="" />
+<input type="hidden" name="MSOGallery_FilterString" id="MSOGallery_FilterString" value="" />
+<input type="hidden" name="MSOTlPn_Button" id="MSOTlPn_Button" value="none" />
+<input type="hidden" name="__REQUESTDIGEST" id="__REQUESTDIGEST" value="0x35FF09584BA6992E515ECE3DFEFD53C78CAD00118BF5A879A1BDE08395CE0F21133D99E1A5ABACB98951072C90B2436ED067C6BDEE9F51A107BB677B8B8B5865,28 May 2014 19:38:36 -0000" />
+<input type="hidden" name="MSOSPWebPartManager_DisplayModeName" id="MSOSPWebPartManager_DisplayModeName" value="Browse" />
+<input type="hidden" name="MSOWebPartPage_Shared" id="MSOWebPartPage_Shared" value="" />
+<input type="hidden" name="MSOLayout_LayoutChanges" id="MSOLayout_LayoutChanges" value="" />
+<input type="hidden" name="MSOLayout_InDesignMode" id="MSOLayout_InDesignMode" value="" />
+<input type="hidden" name="MSOSPWebPartManager_OldDisplayModeName" id="MSOSPWebPartManager_OldDisplayModeName" value="Browse" />
+<input type="hidden" name="MSOSPWebPartManager_StartWebPartEditingName" id="MSOSPWebPartManager_StartWebPartEditingName" value="false" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTc2NTQzMjc1Nw9kFgJmD2QWAgICD2QWAgIBD2QWEAIID2QWAgIBDxYCHgVjbGFzcwUMbWVudWJhckxpbmtzZAIKD2QWAgIBDxYCHwAFDG1lbnViYXJMaW5rc2QCDg9kFgICAQ9kFgJmDxYCHwAFDG1lbnViYXJMaW5rc2QCEA8WAh4HVmlzaWJsZWgWAmYPZBYEAgIPZBYGAgEPFgIfAWhkAgMPFgIfAWhkAgUPFgIfAWhkAgMPDxYCHglBY2Nlc3NLZXkFAS9kZAIUD2QWAmYPFgIfAAUMbWVudWJhckxpbmtzZAIWD2QWAgICDw8WAh8BZxYCHgVzdHlsZQUOZGlzcGxheTpibG9jaztkAhwPZBYCAgEPZBYCZg9kFgICAQ8PZBYCHwAFGG1zLXNidGFibGUgbXMtc2J0YWJsZS1leGQCIg9kFgQCBQ9kFgJmDw8WAh8BaGRkAgcPZBYCZg8PFgIfAWhkZGSFwnpVXolaCUVgzGO1g1TF6vVLMA==" />
+
+<script> var MSOWebPartPageFormName = 'aspnetForm';</script>
+<script src="/WebResource.axd?d=xiBgi1CU6oMWnvxZw4rbqmOmHFjVoku0KAo-DK0UGXaeERummaMAeBNDPJq9YNDR7UU9LNf3-LvgXcizBr9yA80gnZc1&amp;t=635173526875711371" type="text/javascript"></script>
+    
+    <div align="center">
+        <br />
+        <table bgcolor="white" width="1000" cellpadding="0" cellspacing="0" border="0">
+            <tr class="logo">
+                <td colspan="1" align="left">
+                    
+                    <a href="http://www.kurser.dtu.dk/search.aspx" style="text-decoration:none"><img id="Img1" src="/_layouts/images/CourseCatalogBranding/dtu_kursusbasen.gif" alt="" border="0" runat="server" /><img id="Img1" src="/_layouts/images/CourseCatalogBranding/20132014_2.gif" alt="" border="0" runat="server" /></a>
+                </td>
+                <td width="50%" align="right">
+                    
+                    <a href="http://www.dtu.dk"><img id="Img3" border="0" src="/_layouts/images/CourseCatalogBranding/DTU_text.gif"  alt="" runat="server" /><img id="Img4" src="/_layouts/images/CourseCatalogBranding/DTU_logo.gif"   border="0" alt="" runat="server" /></a>
+                    &#160;
+                </td>
+            </tr>
+            <tr class="globalNav">
+                <td align="left" visibility="inherit">
+                    <table id="arcanicTopMenuLinksTable" visibility="inherit">
+                        <tr>
+                            <td class="globalNavItemLeft" visibility="inherit">
+                                
+                                <a href="http://www.kurser.dtu.dk/search.aspx" class="menubarLinks">S&#248;g</a>
+                            </td>
+                            <td class="globalNavItemMiddle" visibility="inherit">
+                                
+                                <a href="http://www.dtu.dk/Uddannelse/kursusbasen/Andre_udgaver" class="menubarLinks">Link til andre &#229;rgange</a>
+                            </td>
+                            
+                            <td class="globalNavItemMiddle" visibility="inherit">                            
+                                
+                                <a href="http://www.campusnet.ihk.dk/kurser/Index.asp?Lang=dk" class="menubarLinks" style="white-space:nowrap">DTU Diploms kursusoversigt</a>
+                                
+                            </td>
+                            
+                            
+                            <td class="globalNavItemMiddle" visibility="inherit"><a href="http://www.kurser.dtu.dk/_layouts/Studyplanner/default.aspx" class="menubarLinks">Studieplanl&#230;gger</a></td>
+
+                        </tr>
+                    </table>
+                </td>
+                <td align="right">
+                    <table id="arcanicTopMenuLogin">
+                        <tr>
+                            <!-- midlertidig placering af site actions-->
+                            <td>
+                                <table height="100%" class="ms-siteaction" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td class="ms-siteactionsmenu" id="siteactiontd">
+                                            
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            
+                            <td class="globalNavItemMiddle">
+                                <a href="http://www.kurser.dtu.dk/01234.aspx?menulanguage=en-GB" class="menubarLinks">English</a>
+                            </td>
+                            <td class="globalNavItemRight">
+                                <!-- LOGIN / WELCOME MENU AND SITE ACTIONS MENU -->
+                                
+
+<a id="ctl00_explitLogout_ExplicitLogin" href="http://www.kurser.dtu.dk/courses/01234/_layouts/Authenticate.aspx?Source=%2F01234%2Easpx%3Fmenulanguage%3Dda" style="display:block;">Log på</a>
+
+
+
+                                <script type="text/javascript">
+                                    if (document.getElementById('ctl00_explitLogout_ExplicitLogin') != null)
+                                        document.getElementById('ctl00_explitLogout_ExplicitLogin').style.color = 'white';
+                                </script>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td align="right">
+                    
+                </td>
+            </tr>
+            <!-- denne tr indeholder tabs navigation -->
+            <tr class="tabNavigation">
+                <td colspan='2'>
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                            <td class="ms-sitetitle" width="100%">
+                                
+                                    <table class="ms-bannerframe" border="0" cellspacing="0" cellpadding="0" width="100%">
+                                        <tr>
+                                            <td class="ms-banner" nowrap id="HBN100">
+                                                
+                                                    <table id="zz1_TopNavigationMenu" class="ms-topNavContainer" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td onmouseover="Menu_HoverRoot(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="zz1_TopNavigationMenun0"><table class="ms-topnav" cellpadding="0" cellspacing="0" border="0" width="100%">
+			<tr>
+				<td nowrap="nowrap"><a class="ms-topnav" href="/courses/01234/default.aspx" accesskey="1">01234</a></td>
+			</tr>
+		</table></td><td width="0"></td><td width="0"></td><td onmouseover="Menu_HoverRoot(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="zz1_TopNavigationMenun1"><table class="ms-topnav" cellpadding="0" cellspacing="0" border="0" width="100%">
+			<tr>
+				<td nowrap="nowrap"><a class="ms-topnav" href="/courses/01234/info/default.aspx">Information</a></td>
+			</tr>
+		</table></td><td width="0"></td>
+	</tr>
+</table>
+                                                    
+                                                            
+                                                        
+                                                
+                                            </td>
+                                            <td class='topnavspacingcell'>&nbsp;</td>
+                                        </tr>
+                                    </table>
+                                
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr class="TopMenu" style="display: none">
+                <td colspan="2">
+                    
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+                        
+
+                    
+                    
+                        
+                    
+                    <script type="text/javascript">
+                        // hack til at sørge for at "KURSUSNUMMER"-tabben er markeret ved url-rewrite.
+                        try {
+                            if (!document.getElementById("zz1_TopNavigationMenu").firstChild.nextSibling.firstChild.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.firstChild.nextSibling.firstChild.firstChild.nextSibling.firstChild.getAttribute("class").match("ms-topnavselected ")) {
+                                document.getElementById("zz1_TopNavigationMenu").firstChild.nextSibling.firstChild.firstChild.nextSibling.firstChild.firstChild.nextSibling.firstChild.firstChild.nextSibling.firstChild.className = document.getElementById("zz1_TopNavigationMenu").firstChild.nextSibling.firstChild.firstChild.nextSibling.firstChild.firstChild.nextSibling.firstChild.firstChild.nextSibling.firstChild.className + " ms-topnavselected";
+                                document.getElementById("zz1_TopNavigationMenu").firstChild.nextSibling.firstChild.firstChild.nextSibling.firstChild.className = document.getElementById("zz1_TopNavigationMenu").firstChild.nextSibling.firstChild.firstChild.nextSibling.firstChild.className + " ms-topnavselected";
+                            }
+                        }
+                        catch (err) { }
+
+
+                        //for ie (nextSibling not neccesary)
+                        try {
+                            //alert(document.getElementById("zz1_TopNavigationMenu").firstChild.firstChild.lastChild.previousSibling.firstChild.getAttribute("className")); //.firstChild.firstChild.firstChild.firstChild.firstChild.getAttribute("class").match("ms-topnavselected ");
+                            if (!document.getElementById("zz1_TopNavigationMenu").firstChild.firstChild.lastChild.previousSibling.firstChild.getAttribute("className").match("ms-topnavselected ")) {
+                                document.getElementById("zz1_TopNavigationMenu").firstChild.firstChild.firstChild.firstChild.firstChild.firstChild.firstChild.firstChild.className = document.getElementById("zz1_TopNavigationMenu").firstChild.firstChild.firstChild.firstChild.firstChild.firstChild.firstChild.firstChild.className + " ms-topnavselected";
+                                document.getElementById("zz1_TopNavigationMenu").firstChild.firstChild.firstChild.firstChild.className = document.getElementById("zz1_TopNavigationMenu").firstChild.firstChild.firstChild.firstChild.className + " ms-topnavselected";
+                            }
+                        }
+                        catch (err) { }
+                    </script>
+                </td>
+            </tr>
+            <tr class="ContentMain" align="center">
+                <td class="ContentMain" colspan="2" align="center">
+                    <!-- PAGE TITLE AND CONTENT -->
+                    <!-- her er følgende fjernet i forhold til Master i CourseCatalog form id="ContentMain" method="get" -->
+                    
+	<table cellspacing="0" border="0" width="100%">
+	  <tr>
+	   <td class="ms-pagebreadcrumb">
+		<span id="ctl00_PlaceHolderMain_ContentMap"></span>
+	   </td>
+	  </tr>
+	  <tr>
+	   <td class="ms-webpartpagedescription">01234</td>
+	  </tr>
+	  <tr>
+		<td>
+		 <table width="100%" cellpadding=0 cellspacing=0 style="padding: 5px 10px 10px 10px;">
+		  <tr>
+		   <td valign="top" width="70%">
+			   <table width="100%" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td id="MSOZoneCell_WebPartctl00_m_g_b63e25e8_9675_4e9a_b68c_7193a20c172a" vAlign="top"><table TOPLEVEL border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+				<td valign="top"><div WebPartID="b63e25e8-9675-4e9a-b68c-7193a20c172a" HasPers="false" id="WebPartctl00_m_g_b63e25e8_9675_4e9a_b68c_7193a20c172a" width="100%" class="ms-WPBody" allowDelete="false" allowExport="false" style="" ><div id="ctl00_m_g_b63e25e8_9675_4e9a_b68c_7193a20c172a">
+					<div class='CourseViewer'><table width='100%'><tr><td>&nbsp;</td><td style='text-align:right'>&nbsp;<a  style='cursor:pointer;' onClick=" var form = document.createElement('form');form.setAttribute('method', 'POST');form.setAttribute('action', '/_layouts/CourseCatalog/print.aspx');var hiddenField = document.createElement('input');hiddenField.setAttribute('type', 'hidden');hiddenField.setAttribute('name', 'txtCourseNumber');hiddenField.setAttribute('value', '01234');form.appendChild(hiddenField);var hiddenField2 = document.createElement('input');hiddenField2.setAttribute('type', 'hidden');hiddenField2.setAttribute('name', 'YearGroup');hiddenField2.setAttribute('value', '2013/2014');form.appendChild(hiddenField2);document.body.appendChild(form);form.submit();" ><img id="Img1" src="/_layouts/images/CourseCatalog/print.gif" alt="Print" border="0" runat="server" /></a></td></tr></table><h2 style="font-family:verdana; font-size:14px; color:#C0BCBC">
+01234 Differentialgeometri med anvendelser</h2><table style="table-layout:fixed" width="600px"><tr><td width="165px" /><td width="227px" /><td width="200px" rowspan="5"><a href="http://www.kurser.dtu.dk/courses/01234/info/default.aspx"><img class="commercial" src="http://screendump.arcanic.dk/?page=http://www.kurser.dtu.dk/courses/01234/info/default.aspx&amp;width=200&amp;noCache=false" style="border: none" alt="" /></a></td></tr><tr><td><h3>Engelsk titel:</h3></td><td class="value">Differential Geometry with Applications</td></tr><tr><td><h3>Sprog:</h3></td><td><label class="value">Engelsk</label></td></tr><tr><td><h3>Point( ECTS )</h3></td><td class="value">5</td></tr><!-- Type, programme, coursetype - åben uddannelse --><tr><td><h3>Kursustype:</h3></td><td class="value"><div>Kandidat</div><div>Kurset udbydes under åben uddannelse</div></td></tr><tr display="inline"><td class="page" /><td colspan="3" class="value"><div style="word-wrap: break-word;width:100%" id="studiebox"><table cellpadding="0" cellspacing="0" width="100%"><tr><td>Naturvidenskabeligt grundfag, Bygningsdesign<br />Teknologisk specialisering, Matematisk Modellering og Computing<br /></td></tr></table></div></td></tr></table><hr /><table style="table-layout:fixed"><tr><td class="page" style="width: 165px;vertical-align: top"><a class="description" href="http://www.kurser.dtu.dk/schedule.aspx?menulanguage=da-DK&amp;coursecode=01234" /><h3><a class="description" href="http://www.kurser.dtu.dk/schedule.aspx?menulanguage=da-DK&amp;coursecode=01234">
+Skemaplacering:</a></h3></td><td>F2B (tors 8-12)
+<br /></td></tr><tr id="courseHoldingsBox"><td /></tr><tr><td><h3>Undervisningens placering:</h3></td><td>Campus Lyngby</td></tr><tr><td class="page" style="vertical-align: top"><h3>Undervisningsform:</h3></td><td>Hver uge: to timers forelæsning og to timers øvelser, inkl.
+Maple-øvelser. Derudover projektopgave-arbejde sidst i
+semesteret.</td></tr><tr><td class="page" style="vertical-align: top"><h3>Kursets varighed:</h3></td><td class="value">13-uger</td></tr><tr><td class="page" style="vertical-align: top"><a class="page" href="http://www.dtu.dk/Uddannelse/Kursusbasen/Eksamensskema" /><h3><a class="page" href="http://www.dtu.dk/Uddannelse/Kursusbasen/Eksamensskema">Eksamensplacering:</a></h3></td><td class="value">F2B, Eksamensdagen benyttes kun til aflevering af
+rapporten (se under evalueringsform).</td></tr><tr><td class="page" style="vertical-align: top"><h3>Evalueringsform:</h3></td><td class="value"><label class="value">Bedømmelse af
+opgave(r)/rapport(er)
+<br />
+ Fem hjemmeopgavesæt og tre quizzer i løbet af semesteret samt en
+afsluttende rapport med løsning af projektopgave. De fem opgavesæt
+tæller sammen med quizzerne tilsammen 60% af karakteren, rapporten
+tæller 40% af karakteren</label></td></tr><tr><td class="page"><h3>Hjælpemidler:</h3></td><td><label class="value">Alle hjælpemidler er
+tilladt</label></td></tr><tr><td class="page"><h3>Bedømmelsesform:</h3></td><td><label class="value">7-trins skala , intern
+bedømmelse</label></td></tr><tr><td class="page"><h3>Anbefalede forudsætninger:</h3></td><td><label class="value"><a href="http://www.kurser.dtu.dk/01005.aspx" class="CourseLink">01005</a></label> ,
+<label class="value">Matematik 1</label></td></tr></table><div class="section"><h3>Overordnede kursusmål:</h3>
+Målet med kurset er at opøve viden om og kompetencer i den
+grundlæggende analyse af kurver og flader i 3D. Målsætningen er
+glimrende beskrevet i lærebogen således: "Curves and surfaces
+are objects that everyone can see, and many questions that can be
+asked about them are natural and easily understood. Differential
+geometry is concerned with the precise mathematical formulation of
+some of these questions, and with trying to answer them using
+calculus techniques." Computer-eksperimenter med Maple
+benyttes som en integreret del af kurset til at hjælpe med alle tre
+aspekter: At stille naturlige geometriske spørgsmål, at formulere
+dem i præcise matematiske termer, og at besvare dem ved hjælp af
+matematisk analyse og lineær algebra. Kurset sigter ligeledes mod
+at skabe en robust baggrund for videregående studier indenfor de
+mangfoldige teknologiske anvendelser af differentialgeometriske
+begreber og værktøjer.</div><div class="section"><h3>Læringsmål:</h3>
+En studerende, der fuldt ud har opfyldt kursets mål, vil kunne: 
+<ul><li>Udregne krumning, torsion og Frenet-Serret basis for en given
+rumkurve</li><li>Anvende første og anden fundamental forme til analyse af kurver
+på flader i rummet.</li><li>Genkende isometrier og konforme afbildninger mellem simple
+flader.</li><li>Bestemme de principale krumninger og principale retninger i
+ethvert punkt på en given flade.</li><li>Beregne Gauss- og middelkrumning i ethvert punkt på en given
+flade.</li><li>Forklare den invariante betydning af Gauss-krumningen.</li><li>Forklare sammenhængen mellem anden fundamentalform, Weingarten
+afbildningen og de principale krumninger og retninger.</li><li>Forklare sammenhængen mellem total-krumning, normal-krumning og
+geodætisk krumning for en kurve på en given flade.</li><li>Genkende geodætiske kurver ud fra oplysninger om
+normal-krumning og total-krumning.</li><li>Anvende den generelle fladeteori på omdrejningsflader og
+retlinede flader.</li><li>Anvende Gauss-Bonnet's sætning til vurdering af en flades
+Euler-karakteristik.</li><li>Anvende teorien på en simpel geometrisk problemstilling og
+præsentere løsningen i form af en rapport.</li></ul></div><div class="section"><h3>Kursusindhold:</h3>
+Kurver og flader i 3D - med særlig fokus på krumnings-egenskaber.
+Hvordan findes den korteste vej mellem to punkter på en krum flade?
+Hvad sker der ved bøjning af en flade? Hvordan beregnes antallet af
+huller i en lukket flade? Individuelle projekt-opgaver med
+anvendelser af differentialgeometri kan vælges fra en liste, der
+indeholder så forskellige forslag som f.eks.: konstruktion af en
+rutchebane, geografiske kortprojektioner, relativitetsteori
+(speciel eller generel), protein-geometri, Wankel-motorer, etc.
+Specifikt indeholder kurset blandt andet følgende: Kurver med
+konstant bredde,
+<br />
+Frenet-Serret 'apparatet' for kurver i 3D, første og anden
+fundamentalform for flader, Gauss krumning og middelkrumning,
+areal-bevarende afbildninger, isometrier, flader med konstant
+krumning, fundamentale resultater af Gauss, Codazzi-Mainardi, og
+Gauss-Bonnet.</div><div class="section"><h3>Litteraturhenvisninger:</h3>
+Andrew Pressley: Elementary Differential Geometry, Springer,
+2001.</div><div class="section"><h3>Mulighed for GRØN DYST deltagelse:</h3>
+Kontakt underviseren for information om hvorvidt dette kursus giver
+den studerende mulighed for at lave eller forberede et projekt som
+kan deltage i DTUs studenterkonference om bæredygtighed,
+klimateknologi og miljø (GRØN DYST). Se mere på <a class="menulink" href="http://www.groendyst.dtu.dk">http://www.groendyst.dtu.dk</a></div><div class="section"><h3>Kursusansvarlig:</h3><a class="menulink" href="http://www.dtu.dk/Service/Telefonbog.aspx?id=1591&amp;type=person&amp;lg=showcommon">
+Steen Markvorsen</a> , Bygning 303 B, rum 160, Tlf. (+45) 4525
+3049 , <a href="mailto:stema@dtu.dk">stema@dtu.dk</a><br /><a class="menulink" href="http://www.dtu.dk/Service/Telefonbog.aspx?id=50472&amp;type=person&amp;lg=showcommon">
+David Brander</a> , Bygning 303B, rum 158, Tlf. (+45) 4525
+3052 , <a href="mailto:dbra@dtu.dk">dbra@dtu.dk</a></div><br /><table class="SubTableLevel2" style="border-collapse:collapse; table-layout:fixed"><tr><td class="page" width="165px"><h3>Institut:</h3></td><td title="01 Institut for Matematik og Computer Science(100%)">01
+Institut for Matematik og Computer Science</td></tr><tr><td class="page"><h3>Kursushjemmeside:</h3></td><td><a class="menulink" href="http://www.mat.dtu.dk/education/01234">http://www.mat.dtu.dk/education/01234</a></td></tr><tr><td class="page"><h3>Tilmelding:</h3></td><td><div>I CampusNet</div>
+12.01.
+<br />
+ Tilmelding via Campusnet indtil 12.01. Derefter senest d. 9.02
+direkte til læreren.</td></tr></table><div>Sidst opdateret: 02. maj, 2013</div></div><div id="result" style="display:none">No result</div>
+				</div></div></td>
+			</tr>
+		</table></td>
+	</tr>
+</table>
+			   &nbsp;
+		   </td>
+		   <td>&nbsp;</td>
+		   <td valign="top" width="30%">
+			   
+			   &nbsp;
+		   </td>
+		   <td>&nbsp;</td>
+		  </tr>
+		 </table>
+		</td>
+	  </tr>
+	</table>
+
+                </td>
+            </tr>
+            <!-- Side indhold Content -->
+            
+        </table>
+    </div>
+    
+        
+    
+    
+
+<script type="text/javascript">
+//<![CDATA[
+var __wpmExportWarning='This Web Part Page has been personalized. As a result, one or more Web Part properties may contain confidential information. Make sure the properties contain information that is safe for others to read. After exporting this Web Part, view properties in the Web Part description file (.WebPart) by using a text editor such as Microsoft Notepad.';var __wpmCloseProviderWarning='You are about to close this Web Part.  It is currently providing data to other Web Parts, and these connections will be deleted if this Web Part is closed.  To close this Web Part, click OK.  To keep this Web Part, click Cancel.';var __wpmDeleteWarning='You are about to permanently delete this Web Part.  Are you sure you want to do this?  To delete this Web Part, click OK.  To keep this Web Part, click Cancel.';var zz1_TopNavigationMenu_Data = new Object();
+zz1_TopNavigationMenu_Data.disappearAfter = 500;
+zz1_TopNavigationMenu_Data.horizontalOffset = 0;
+zz1_TopNavigationMenu_Data.verticalOffset = 0;
+zz1_TopNavigationMenu_Data.hoverClass = 'ms-topNavFlyOutsHover';
+if (typeof(overrideMenu_HoverStatic) == 'function' && typeof(Menu_HoverStatic) == 'function')
+{
+_spBodyOnLoadFunctionNames.push('enableFlyoutsAfterDelay');
+Menu_HoverStatic = overrideMenu_HoverStatic;
+}
+var flyoutsAllowed = false;
+function enableFlyoutsAfterDelay()
+{
+setTimeout('flyoutsAllowed = true;', 50);
+}
+function overrideMenu_HoverStatic(item)
+{
+if (!flyoutsAllowed || (document.readyState != null && document.readyState != 'complete'))
+{
+setTimeout(delayMenu_HoverStatic(item), 50);
+}
+else
+{
+// this code is the default ASP.NET implementation of Menu_HoverStatic
+var node = Menu_HoverRoot(item);
+var data = Menu_GetData(item);
+if (!data) return;
+__disappearAfter = data.disappearAfter;
+Menu_Expand(node, data.horizontalOffset, data.verticalOffset);
+}
+}
+function delayMenu_HoverStatic(item)
+{
+return (function()
+{
+overrideMenu_HoverStatic(item);
+});
+}
+//]]>
+</script>
+</form>
+    
+    
+<style type="text/css">
+.ms-bodyareaframe {
+	padding: 0px;
+}
+</style>
+
+    
+<style type="text/css">
+TD.ms-titleareaframe, .ms-pagetitleareaframe {
+	height: 10px;
+}
+Div.ms-titleareaframe {
+	height: 100%;
+}
+.ms-pagetitleareaframe table {
+	background: none;
+	height: 10px;
+}
+</style>
+
+    <style>
+      #tooltip{
+      position:absolute;
+      border:1px solid #333;
+      background:#f7f5d1;
+      padding:2px 5px;
+      color:#333;
+      display:none;
+      }
+    </style>
+    <div id="tooltip"> </div>
+
+    
+    <br />
+    <script type="text/javascript">
+        function setCourseTitle(courseCode) {
+            var url = 'http://www.kurser.dtu.dk/coursewebservicev2/internal/GetTitle.aspx?courseCode=' + courseCode + '&lang=da-DK';
+            $.get(url, function (data) {
+                $('#tooltip').html(courseCode + ' ' + data);
+                return;
+            });
+            $('#tooltip').html(courseCode);
+        }
+        /* * Tooltip script * powered by jQuery (http://www.jquery.com) * * written by Alen Grakalic (http://cssglobe.com) * * for more info visit http://cssglobe.com/post/1695/easiest-tooltip-and-image-preview-using-jquery * */
+        var test = $(".CourseLink");
+
+        $(document).ready(function () {
+            xOffset = 10;
+            yOffset = 20;
+            test.hover(
+      function () {
+          setCourseTitle($(this).text());
+          $("#tooltip").show();
+      },
+      function () {
+          $("#tooltip").hide();
+      });
+            test.mousemove(
+      function (e) {
+          $("#tooltip").css("top", (e.pageY - xOffset) + "px").css("left", (e.pageX + yOffset) + "px");
+      });
+        });
+    </script>
+</body>
+</html>
