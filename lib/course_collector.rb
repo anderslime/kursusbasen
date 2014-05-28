@@ -1,16 +1,20 @@
 class CourseCollector
-  def collect_course_numbers
-    table_columns_with_course_number.map(&:text)
+  def course_pages
+    course_urls.first(10).each do |url|
+      yield url, extract_course_number(url), "2013-2014"
+    end
   end
 
   private
 
-  def table_columns_with_course_number
-    table_columns.select {|column| column.text =~ /^\d{5}$/ }
+  def extract_course_number(url)
+    %r{(\d{5})}.match(url)[1]
   end
 
-  def table_columns
-    get_course_list_page.search("td")
+  def course_urls
+    get_course_list_page.links_with(:href => %r{\d{5}\.aspx\?menulanguage=.*}).map do |link|
+      ["http://www.kurser.dtu.dk", link.href.to_s].join("/")
+    end
   end
 
   def get_course_list_page
@@ -18,7 +22,7 @@ class CourseCollector
   end
 
   def course_list_url
-    "http://www.kurser.dtu.dk/2012-2013/ShowCourseList.aspx?department=1"
+    "http://www.kurser.dtu.dk/search.aspx?lstDepartment=1,10,11,12,13,23,24,25,26,27,28,30,31,33,34,41,42,46,47,48,59,IHK,83&YearGroup=2013-2014"
   end
 
   def agent
