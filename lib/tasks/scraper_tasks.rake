@@ -63,6 +63,10 @@ namespace :scrape do
       learn_obj_extractor = LearningObjectivesExtractor.new(page)
       learning_objectives = learn_obj_extractor.learning_objectives
 
+      # Responsible
+      responsible_extractor = ResponsiblesExtractor.new(page)
+      responsibles = responsible_extractor.responsibles
+
       if debug
         puts course_number
         puts title
@@ -87,6 +91,7 @@ namespace :scrape do
         puts institute_dtu_id
         puts institute_title
         puts learning_objectives
+        puts responsibles.inspect
       end
     end
   end
