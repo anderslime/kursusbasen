@@ -1,9 +1,13 @@
+- query = ((params[:course_search] || {})[:query])
 
-= simple_form_for(:course_search, method: :get, html: { class: "form-inline" }, defaults: { label: false }) do |f|
-  = f.input :query, as: :string,
-    :input_html => { value: ((params[:course_search] || {})[:query]) }
-  = f.button :submit, class: "btn-primary", value: "Search"
+.course-search-field
+  = simple_form_for(:course_search, method: :get, html: { class: "form-horizontal" }, defaults: { label: false }) do |f|
+    .col-xs-8.col-xs-offset-2
+      = f.input_field :query, as: :string,
+        value: query,
+        placeholder: "Search courses on DTU..."
 
+h3 = "Courses found by seraching for '#{query}'"
 - @courses.each do |course|
   .media
     .media-body
