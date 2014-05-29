@@ -12,12 +12,7 @@ class Course < ActiveRecord::Base
   class << self
     def search(search_params, page)
       tire.search(load: true, page: page) do
-        query do
-          string(
-            search_params[:query],
-            default_operator: "AND"
-          ) if search_params[:query].present?
-        end
+        query { string(search_params[:query], default_operator: "AND") } if search_params[:query].present?
       end
     end
   end
