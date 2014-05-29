@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140528193635) do
+ActiveRecord::Schema.define(version: 20140529160840) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20140528193635) do
   add_index "course_translations", ["locale"], name: "index_course_translations_on_locale", using: :btree
 
   create_table "courses", force: true do |t|
-    t.integer  "course_number", null: false
+    t.string   "course_number", null: false
     t.string   "language"
     t.float    "ects_points"
     t.integer  "institute_id"
