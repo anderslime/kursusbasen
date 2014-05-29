@@ -24,15 +24,23 @@ namespace :scrape do
     require 'mechanize'
     require 'pp'
 
-    debug = true
+    debug            = ENV["DEBUG"] || false
+    persist          = ENV["PERSIST"] || false
+    reset_courses_db = ENV["RESET"] || false
+
+    if reset_courses_db
+      puts "resetting course database"
+      Course.destroy_all
+    end
 
     agent = Mechanize.new
 
     [:da].each do |language|
-      I18n.available_locales = [ :da, :en ]
       I18n.locale = language
 
-      CoursePage.first(100).each do |course_page|
+      amount_of_course_pages = CoursePage.count
+
+      CoursePage.all.each_with_index do |course_page, index|
         page = Nokogiri::HTML(course_page.page)
         course_number = course_page.course_number
 
@@ -98,6 +106,7 @@ namespace :scrape do
         exam_schedule_extractor = ScheduleExtractor.new(page, "Eksamensplacering:")
         exam_schedule = exam_schedule_extractor.schedule
 
+        # Debug output
         if debug
           [
             :course_number, :title, :ects_points, :duration, :teaching_form, :former_course,
@@ -110,6 +119,33 @@ namespace :scrape do
             puts "==========#{variable}:=========="
             puts eval(variable.to_s).inspect
           end
+        end
+
+        # Persistence of courses
+        if persist
+          puts "persisting #{course_number}"
+          puts "#{index + 1} / #{amount_of_course_pages}"
+          Course.create!(
+            course_number: course_number,
+            ects_points: ects_points.to_f,
+            homepage: website,
+            exam_duration: exam_duration,
+            title: title,
+            teaching_form: teaching_form,
+            duration: duration,
+            participant_limit: participant_limit,
+            registration: registration,
+            course_objectives: course_ojectives,
+            exam_schedule: Array(exam_schedule).join(", "),
+            learn_objectives: learning_objectives.join(" "),
+            content: content,
+            litteratur: litteratur,
+            remarks: remarks,
+            former_course: former_course,
+            exam_form: exam_form,
+            exam_aid: exam_aid,
+            evaluation_form: evaluation_form
+          )
         end
       end
     end
