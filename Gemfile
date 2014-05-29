@@ -21,6 +21,7 @@ gem 'rails-i18n'
 gem 'slim-rails'
 gem 'will_paginate-bootstrap'
 gem 'simple_form'
+gem 'unicorn'
 
 # Styling
 gem 'bootstrap-sass'
