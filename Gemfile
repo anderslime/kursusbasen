@@ -17,6 +17,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'mechanize'
 gem 'globalize'
+gem 'rails-i18n'
 
 # Rails default suggestions:
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
