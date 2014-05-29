@@ -1,0 +1,8 @@
+ul
+  - @courses.each do |course|
+    .media
+      .media-body
+        h4.media-heading = course.title
+        p = truncate(course.content, length: 200)
+
+= will_paginate @courses, renderer: BootstrapPagination::Rails

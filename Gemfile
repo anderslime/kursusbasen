@@ -19,7 +19,11 @@ gem 'mechanize'
 gem 'globalize'
 gem 'rails-i18n'
 gem 'slim-rails'
+gem 'will_paginate-bootstrap'
+
+# Styling
 gem 'bootstrap-sass'
+gem 'bourbon'
 
 # Rails default suggestions:
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
