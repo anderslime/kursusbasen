@@ -1,6 +1,7 @@
 
 = simple_form_for(:course_search, method: :get, html: { class: "form-inline" }, defaults: { label: false }) do |f|
-  = f.input :query, as: :string
+  = f.input :query, as: :string,
+    :input_html => { value: ((params[:course_search] || {})[:query]) }
   = f.button :submit, class: "btn-primary", value: "Search"
 
 - @courses.each do |course|

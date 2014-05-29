@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
   def index
-    @courses = Course.all.paginate(page: params[:page])
+    @courses = Course.search(params[:course_search] || {}, params[:page])
   end
 end
