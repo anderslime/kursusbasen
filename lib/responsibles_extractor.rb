@@ -7,7 +7,6 @@ class ResponsiblesExtractor
 
   def responsibles
     teacher_elements.map do |teacher|
-      puts teacher.inspect
       teacher_name = extract_teacher_name(teacher[0])
       Responsible.new(
         teacher_name,
