@@ -20,10 +20,14 @@ gem 'globalize'
 gem 'rails-i18n'
 gem 'slim-rails'
 gem 'will_paginate-bootstrap'
+gem 'simple_form'
 
 # Styling
 gem 'bootstrap-sass'
 gem 'bourbon'
+
+# Elastic search
+gem 'tire'
 
 # Rails default suggestions:
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
