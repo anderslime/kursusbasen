@@ -28,6 +28,7 @@ class ScheduleExtractor
   end
 
   def scraped_schedule_blocks
+    return [] if schedule_content.blank?
     schedule_content.scan(%r{([E|F]\d[A|B]?|Januar|Juni|januar|juni)}).to_a.map(&:first)
   end
 
