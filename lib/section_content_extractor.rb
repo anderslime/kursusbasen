@@ -9,7 +9,7 @@ class SectionContentExtractor
     node = content_node(attribute_text)
     if node
       title_text = node.search("h3").text
-      node.text[title_text.length..-1]
+      node.text[(title_text.length + line_break.length)..-1]
     end
   end
 
@@ -20,6 +20,10 @@ class SectionContentExtractor
   end
 
   private
+
+  def line_break
+    "\n"
+  end
 
   def section_title_nodes
     page.search(".section")
