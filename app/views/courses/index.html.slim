@@ -18,6 +18,8 @@
           .course-search-result-content = course_presenter.truncated_content
           .course-search-result-metadata
             .course-search-result-ects-points = course_presenter.ects_points
+            .course-search-result
 
-- unless @courses.empty?
-  = will_paginate @courses, renderer: BootstrapPagination::Rails
+  - unless @courses.empty?
+    .course-search-results-pagination
+      = will_paginate @courses, renderer: BootstrapPagination::Rails
