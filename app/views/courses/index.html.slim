@@ -3,7 +3,8 @@
 .course-search-field
   = simple_form_for(:course_search, method: :get, html: { class: "form-horizontal" }, defaults: { label: false }) do |f|
     .course-search-field-query-field
-      = f.input_field :query, as: :string,
+      = f.input_field :query,
+        as: :string,
         value: query,
         placeholder: "Search courses on DTU..."
 
@@ -24,3 +25,6 @@
   - unless @courses.empty?
     .course-search-results-pagination
       = will_paginate @courses, renderer: BootstrapPagination::Rails
+
+- content_for :document_ready do
+  | views.courses.index.apply();
