@@ -2,16 +2,22 @@
 
 .course-search-field
   = simple_form_for(:course_search, method: :get, html: { class: "form-horizontal" }, defaults: { label: false }) do |f|
-    .col-xs-8.col-xs-offset-2
+    .course-search-field-query-field
       = f.input_field :query, as: :string,
         value: query,
         placeholder: "Search courses on DTU..."
 
-h3 = "Courses found by seraching for '#{query}'"
-- @courses.each do |course|
-  .media
-    .media-body
-      h4.media-heading = course.title
-      p = truncate(course.content, length: 200)
+.course-search-results-container
+  .course-search-results-count = "#{@courses.count} results"
 
-= will_paginate @courses, renderer: BootstrapPagination::Rails
+  .course-serach-results.row
+    - @courses.each do |course|
+      - present course do |course_presenter|
+        .course-search-result
+          = link_to course_presenter.title_with_course_number, "#", class: "course-search-result-title"
+          .course-search-result-content = course_presenter.truncated_content
+          .course-search-result-metadata
+            .course-search-result-ects-points = course_presenter.ects_points
+
+- unless @courses.empty?
+  = will_paginate @courses, renderer: BootstrapPagination::Rails

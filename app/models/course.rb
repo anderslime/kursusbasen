@@ -11,9 +11,14 @@ class Course < ActiveRecord::Base
 
   class << self
     def search(search_params, page)
+      return none unless !search_params[:query].nil?
       tire.search(load: true, page: page) do
-        query { string(search_params[:query], default_operator: "AND") } if search_params[:query].present?
+        query { string(search_params[:query], default_operator: "AND") }
       end
+    end
+
+    def none
+      where(:id => nil).where.not(:id => nil)
     end
   end
 end
