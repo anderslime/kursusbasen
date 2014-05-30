@@ -8,7 +8,8 @@
         placeholder: "Search courses on DTU..."
 
 .course-search-results-container
-  .course-search-results-count = "#{@courses.total_entries} results"
+  - unless @courses.empty?
+    .course-search-results-count = "#{@courses.total_entries} results"
 
   .course-serach-results.row
     - @courses.each do |course|
