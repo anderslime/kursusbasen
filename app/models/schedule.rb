@@ -7,4 +7,5 @@ class Schedule < ActiveRecord::Base
     ]
 
   validates_uniqueness_of :block, :scope => :course_id
+  validates_presence_of :block, :course_id
 end

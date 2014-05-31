@@ -2,6 +2,8 @@ class Course < ActiveRecord::Base
   include Tire::Model::Search
   include Tire::Model::Callbacks
 
+  has_many :schedules
+
   validates_uniqueness_of :course_number
 
   translates :title, :teaching_form, :duration, :participant_limit, :registration,
