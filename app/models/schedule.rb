@@ -5,4 +5,6 @@ class Schedule < ActiveRecord::Base
       'E1B', 'E2B', 'E3B', 'E4B', 'E5B', 'F1B', 'F2B', 'F3B', 'F4B', 'F5B',
       'Januar', 'Juni'
     ]
+
+  validates_uniqueness_of :block, :scope => :course_id
 end
