@@ -31,6 +31,11 @@ gem 'bourbon'
 # Elastic search
 gem 'tire'
 
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
+
 # Rails default suggestions:
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
