@@ -1,44 +1,45 @@
-- present @course do |course_presenter|
-  .course
-    section.row
-      h1.course-number-and-title
-        .course-number = course_presenter.course_number
-        .course-title = course_presenter.title
-      h2.course-translated-title
-        = course_presenter.title
+- course_view.view_context = self
 
-    section.row
-      .course-important-information
-        .course-ects-points = course_presenter.ects_points
-        .course-type = course_presenter.main_course_type
-        - if course_presenter.teached_as_open_education?
-          .course-open-education = t('.open_education')
+.course
+  section.row
+    h1.course-number-and-title
+      .course-number = course_view.course_number
+      .course-title = course_view.title
+    h2.course-translated-title
+      = course_view.title
 
-      = render 'course_schedule', course: @course
+  section.row
+    .course-important-information
+      .course-ects-points = course_view.ects_points
+      .course-type = course_view.main_course_type
+      - if course_view.teached_as_open_education?
+        .course-open-education = t('.open_education')
 
-    section.row
-      dl.course-information
-        dt.course-general-objectives-title
-          = Course.human_attribute_name(:course_objectives)
-        dd.course-general-objectives
-          = course_presenter.course_objectives
-        dt.course-content-title
-          = Course.human_attribute_name(:content)
-        dd.course-content
-          = course_presenter.content
-        dt.course-teaching-form-title
-          = Course.human_attribute_name(:teaching_form)
-        dd.course-teaching-form
-          = course_presenter.teaching_form
-        - if course_presenter.course_website_link?
-            dt.course-website-title
-              = Course.human_attribute_name(:homepage)
-            dd.course-website
-              = course_presenter.course_website_link
+    = render 'course_schedule'
 
-    section.row
-      dl.course-information
-        dt.course-participant-limit-title
-          = Course.human_attribute_name(:participant_limit)
-        dd.course-participant-limit
-          = course_presenter.participant_limit
+  section.row
+    dl.course-information
+      dt.course-general-objectives-title
+        = Course.human_attribute_name(:course_objectives)
+      dd.course-general-objectives
+        = course_view.course_objectives
+      dt.course-content-title
+        = Course.human_attribute_name(:content)
+      dd.course-content
+        = course_view.content
+      dt.course-teaching-form-title
+        = Course.human_attribute_name(:teaching_form)
+      dd.course-teaching-form
+        = course_view.teaching_form
+      - if course_view.course_website_link?
+          dt.course-website-title
+            = Course.human_attribute_name(:homepage)
+          dd.course-website
+            = course_view.course_website_link
+
+  section.row
+    dl.course-information
+      dt.course-participant-limit-title
+        = Course.human_attribute_name(:participant_limit)
+      dd.course-participant-limit
+        = course_view.participant_limit
