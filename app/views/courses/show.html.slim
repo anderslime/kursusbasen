@@ -28,10 +28,11 @@
           = Course.human_attribute_name(:teaching_form)
         dd.course-teaching-form
           = course_presenter.teaching_form
-        dt.course-website-title
-          = Course.human_attribute_name(:homepage)
-        dd.course-website
-          = course_presenter.course_website_link
+        - if course_presenter.course_website_link?
+            dt.course-website-title
+              = Course.human_attribute_name(:homepage)
+            dd.course-website
+              = course_presenter.course_website_link
 
     section.row
       dl.course-information

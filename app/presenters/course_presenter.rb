@@ -35,8 +35,12 @@ class CoursePresenter < ApplicationPresenter
     h.simple_format(course.content)
   end
 
+  def course_website_link?
+    course.homepage.present?
+  end
+
   def course_website_link
-    h.link_to course.homepage, course.homepage
+    h.link_to(course.homepage, course.homepage)
   end
 
   private
