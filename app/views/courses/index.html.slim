@@ -16,7 +16,7 @@
     - @courses.each do |course|
       - present course do |course_presenter|
         .course-search-result
-          = link_to course_presenter.title_with_course_number, "#", class: "course-search-result-title"
+          = link_to course_presenter.title_with_course_number, course_presenter.profile_url, class: "course-search-result-title"
           .course-search-result-content = course_presenter.truncated_content
           .course-search-result-metadata
             .course-search-result-ects-points = course_presenter.ects_points

@@ -3,3 +3,14 @@ da:
     previous_label: "&#8592; Forrige"
     next_label: "Næste &#8594;"
     page_gap: "&hellip;"
+  courses:
+    show:
+      open_education: Udbydes under åben uddannelse
+  activerecord:
+    attributes:
+      course:
+        course_objectives: Overordnede kursusmål
+        content: Kursusindhold
+        homepage: Kursushjemmeside
+        teaching_form: Undervisningsform
+        participant_limit: Deltagerbegrænsning

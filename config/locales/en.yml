@@ -3,3 +3,14 @@ en:
     previous_label: "&#8592; Previous"
     next_label: "Next &#8594;"
     page_gap: "&hellip;"
+  courses:
+    show:
+      open_education: Taught under open university
+  activerecord:
+    attributes:
+      course:
+        course_objectives: General course objectives
+        content: Content
+        homepage: Course home page
+        teaching_form: Scope and form
+        participant_limit: Participant limit
