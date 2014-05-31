@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140531092317) do
+ActiveRecord::Schema.define(version: 20140531165517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,14 @@ ActiveRecord::Schema.define(version: 20140531092317) do
 
   add_index "courses", ["course_number"], name: "index_courses_on_course_number", using: :btree
 
+  create_table "courses_teachers", id: false, force: true do |t|
+    t.integer "course_id",  null: false
+    t.integer "teacher_id", null: false
+  end
+
+  add_index "courses_teachers", ["course_id", "teacher_id"], name: "index_courses_teachers_on_course_id_and_teacher_id", using: :btree
+  add_index "courses_teachers", ["teacher_id", "course_id"], name: "index_courses_teachers_on_teacher_id_and_course_id", using: :btree
+
   create_table "schedules", force: true do |t|
     t.integer  "course_id"
     t.string   "block"
@@ -75,5 +83,15 @@ ActiveRecord::Schema.define(version: 20140531092317) do
   end
 
   add_index "schedules", ["course_id"], name: "index_schedules_on_course_id", using: :btree
+
+  create_table "teachers", force: true do |t|
+    t.string   "name"
+    t.string   "location"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "dtu_teacher_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

@@ -3,6 +3,7 @@ class Course < ActiveRecord::Base
   include Tire::Model::Callbacks
 
   has_many :schedules, dependent: :destroy
+  has_and_belongs_to_many :teachers
 
   validates_uniqueness_of :course_number
 
