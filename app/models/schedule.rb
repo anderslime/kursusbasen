@@ -1,2 +1,8 @@
 class Schedule < ActiveRecord::Base
+  validates_inclusion_of :block,
+    in: [
+      'E1A', 'E2A', 'E3A', 'E4A', 'E5A', 'F1A', 'F2A','F3A', 'F4A', 'F5A',
+      'E1B', 'E2B', 'E3B', 'E4B', 'E5B', 'F1B', 'F2B', 'F3B', 'F4B', 'F5B',
+      'Januar', 'Juni'
+    ]
 end
