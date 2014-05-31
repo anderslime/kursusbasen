@@ -6,7 +6,7 @@ class ScheduleExtractor
     @attribute_text = attribute_text
   end
 
-  def schedule
+  def schedules
     scraped_schedule_blocks.map do |schedule|
       extract_double_semester_schedules(sanitize_schedule(schedule))
     end.flatten.uniq

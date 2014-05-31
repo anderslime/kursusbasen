@@ -2,7 +2,7 @@ class Course < ActiveRecord::Base
   include Tire::Model::Search
   include Tire::Model::Callbacks
 
-  has_many :schedules
+  has_many :schedules, dependent: :destroy
 
   validates_uniqueness_of :course_number
 

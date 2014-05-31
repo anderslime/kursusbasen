@@ -14,6 +14,8 @@
         - if course_presenter.teached_as_open_education?
           .course-open-education = t('.open_education')
 
+      = render 'course_schedule', course: @course
+
     section.row
       dl.course-information
         dt.course-general-objectives-title

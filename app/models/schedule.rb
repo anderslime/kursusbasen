@@ -8,4 +8,12 @@ class Schedule < ActiveRecord::Base
 
   validates_uniqueness_of :block, :scope => :course_id
   validates_presence_of :block, :course_id
+
+  def spring?
+    block[0] == "F"
+  end
+
+  def autumn?
+    block[0] == "E"
+  end
 end

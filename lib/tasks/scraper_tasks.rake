@@ -100,11 +100,11 @@ namespace :scrape do
 
         # Schedule
         schedule_extractor = ScheduleExtractor.new(page, "Skemaplacering:")
-        schedule = schedule_extractor.schedule
+        schedule_blocks = schedule_extractor.schedules
 
         # Exam schedule
         exam_schedule_extractor = ScheduleExtractor.new(page, "Eksamensplacering:")
-        exam_schedule = exam_schedule_extractor.schedule
+        exam_schedules = exam_schedule_extractor.schedules
 
         # Debug output
         if debug
@@ -125,7 +125,9 @@ namespace :scrape do
         if persist
           puts "persisting #{course_number}"
           puts "#{index + 1} / #{amount_of_course_pages}"
-          Course.create!(
+
+          # Create course
+          course = Course.create!(
             course_number: course_number,
             ects_points: ects_points.to_f,
             homepage: website,
@@ -136,7 +138,7 @@ namespace :scrape do
             participant_limit: participant_limit,
             registration: registration,
             course_objectives: course_ojectives,
-            exam_schedule: Array(exam_schedule).join(", "),
+            exam_schedule: Array(exam_schedules).join(", "),
             learn_objectives: learning_objectives.join(" "),
             content: content,
             litteratur: litteratur,
@@ -146,6 +148,11 @@ namespace :scrape do
             exam_aid: exam_aid,
             evaluation_form: evaluation_form
           )
+
+          # Create schedules
+          Array(schedule_blocks).each do |schedule_block|
+            course.schedules.create(block: schedule_block)
+          end
         end
       end
     end
