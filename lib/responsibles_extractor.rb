@@ -9,7 +9,7 @@ class ResponsiblesExtractor
     teacher_elements.map do |teacher|
       teacher_name = extract_teacher_name(teacher[0])
       Responsible.new(
-        teacher_name,
+        teacher_name.gsub("Tlf.", ""),
         teacher[2],
         teacher[3].gsub("\n", ""),
         teacher[4],
@@ -56,16 +56,4 @@ class ResponsiblesExtractor
     SectionContentExtractor.new(page).content("Kursusansvarlig:")
   end
 
-end
-
-class Responsible
-  attr_reader :name, :office_location, :phone, :email, :dtu_teacher_id
-
-  def initialize(name, office_location, phone, email, dtu_teacher_id)
-    @name            = name
-    @office_location = office_location
-    @phone           = phone
-    @email           = email
-    @dtu_teacher_id  = dtu_teacher_id
-  end
 end

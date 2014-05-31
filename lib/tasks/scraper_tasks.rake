@@ -33,7 +33,11 @@ namespace :scrape do
       Course.destroy_all
     end
 
+    teacher_report = File.open("teacher_report.log", "w")
+
     agent = Mechanize.new
+
+    teachers = []
 
     [:da].each do |language|
       I18n.locale = language
@@ -121,10 +125,11 @@ namespace :scrape do
           end
         end
 
+        puts "#{index + 1} / #{amount_of_course_pages}"
+
         # Persistence of courses
         if persist
           puts "persisting #{course_number}"
-          puts "#{index + 1} / #{amount_of_course_pages}"
 
           # Create course
           course = Course.create!(
@@ -152,6 +157,27 @@ namespace :scrape do
           # Create schedules
           Array(schedule_blocks).each do |schedule_block|
             course.schedules.create(block: schedule_block)
+          end
+
+          # Create teachers
+          Array(responsibles).each do |responsible|
+            puts responsible.inspect
+            teacher_data = {
+              name: responsible.name,
+              location: responsible.office_location,
+              phone: responsible.phone,
+              email: responsible.email
+            }
+            teacher = Teacher.create_with(
+              teacher_data
+            ).find_or_create_by(
+              dtu_teacher_id: responsible.dtu_teacher_id
+            )
+            if teacher.name.nil?
+              teacher.update_attributes(teacher_data)
+            end
+            puts teacher.inspect
+            course.teachers << teacher unless course.teachers.map(&:dtu_teacher_id).include?(teacher.dtu_teacher_id)
           end
         end
       end

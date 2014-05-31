@@ -1,0 +1,34 @@
+$image-dimension: 60px
+$image-gutter: 2px
+
+.course-teacher
+  display: table
+
+.course-teacher-image-border-circle
+  @extend .img-circle
+  width: $image-dimension + $image-gutter
+  height: $image-dimension + $image-gutter
+  margin: $image-gutter
+  border: 1px solid #cccccc
+  box-shadow: 0 0 1px #cccccc
+
+.course-teacher-image-circle-wrapper
+  @extend .img-circle
+  width: $image-dimension
+  height: $image-dimension
+  overflow: hidden
+  border: $image-gutter solid white
+
+.course-teacher-image
+  margin-top: -10px
+  width: $image-dimension
+
+.course-teacher-image-border-circle,
+.course-teacher-information
+  display: table-cell
+  vertical-align: middle
+
+.course-teacher-name,
+.course-teacher-email
+  padding-left: 15px
+

@@ -1,0 +1,9 @@
+- course_teacher_presenters.each do |teacher_presenter|
+  .course-teacher
+    .course-teacher-image-border-circle
+      .course-teacher-image-circle-wrapper
+        = image_tag teacher_presenter.teacher_image_url, class: "course-teacher-image"
+    .course-teacher-information
+      .course-teacher-name = teacher_presenter.name
+      .course-teacher-email = teacher_presenter.email
+

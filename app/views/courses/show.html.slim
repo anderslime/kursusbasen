@@ -1,14 +1,14 @@
 - course_view.view_context = self
 
 .course
-  section.row
+  section.course-title-section
     h1.course-number-and-title
       .course-number = course_view.course_number
       .course-title = course_view.title
     h2.course-translated-title
       = course_view.title
 
-  section.row
+  section.course-main-information-section
     .course-important-information
       .course-ects-points = course_view.ects_points
       .course-type = course_view.main_course_type
@@ -23,10 +23,20 @@
         = Course.human_attribute_name(:course_objectives)
       dd.course-general-objectives
         = course_view.course_objectives
+
+    .course-sidebar
+      .course-teachers
+        = course_view.render_teachers
+
+  section.row
+    dl.course-information
       dt.course-content-title
         = Course.human_attribute_name(:content)
       dd.course-content
         = course_view.content
+
+  section.row
+    dl.course-information
       dt.course-teaching-form-title
         = Course.human_attribute_name(:teaching_form)
       dd.course-teaching-form
