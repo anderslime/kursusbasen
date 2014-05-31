@@ -2,21 +2,21 @@
   table.course-small-schedule-table
     thead
       tr
-        th title="#{t('date.abbr_day_names')[1]}" = t('date.abbr_day_names')[1].capitalize[0]
-        th title="#{t('date.abbr_day_names')[2]}" = t('date.abbr_day_names')[2].capitalize[0]
-        th title="#{t('date.abbr_day_names')[3]}" = t('date.abbr_day_names')[3].capitalize[0]
-        th title="#{t('date.abbr_day_names')[4]}" = t('date.abbr_day_names')[4].capitalize[0]
-        th title="#{t('date.abbr_day_names')[5]}" = t('date.abbr_day_names')[5].capitalize[0]
+        = schedule.day_header('monday')
+        = schedule.day_header('tuesday')
+        = schedule.day_header('wednesday')
+        = schedule.day_header('thursday')
+        = schedule.day_header('friday')
     tbody
       tr
-        td 1A
-        td 3A
-        td 5A
-        td 2B
-        td 4B
+        = schedule.block_table_column('1A')
+        = schedule.block_table_column('3A')
+        = schedule.block_table_column('5A')
+        = schedule.block_table_column('2B')
+        = schedule.block_table_column('4B')
       tr
-        td 2A
-        td 4A
-        td 5B
-        td 1B
-        td 3B
+        = schedule.block_table_column('2A')
+        = schedule.block_table_column('4A')
+        = schedule.block_table_column('5B')
+        = schedule.block_table_column('1B')
+        = schedule.block_table_column('3B')

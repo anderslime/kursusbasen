@@ -11,6 +11,13 @@ class CourseView
     @course = course
   end
 
+  def render_course_schedule
+    view_context.render(
+      'course_schedule',
+      schedule: CourseSchedule.new(view_context, course.schedules)
+    )
+  end
+
   def course_presenter
     CoursePresenter.new(course, view_context)
   end

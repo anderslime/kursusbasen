@@ -15,7 +15,7 @@
       - if course_view.teached_as_open_education?
         .course-open-education = t('.open_education')
 
-    = render 'course_schedule'
+    = course_view.render_course_schedule
 
   section.row
     dl.course-information
