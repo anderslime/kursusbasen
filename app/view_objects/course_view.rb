@@ -3,7 +3,7 @@ class CourseView
   attr_accessor :view_context
 
   delegate :course_number, :title, :ects_points, :main_course_type,
-           :teached_as_open_education?, :course_objectives, :content,
+           :teached_under_open_education?, :course_objectives, :content,
            :teaching_form, :course_website_link?, :course_website_link,
            :participant_limit, :institute_title, :top_comment, to: :course_presenter
 

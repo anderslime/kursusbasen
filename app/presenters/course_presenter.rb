@@ -48,6 +48,10 @@ class CoursePresenter < ApplicationPresenter
     course.institute_full_title
   end
 
+  def teached_under_open_education?
+    course.open_education?
+  end
+
   private
 
   def rounded_ects_points

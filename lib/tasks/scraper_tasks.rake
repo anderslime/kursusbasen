@@ -24,11 +24,12 @@ namespace :scrape do
     require 'mechanize'
     require 'pp'
 
-    debug               = ENV["DEBUG"] || false
-    persist             = ENV["PERSIST"] || false
-    reset_courses_db    = ENV["RESET"] || false
-    persist_institute   = ENV["PERSIST_INSTITUTE"] || false
-    persist_top_comment = ENV["PERSIST_TOP_COMMENT"] || false
+    debug                  = ENV["DEBUG"] || false
+    persist                = ENV["PERSIST"] || false
+    reset_courses_db       = ENV["RESET"] || false
+    persist_institute      = ENV["PERSIST_INSTITUTE"] || false
+    persist_top_comment    = ENV["PERSIST_TOP_COMMENT"] || false
+    persist_open_education = ENV["PERSIST_OPEN_EDUCATION"] || false
 
     if reset_courses_db
       puts "resetting course database"
@@ -116,6 +117,9 @@ namespace :scrape do
         top_comment_extractor = TopCommentExtractor.new(page)
         top_comment = top_comment_extractor.top_comment
 
+        open_education_extractor = OpenEducationExtractor.new(page)
+        open_education = open_education_extractor.open_education?
+
         # Debug output
         if debug
           [
@@ -159,7 +163,8 @@ namespace :scrape do
             exam_form: exam_form,
             exam_aid: exam_aid,
             evaluation_form: evaluation_form,
-            top_comment: top_comment
+            top_comment: top_comment,
+            open_education: open_education
           )
 
           # Create schedules
@@ -199,6 +204,13 @@ namespace :scrape do
         if persist_top_comment && !persist
           course = Course.find_by_course_number!(course_number)
           course.update_attributes(top_comment: top_comment)
+        end
+
+        # This section is only because the open education boolean is added later than
+        # the other attributes and is therefore added to the existing course records
+        if persist_open_education && !persist
+          course = Course.find_by_course_number!(course_number)
+          course.update_attributes(open_education: open_education)
         end
       end
     end

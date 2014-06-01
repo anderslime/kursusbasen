@@ -12,7 +12,7 @@
     .course-important-information
       .course-ects-points = course_view.ects_points
       .course-type = course_view.main_course_type
-      - if course_view.teached_as_open_education?
+      - if course_view.teached_under_open_education?
         .course-open-education = t('.open_education')
 
     = course_view.render_course_schedule
