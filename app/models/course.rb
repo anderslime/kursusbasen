@@ -27,8 +27,8 @@ class Course < ActiveRecord::Base
       where(:id => nil).where.not(:id => nil)
     end
 
-    def find_by_course_number(course_number)
-      find_by(course_number: course_number)
+    def find_by_course_number!(course_number)
+      find_by!(course_number: course_number)
     end
   end
 

@@ -5,7 +5,7 @@ class CoursesController < ApplicationController
 
   def show
     course_view = CourseView.new(
-      Course.find_by_course_number(params[:id])
+      Course.find_by_course_number!(params[:id])
     )
     render locals: { course_view: course_view }
   end

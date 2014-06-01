@@ -183,7 +183,7 @@ namespace :scrape do
             puts "no institute for #{course_number}"
           else
             puts "persisting institute #{institute_dtu_id} #{institute_title} for #{course_number}"
-            course = Course.find_by_course_number(course_number)
+            course = Course.find_by_course_number!(course_number)
             institute = Institute.create_with(
               title: institute_title.gsub("\n", " ")
             ).find_or_create_by(
@@ -197,7 +197,7 @@ namespace :scrape do
         # This section is only because the top comment is added later than
         # the other attributes and is therefore added to the existing course records
         if persist_top_comment && !persist
-          course = Course.find_by_course_number(course_number)
+          course = Course.find_by_course_number!(course_number)
           course.update_attributes(top_comment: top_comment)
         end
       end
