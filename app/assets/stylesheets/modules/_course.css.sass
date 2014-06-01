@@ -40,10 +40,12 @@
   @extend .col-md-4
 
 .course-ects-points,
-.course-language,
+.course-language
+  @extend .col-sm-5
+
 .course-calendar-block-type,
 .course-institute
-  @extend .col-sm-6
+  @extend .col-sm-7
   margin-bottom: 5px
 
 .course-ects-points,
@@ -54,9 +56,6 @@
 
 .course-institute-text
   font-size: 0.7em
-
-.course-ects-points
-  font-weight: bold
 
 .course-type-information
   margin-top: 15px
