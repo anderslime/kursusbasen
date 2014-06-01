@@ -27,6 +27,7 @@ namespace :scrape do
     debug            = ENV["DEBUG"] || false
     persist          = ENV["PERSIST"] || false
     reset_courses_db = ENV["RESET"] || false
+    persist_institute = ENV["PERSIST_INSTITUTE"] || false
 
     if reset_courses_db
       puts "resetting course database"
@@ -168,6 +169,22 @@ namespace :scrape do
               dtu_teacher_id: responsible.dtu_teacher_id
             )
             course.teachers << teacher unless course.teachers.map(&:dtu_teacher_id).include?(teacher.dtu_teacher_id)
+          end
+        end
+
+        if persist_institute
+          if institute_dtu_id.blank? || institute_title.blank?
+            puts "no institute for #{course_number}"
+          else
+            puts "persisting institute #{institute_dtu_id} #{institute_title} for #{course_number}"
+            course = Course.find_by_course_number(course_number)
+            institute = Institute.create_with(
+              title: institute_title.gsub("\n", " ")
+            ).find_or_create_by(
+              dtu_institute_id: institute_dtu_id
+            )
+            course.institute = institute
+            course.save
           end
         end
       end
