@@ -4,6 +4,7 @@ class Course < ActiveRecord::Base
 
   has_many :schedules, dependent: :destroy
   has_and_belongs_to_many :teachers
+  belongs_to :institute
 
   validates_uniqueness_of :course_number
 
