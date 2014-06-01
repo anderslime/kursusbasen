@@ -17,26 +17,24 @@
 
     = course_view.render_course_schedule
 
-  section.course-information.row
-    dt.course-general-objectives-title
-      = Course.human_attribute_name(:course_objectives)
-    dd.course-general-objectives
-      = course_view.course_objectives
-
+  section.row
     .course-sidebar
       .course-teachers
         h4.course-teachers-headline = t('.teachers_headline')
-        = course_view.render_teachers
+      = course_view.render_teachers
 
-  section.row
-    dl.course-information
+    dl.course-long-information
+      dt.course-general-objectives-title
+        = Course.human_attribute_name(:course_objectives)
+      dd.course-general-objectives
+        = course_view.course_objectives
       dt.course-content-title
         = Course.human_attribute_name(:content)
       dd.course-content
         = course_view.content
 
   section.row
-    dl.course-information
+    dl.course-short-information
       dt.course-teaching-form-title
         = Course.human_attribute_name(:teaching_form)
       dd.course-teaching-form
@@ -48,7 +46,7 @@
             = course_view.course_website_link
 
   section.row
-    dl.course-information
+    dl.course-short-information
       dt.course-participant-limit-title
         = Course.human_attribute_name(:participant_limit)
       dd.course-participant-limit

@@ -6,16 +6,11 @@ class ResponsiblesExtractor
   end
 
   def responsibles
-    teacher_elements.map do |teacher|
-      teacher_name = extract_teacher_name(teacher[0])
-      Responsible.new(
-        teacher_name.gsub("Tlf.", ""),
-        teacher[2],
-        teacher[3].gsub("\n", ""),
-        teacher[4],
-        teacher_ids[teacher_name]
-      )
+    responsibles = []
+    teacher_elements do |name, teacher_id|
+      responsibles << Responsible.new(name, teacher_id)
     end
+    responsibles
   end
 
   private
@@ -25,16 +20,11 @@ class ResponsiblesExtractor
   end
 
   def teacher_elements
-    responsibles_content.
-      scan(/([A-Z][^\d@,]+) , (([\d|\s|[a-zA-Z]]+, [\d|\s|[a-zA-Z]]+), )?Tlf\. (\(\+\d*\).\d*\W*\d*)?[, ]?, (.*@.*)/)
-  end
-
-  def extract_teacher_ids
     responsibles_content_node.search("a.menulink").each_with_object({}) do |link, ids|
       unless %r(mailto:.*).match(link[:href])
         teacher_id = teacher_link_regex.match(link[:href].chomp.strip)[1]
         teacher_name = link.text.chomp.strip
-        ids[teacher_name] = teacher_id
+        yield teacher_name, teacher_id
       end
     end
   end

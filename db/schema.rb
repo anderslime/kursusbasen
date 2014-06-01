@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140531165517) do
+ActiveRecord::Schema.define(version: 20140601104002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,14 +84,23 @@ ActiveRecord::Schema.define(version: 20140531165517) do
 
   add_index "schedules", ["course_id"], name: "index_schedules_on_course_id", using: :btree
 
+  create_table "teacher_pages", force: true do |t|
+    t.string   "dtu_teacher_id"
+    t.text     "page"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "teachers", force: true do |t|
     t.string   "name"
-    t.string   "location"
+    t.string   "office_location"
     t.string   "phone"
     t.string   "email"
     t.string   "dtu_teacher_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "website"
   end
 
 end

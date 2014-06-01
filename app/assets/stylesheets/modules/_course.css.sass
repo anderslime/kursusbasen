@@ -14,26 +14,33 @@
   overflow: auto
 
 .course-number
-  @extend .col-sm-2
+  @extend .col-md-2
+  @extend .col-sm-3
   color: #999999
 
 .course-title
-  @extend .col-sm-10
+  @extend .col-md-10
+  @extend .col-sm-9
 
 .course-translated-title
-  @extend .col-sm-offset-2
-  @extend .col-sm-10
+  @extend .col-sm-9
+  @extend .col-sm-offset-3
+  @extend .col-md-10
+  @extend .col-md-offset-2
   margin-top: 5px
   margin-bottom: 5px
   color: #666666
   font-weight: 200
 
 .course-important-information
-  @extend .col-sm-6
-  @extend .col-sm-offset-2
+  @extend .col-sm-5
+  @extend .col-sm-offset-3
+  @extend .col-md-4
+  @extend .col-md-offset-2
 
 .course-schedule
   @extend .col-sm-4
+  @extend .col-md-6
 
 .course-ects-points
   font-size: 1.3em
@@ -43,28 +50,40 @@
   font-size: 1.2em
   color: #666
 
-.course-information
+.course-long-information
   +clearfix
+  @extend .col-sm-8
+  @extend .col-sm-pull-4
+  @extend .col-md-6
+  @extend .col-md-pull-6
 
-.course-information dt
-  @extend .col-sm-2
+.course-long-information dt
+  font-size: 18px
 
-.course-information dd
-  @extend .col-sm-5
+.course-long-information dd
   margin-bottom: 20px
+
+.course-short-information dt
+  @extend .col-sm-3
+  @extend .col-md-2
+  font-size: 15px
+
+.course-short-information dd
+  @extend .col-sm-9
+  @extend .col-md-10
 
 .course-general-objectives
   font-size: 1.2em
 
 .course-sidebar
   @extend .col-sm-4
+  @extend .col-sm-push-8
+  @extend .col-md-6
+  @extend .col-md-push-6
 
 .course-teachers-headline
   margin-top: 0
 
 @media (min-width: $screen-sm-min)
-  .course-information dt
-    text-align: right
-
   .course-number
     text-align: right

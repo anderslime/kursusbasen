@@ -31,6 +31,7 @@ namespace :scrape do
     if reset_courses_db
       puts "resetting course database"
       Course.destroy_all
+      Teacher.destroy_all
     end
 
     teacher_report = File.open("teacher_report.log", "w")
@@ -162,25 +163,60 @@ namespace :scrape do
           # Create teachers
           Array(responsibles).each do |responsible|
             puts responsible.inspect
-            teacher_data = {
-              name: responsible.name,
-              location: responsible.office_location,
-              phone: responsible.phone,
-              email: responsible.email
-            }
-            teacher = Teacher.create_with(
-              teacher_data
-            ).find_or_create_by(
+            teacher_data = { name: responsible.name }
+            teacher = Teacher.create_with(teacher_data).find_or_create_by(
               dtu_teacher_id: responsible.dtu_teacher_id
             )
-            if teacher.name.nil?
-              teacher.update_attributes(teacher_data)
-            end
-            puts teacher.inspect
             course.teachers << teacher unless course.teachers.map(&:dtu_teacher_id).include?(teacher.dtu_teacher_id)
           end
         end
       end
+    end
+  end
+
+  task :teacher_pages => :environment do
+    agent = Mechanize.new
+    Teacher.all.each do |teacher|
+      unless TeacherPage.exists?(dtu_teacher_id: teacher.dtu_teacher_id)
+        puts "scraping page for teacher: #{teacher.dtu_teacher_id} #{teacher.id} #{teacher.name}"
+        teacher_url = "http://www.dtu.dk/Service/Telefonbog.aspx?id=#{teacher.dtu_teacher_id}&type=person&lg=showcommon"
+        begin
+          page = agent.get(teacher_url)
+          teacher_page = TeacherPage.create_with(
+            url: teacher_url,
+            page: page.body
+          ).find_or_create_by(
+            dtu_teacher_id: teacher.dtu_teacher_id
+          )
+          if teacher_page.page.nil?
+            puts "need to update"
+            teacher.update_attributes(
+              url: teacher_url,
+              page: page.body
+            )
+          end
+        rescue Mechanize::RedirectLimitReachedError
+          puts "could not scrape teacher: #{teacher.dtu_teacher_id}"
+        end
+      end
+    end
+
+  end
+
+  task :teachers => :environment do
+    teacher_amount = Teacher.count
+    TeacherPage.all.each_with_index do |teacher_page, index|
+      puts "scraping teachers #{index + 1} / #{teacher_amount}"
+      page = Nokogiri::HTML(teacher_page.page)
+      detail_extractor = ResponsibleDetailsExtractor.new(page)
+      teacher_attributes = {
+        phone: detail_extractor.phone.presence,
+        email: detail_extractor.email.presence,
+        website: detail_extractor.website.presence,
+        office_location: detail_extractor.office_location.presence
+      }
+      teacher = Teacher.find_by(dtu_teacher_id: teacher_page.dtu_teacher_id)
+      teacher.update_attributes(teacher_attributes)
     end
   end
 end
