@@ -44,6 +44,10 @@ class CoursePresenter < ApplicationPresenter
     h.link_to(course.homepage, course.homepage)
   end
 
+  def short_institute_title
+    course.institute_short_title
+  end
+
   def institute_title
     course.institute_full_title
   end

@@ -1,19 +1,30 @@
 - course_view.view_context = self
 
 .course
-  section.course-title-section
+  section.course-title-section.row
     h1.course-number-and-title
       .course-number = course_view.course_number
       .course-title = course_view.title
     h2.course-translated-title
       = course_view.title
 
-  section.course-main-information-section
+  section.course-main-information-section.row
     .course-important-information
-      .course-ects-points = course_view.ects_points
-      .course-type = course_view.main_course_type
-      - if course_view.teached_under_open_education?
-        .course-open-education = t('.open_education')
+      .row
+        .course-ects-points
+          = icon 'star', course_view.ects_points
+        .course-calendar-block-type
+          = icon 'calendar', "Forår, 13 ugers"
+        .course-language
+          = icon 'globe', "Dansk"
+        .course-institute
+          = icon 'institution'
+          span.course-institute-text< = course_view.short_institute_title
+
+      .course-type-information.row
+        .course-type = course_view.main_course_type
+        - if course_view.teached_under_open_education?
+          .course-open-education = t('.open_education')
 
     = course_view.render_course_schedule
 
