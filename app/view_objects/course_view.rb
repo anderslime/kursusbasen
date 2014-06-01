@@ -5,7 +5,7 @@ class CourseView
   delegate :course_number, :title, :ects_points, :main_course_type,
            :teached_as_open_education?, :course_objectives, :content,
            :teaching_form, :course_website_link?, :course_website_link,
-           :participant_limit, to: :course_presenter
+           :participant_limit, :institute_title, to: :course_presenter
 
   def initialize(course)
     @course = course

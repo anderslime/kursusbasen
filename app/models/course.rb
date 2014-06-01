@@ -6,6 +6,8 @@ class Course < ActiveRecord::Base
   has_and_belongs_to_many :teachers
   belongs_to :institute
 
+  delegate :full_title, to: :institute, prefix: true
+
   validates_uniqueness_of :course_number
 
   translates :title, :teaching_form, :duration, :participant_limit, :registration,

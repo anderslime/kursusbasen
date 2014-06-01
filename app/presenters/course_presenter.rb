@@ -43,6 +43,10 @@ class CoursePresenter < ApplicationPresenter
     h.link_to(course.homepage, course.homepage)
   end
 
+  def institute_title
+    course.institute_full_title
+  end
+
   private
 
   def rounded_ects_points

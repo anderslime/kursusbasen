@@ -47,7 +47,12 @@
 
   section.row
     dl.course-short-information
-      dt.course-participant-limit-title
-        = Course.human_attribute_name(:participant_limit)
-      dd.course-participant-limit
-        = course_view.participant_limit
+      - if course_view.participant_limit
+        dt.course-participant-limit-title
+          = Course.human_attribute_name(:participant_limit)
+        dd.course-participant-limit
+          = course_view.participant_limit
+      dt.course-institute-title
+        = Course.human_attribute_name(:institute)
+      dd.course-institute
+        = course_view.institute_title
