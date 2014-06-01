@@ -42,7 +42,7 @@ class MandatoryDataExtractor
   end
 
   def ects_points
-    extract(:ects_points)
+    extract(:ects_points).gsub(",", ".").to_f
   end
 
   private
