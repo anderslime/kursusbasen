@@ -27,6 +27,7 @@ gem 'unicorn'
 # Styling
 gem 'bootstrap-sass'
 gem 'bourbon'
+gem 'font-awesome-sass'
 
 # Elastic search
 gem 'tire'
