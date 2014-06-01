@@ -17,15 +17,15 @@
 
     = course_view.render_course_schedule
 
-  section.row
-    dl.course-information
-      dt.course-general-objectives-title
-        = Course.human_attribute_name(:course_objectives)
-      dd.course-general-objectives
-        = course_view.course_objectives
+  section.course-information.row
+    dt.course-general-objectives-title
+      = Course.human_attribute_name(:course_objectives)
+    dd.course-general-objectives
+      = course_view.course_objectives
 
     .course-sidebar
       .course-teachers
+        h4.course-teachers-headline = t('.teachers_headline')
         = course_view.render_teachers
 
   section.row

@@ -6,6 +6,7 @@ da:
   courses:
     show:
       open_education: Udbydes under åben uddannelse
+      teachers_headline: "Kursusansvarlige"
   activerecord:
     attributes:
       course:
