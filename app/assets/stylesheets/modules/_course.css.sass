@@ -50,6 +50,23 @@
   font-size: 1.2em
   color: #666
 
+.course-top-comment
+  @extend .col-xs-12
+  background-color: whitesmoke
+  border: 1px solid #e3e3e3
+  border-radius: 4px
+  padding: 10px 15px
+  margin-bottom: 20px
+
+.course-sidebar
+  @extend .col-sm-4
+  @extend .col-sm-push-8
+  @extend .col-md-6
+  @extend .col-md-push-6
+
+.course-teachers-headline
+  margin-top: 0
+
 .course-long-information
   +clearfix
   @extend .col-sm-8
@@ -71,18 +88,10 @@
 .course-short-information dd
   @extend .col-sm-9
   @extend .col-md-10
+  margin-bottom: 10px
 
 .course-general-objectives
   font-size: 1.2em
-
-.course-sidebar
-  @extend .col-sm-4
-  @extend .col-sm-push-8
-  @extend .col-md-6
-  @extend .col-md-push-6
-
-.course-teachers-headline
-  margin-top: 0
 
 @media (min-width: $screen-sm-min)
   .course-number

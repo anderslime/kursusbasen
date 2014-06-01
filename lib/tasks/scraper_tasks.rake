@@ -24,10 +24,11 @@ namespace :scrape do
     require 'mechanize'
     require 'pp'
 
-    debug            = ENV["DEBUG"] || false
-    persist          = ENV["PERSIST"] || false
-    reset_courses_db = ENV["RESET"] || false
-    persist_institute = ENV["PERSIST_INSTITUTE"] || false
+    debug               = ENV["DEBUG"] || false
+    persist             = ENV["PERSIST"] || false
+    reset_courses_db    = ENV["RESET"] || false
+    persist_institute   = ENV["PERSIST_INSTITUTE"] || false
+    persist_top_comment = ENV["PERSIST_TOP_COMMENT"] || false
 
     if reset_courses_db
       puts "resetting course database"
@@ -112,6 +113,9 @@ namespace :scrape do
         exam_schedule_extractor = ScheduleExtractor.new(page, "Eksamensplacering:")
         exam_schedules = exam_schedule_extractor.schedules
 
+        top_comment_extractor = TopCommentExtractor.new(page)
+        top_comment = top_comment_extractor.top_comment
+
         # Debug output
         if debug
           [
@@ -120,7 +124,8 @@ namespace :scrape do
             :remarks, :exam_schedule, :exam_form, :exam_duration, :exam_aid,
             :evaluation_form, :point_block, :mandatory_prerequisites,
             :optional_prerequisites, :recommended_prerequisites, :institute_dtu_id,
-            :institute_title, :learning_objectives, :responsibles, :website, :schedule
+            :institute_title, :learning_objectives, :responsibles, :website, :schedule,
+            :top_comment
           ].each do |variable|
             puts "==========#{variable}:=========="
             puts eval(variable.to_s).inspect
@@ -153,7 +158,8 @@ namespace :scrape do
             former_course: former_course,
             exam_form: exam_form,
             exam_aid: exam_aid,
-            evaluation_form: evaluation_form
+            evaluation_form: evaluation_form,
+            top_comment: top_comment
           )
 
           # Create schedules
@@ -186,6 +192,13 @@ namespace :scrape do
             course.institute = institute
             course.save
           end
+        end
+
+        # This section is only because the top comment is added later than
+        # the other attributes and is therefore added to the existing course records
+        if persist_top_comment && !persist
+          course = Course.find_by_course_number(course_number)
+          course.update_attributes(top_comment: top_comment)
         end
       end
     end

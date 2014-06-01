@@ -23,36 +23,43 @@
         h4.course-teachers-headline = t('.teachers_headline')
       = course_view.render_teachers
 
-    dl.course-long-information
-      dt.course-general-objectives-title
-        = Course.human_attribute_name(:course_objectives)
-      dd.course-general-objectives
-        = course_view.course_objectives
-      dt.course-content-title
-        = Course.human_attribute_name(:content)
-      dd.course-content
-        = course_view.content
+    .course-long-information
+      - if course_view.top_comment
+        .course-top-comment
+          = course_view.top_comment
+
+      dl.course-long-information-list
+        dt.course-general-objectives-title
+          = Course.human_attribute_name(:course_objectives)
+        dd.course-general-objectives
+          = course_view.course_objectives
+        dt.course-content-title
+          = Course.human_attribute_name(:content)
+        dd.course-content
+          = course_view.content
 
   section.row
-    dl.course-short-information
-      dt.course-teaching-form-title
-        = Course.human_attribute_name(:teaching_form)
-      dd.course-teaching-form
-        = course_view.teaching_form
-      - if course_view.course_website_link?
-          dt.course-website-title
-            = Course.human_attribute_name(:homepage)
-          dd.course-website
-            = course_view.course_website_link
+    .course-short-information
+      dl.course-short-information-list
+        dt.course-teaching-form-title
+          = Course.human_attribute_name(:teaching_form)
+        dd.course-teaching-form
+          = course_view.teaching_form
+        - if course_view.course_website_link?
+            dt.course-website-title
+              = Course.human_attribute_name(:homepage)
+            dd.course-website
+              = course_view.course_website_link
 
   section.row
-    dl.course-short-information
-      - if course_view.participant_limit
-        dt.course-participant-limit-title
-          = Course.human_attribute_name(:participant_limit)
-        dd.course-participant-limit
-          = course_view.participant_limit
-      dt.course-institute-title
-        = Course.human_attribute_name(:institute)
-      dd.course-institute
-        = course_view.institute_title
+    .course-short-information
+      dl.course-short-information-list
+        - if course_view.participant_limit
+          dt.course-participant-limit-title
+            = Course.human_attribute_name(:participant_limit)
+          dd.course-participant-limit
+            = course_view.participant_limit
+        dt.course-institute-title
+          = Course.human_attribute_name(:institute)
+        dd.course-institute
+          = course_view.institute_title

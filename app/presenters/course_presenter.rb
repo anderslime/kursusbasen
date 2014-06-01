@@ -1,7 +1,8 @@
 class CoursePresenter < ApplicationPresenter
   presents :course
 
-  delegate :title, :course_number, :teaching_form, :participant_limit, to: :course
+  delegate :title, :course_number, :teaching_form, :participant_limit,
+           :top_comment, to: :course
 
   def title_with_course_number
     [course.course_number, course.title].join(" ")
