@@ -128,6 +128,9 @@ namespace :scrape do
         language_extractor = LanguageExtractor.new(page)
         language = language_extractor.language_locale_code
 
+        schedule_season_extractor = ScheduleSeasonBlockExtractor.new(schedule_note, schedules)
+        schedule_season_blocks = schedule_season_extractor.schedule_season_block
+
         # Debug output
         if debug
           [
@@ -175,7 +178,8 @@ namespace :scrape do
             open_education: open_education,
             language: language,
             schedule_note: schedule_note,
-            exam_schedule_note: exam_schedule_note
+            exam_schedule_note: exam_schedule_note,
+            schedule_season_blocks: Array(schedule_season_blocks)
           )
 
           # Create schedules
@@ -185,7 +189,6 @@ namespace :scrape do
 
           # Create teachers
           Array(responsibles).each do |responsible|
-            puts responsible.inspect
             teacher_data = { name: responsible.name }
             teacher = Teacher.create_with(teacher_data).find_or_create_by(
               dtu_teacher_id: responsible.dtu_teacher_id

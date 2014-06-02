@@ -12,6 +12,11 @@ da:
       open_education: Udbydes under åben uddannelse
       teachers_headline: "Kursusansvarlige"
   activerecord:
+    errors:
+      models:
+        course:
+          schedule_season_blocks:
+            block_not_in_list: Ugyldig sæsonblok.
     attributes:
       course:
         course_objectives: Overordnede kursusmål

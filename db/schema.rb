@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20140602065815) do
   add_index "course_translations", ["locale"], name: "index_course_translations_on_locale", using: :btree
 
   create_table "courses", force: true do |t|
-    t.string   "course_number",                         null: false
+    t.string   "course_number",                          null: false
     t.string   "language"
     t.float    "ects_points"
     t.integer  "institute_id"
@@ -65,8 +65,8 @@ ActiveRecord::Schema.define(version: 20140602065815) do
     t.string   "exam_duration"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "open_education",        default: false
-    t.string   "schedule_season_block"
+    t.boolean  "open_education",         default: false
+    t.text     "schedule_season_blocks"
   end
 
   add_index "courses", ["course_number"], name: "index_courses_on_course_number", using: :btree

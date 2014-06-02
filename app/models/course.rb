@@ -2,6 +2,9 @@ class Course < ActiveRecord::Base
   include Tire::Model::Search
   include Tire::Model::Callbacks
 
+  serialize :schedule_season_blocks, Array
+  validates_with ScheduleSeasonBlocksValidator
+
   has_many :schedules, dependent: :destroy
   has_and_belongs_to_many :teachers
   belongs_to :institute
