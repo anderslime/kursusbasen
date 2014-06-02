@@ -6,7 +6,8 @@ class CourseView
            :teached_under_open_education?, :course_objectives, :content,
            :teaching_form, :course_website_link?, :course_website_link,
            :participant_limit, :institute_title, :top_comment,
-           :short_institute_title, to: :course_presenter
+           :short_institute_title, :language, :calendar_block_type,
+           to: :course_presenter
 
   def initialize(course)
     @course = course

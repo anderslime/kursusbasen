@@ -63,7 +63,8 @@ class MandatoryDataExtractor
       :exam_aid => "Hjælpemidler:",
       :evaluation_form => "Bedømmelsesform:",
       :qualified_prereq => "Faglige forudsætninger:",
-      :ects_points => "Point (ECTS )"
+      :ects_points => "Point (ECTS )",
+      :language => "Sprog:"
     }
   end
 end

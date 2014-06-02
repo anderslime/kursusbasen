@@ -1,4 +1,8 @@
 da:
+  generic:
+    languages:
+      en: Engelsk
+      da: Dansk
   will_paginate:
     previous_label: "&#8592; Forrige"
     next_label: "Næste &#8594;"

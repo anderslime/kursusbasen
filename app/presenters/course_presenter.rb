@@ -56,6 +56,14 @@ class CoursePresenter < ApplicationPresenter
     course.open_education?
   end
 
+  def language
+    I18n.t("generic.languages.#{course.language}")
+  end
+
+  def calendar_block_type
+    course.duration
+  end
+
   private
 
   def rounded_ects_points

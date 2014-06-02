@@ -30,6 +30,7 @@ namespace :scrape do
     persist_institute      = ENV["PERSIST_INSTITUTE"] || false
     persist_top_comment    = ENV["PERSIST_TOP_COMMENT"] || false
     persist_open_education = ENV["PERSIST_OPEN_EDUCATION"] || false
+    persist_language       = ENV["PERSIST_LANGUAGE"] || false
 
     if reset_courses_db
       puts "resetting course database"
@@ -120,6 +121,10 @@ namespace :scrape do
         open_education_extractor = OpenEducationExtractor.new(page)
         open_education = open_education_extractor.open_education?
 
+        # Course language
+        language_extractor = LanguageExtractor.new(page)
+        language = language_extractor.language_locale_code
+
         # Debug output
         if debug
           [
@@ -164,7 +169,8 @@ namespace :scrape do
             exam_aid: exam_aid,
             evaluation_form: evaluation_form,
             top_comment: top_comment,
-            open_education: open_education
+            open_education: open_education,
+            language: language
           )
 
           # Create schedules
@@ -211,6 +217,14 @@ namespace :scrape do
         if persist_open_education && !persist
           course = Course.find_by_course_number!(course_number)
           course.update_attributes(open_education: open_education)
+        end
+
+        # This section is only because the open education boolean is added later than
+        # the other attributes and is therefore added to the existing course records
+        if persist_language && !persist
+          course = Course.find_by_course_number!(course_number)
+          puts language
+          course.update_attributes(language: language)
         end
       end
     end

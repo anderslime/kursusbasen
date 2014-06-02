@@ -14,9 +14,9 @@
         .course-ects-points
           = icon 'star', course_view.ects_points
         .course-calendar-block-type
-          = icon 'calendar', "Forår, 13 ugers"
+          = icon 'calendar', course_view.calendar_block_type
         .course-language
-          = icon 'globe', "Dansk"
+          = icon 'globe', course_view.language
         .course-institute
           = icon 'institution'
           span.course-institute-text< = course_view.short_institute_title
