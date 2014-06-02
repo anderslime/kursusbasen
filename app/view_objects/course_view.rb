@@ -7,7 +7,7 @@ class CourseView
            :teaching_form, :course_website_link?, :course_website_link,
            :participant_limit, :institute_title, :top_comment,
            :short_institute_title, :language, :calendar_block_type,
-           to: :course_presenter
+           :schedule_note, to: :course_presenter
 
   def initialize(course)
     @course = course

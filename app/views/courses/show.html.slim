@@ -70,7 +70,11 @@
             = Course.human_attribute_name(:participant_limit)
           dd.course-participant-limit
             = course_view.participant_limit
-        dt.course-institute-title
+        dt.course-institute-long-title
           = Course.human_attribute_name(:institute)
-        dd.course-institute
+        dd.course-institute-long
           = course_view.institute_title
+        dt.course-schedule-note-title
+          = Course.human_attribute_name(:schedule_note)
+        dd.course-schedule-note
+          = course_view.schedule_note
