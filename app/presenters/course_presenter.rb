@@ -69,6 +69,14 @@ class CoursePresenter < ApplicationPresenter
     registration_link_to_campus_net
   end
 
+  def any_remarks?
+    course.remarks.present?
+  end
+
+  def remarks
+    h.simple_format(course.remarks)
+  end
+
   private
 
   def registration_link_to_campus_net

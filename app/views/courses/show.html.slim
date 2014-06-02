@@ -39,7 +39,7 @@
         .course-top-comment
           = course_view.top_comment
 
-      dl.course-long-information-list
+      dl.course-important-long-information-list
         dt.course-general-objectives-title
           = Course.human_attribute_name(:course_objectives)
         dd.course-general-objectives
@@ -49,6 +49,13 @@
         dd.course-content
           = course_view.content
 
+      - if course_view.any_remarks?
+        dl.course-other-long-information-list
+          dt.course-remarks-title
+            = Course.human_attribute_name(:remarks)
+          dd.course-remarks
+            = course_view.remarks
+
   section.row
     .course-short-information
       dl.course-short-information-list
@@ -57,10 +64,10 @@
         dd.course-teaching-form
           = course_view.teaching_form
         - if course_view.course_website_link?
-            dt.course-website-title
-              = Course.human_attribute_name(:homepage)
-            dd.course-website
-              = course_view.course_website_link
+          dt.course-website-title
+            = Course.human_attribute_name(:homepage)
+          dd.course-website
+            = course_view.course_website_link
 
   section.row
     .course-short-information
