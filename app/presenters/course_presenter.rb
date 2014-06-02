@@ -61,14 +61,24 @@ class CoursePresenter < ApplicationPresenter
   end
 
   def calendar_block_type
-    [course.schedule_season_blocks, course.duration].flatten.compact.join(" ")
-  end
-
-  def schedule_season_blocks
-    course.schedule_season_blocks.map do |season_block|
+    [schedule_season_blocks, course_duration_in_parentheses].flatten.compact.join(" ")
   end
 
   private
+
+  def course_duration_in_parentheses
+    "(" + course.duration + ")"
+  end
+
+  def schedule_season_blocks
+    schedule_season_block_sentence && schedule_season_block_sentence.capitalize
+  end
+
+  def schedule_season_block_sentence
+    course.schedule_season_blocks.map do |season_block|
+      I18n.t("generic.course.schedule_season_blocks_types.#{season_block}")
+    end.to_sentence.presence
+  end
 
   def rounded_ects_points
     return course.ects_points if course.ects_points % 1.0 != 0
