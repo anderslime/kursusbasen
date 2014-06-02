@@ -64,7 +64,24 @@ class CoursePresenter < ApplicationPresenter
     [schedule_season_blocks, course_duration_in_parentheses].flatten.compact.join(" ")
   end
 
+  def registration
+    return course.registration unless default_campus_net_registration?
+    registration_link_to_campus_net
+  end
+
   private
+
+  def registration_link_to_campus_net
+    h.link_to(
+      I18n.t('courses.show.default_registration_text'),
+      "http://cn.dtu.dk",
+      target: :_blank
+    )
+  end
+
+  def default_campus_net_registration?
+    course.registration == "I CampusNet" || course.registration == "At CampusNet"
+  end
 
   def course_duration_in_parentheses
     "(" + course.duration + ")"

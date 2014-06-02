@@ -18,6 +18,7 @@ da:
     show:
       open_education: Udbydes under åben uddannelse
       teachers_headline: "Kursusansvarlige"
+      default_registration_text: "På CampusNet"
   activerecord:
     errors:
       models:
@@ -33,3 +34,5 @@ da:
         participant_limit: Deltagerbegrænsning
         schedule_note: Skemaplacering
         exam_schedule_note: Eksamensplacering
+        registration: Registrering
+        institute: Institut
