@@ -3,6 +3,13 @@ da:
     languages:
       en: Engelsk
       da: Dansk
+    course:
+      schedule_season_blocks_types:
+        summer: Sommer
+        autumn: Efterår
+        spring: Forår
+        januar: Januar
+        june: Juni
   will_paginate:
     previous_label: "&#8592; Forrige"
     next_label: "Næste &#8594;"

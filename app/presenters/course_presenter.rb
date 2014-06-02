@@ -61,7 +61,11 @@ class CoursePresenter < ApplicationPresenter
   end
 
   def calendar_block_type
-    course.duration
+    [course.schedule_season_blocks, course.duration].flatten.compact.join(" ")
+  end
+
+  def schedule_season_blocks
+    course.schedule_season_blocks.map do |season_block|
   end
 
   private
