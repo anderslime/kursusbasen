@@ -8,7 +8,7 @@ class CourseView
            :participant_limit, :institute_title, :top_comment,
            :short_institute_title, :language, :calendar_block_type,
            :schedule_note, :exam_schedule_note, :registration,
-           :any_remarks?, :remarks, to: :course_presenter
+           :any_remarks?, :remarks, :evaluation_form, to: :course_presenter
 
   def initialize(course)
     @course = course
