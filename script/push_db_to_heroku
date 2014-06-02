@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-# Usage: ./script/push_db_to_heroku url_to_database_download
-pg_dump -Fc --no-acl --no-owner -h localhost -U anderslime -T 'course_pages|teacher_pages'  kursusbasen > kursusbasen.dump
-heroku pgbackups:restore DATABASE $1
