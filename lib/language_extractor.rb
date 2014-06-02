@@ -8,7 +8,7 @@ class LanguageExtractor
   def language_locale_code
     {
       "Dansk"   => "da",
-      "English" => "en"
+      "Engelsk" => "en"
     }.fetch(extracted_language)
   end
 

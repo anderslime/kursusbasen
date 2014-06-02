@@ -31,6 +31,7 @@ namespace :scrape do
     persist_top_comment    = ENV["PERSIST_TOP_COMMENT"] || false
     persist_open_education = ENV["PERSIST_OPEN_EDUCATION"] || false
     persist_language       = ENV["PERSIST_LANGUAGE"] || false
+    persist_schedule_notes = ENV["PERSIST_SCHEDULE_NOTES"] || false
 
     if reset_courses_db
       puts "resetting course database"
@@ -110,10 +111,12 @@ namespace :scrape do
         # Schedule
         schedule_extractor = ScheduleExtractor.new(page, "Skemaplacering:")
         schedule_blocks = schedule_extractor.schedules
+        schedule_note   = schedule_extractor.schedule_note
 
         # Exam schedule
         exam_schedule_extractor = ScheduleExtractor.new(page, "Eksamensplacering:")
         exam_schedules = exam_schedule_extractor.schedules
+        exam_schedule_note = exam_schedule_extractor.schedule_note
 
         top_comment_extractor = TopCommentExtractor.new(page)
         top_comment = top_comment_extractor.top_comment
@@ -170,7 +173,9 @@ namespace :scrape do
             evaluation_form: evaluation_form,
             top_comment: top_comment,
             open_education: open_education,
-            language: language
+            language: language,
+            schedule_note: schedule_note,
+            exam_schedule_note: exam_schedule_note
           )
 
           # Create schedules
@@ -219,12 +224,21 @@ namespace :scrape do
           course.update_attributes(open_education: open_education)
         end
 
-        # This section is only because the open education boolean is added later than
+        # This section is only because the langauge is added later than
         # the other attributes and is therefore added to the existing course records
         if persist_language && !persist
           course = Course.find_by_course_number!(course_number)
-          puts language
           course.update_attributes(language: language)
+        end
+
+        # This section is only because the schedule notes is added later than
+        # the other attributes and is therefore added to the existing course records
+        if persist_schedule_notes && !persist
+          course = Course.find_by_course_number!(course_number)
+          course.update_attributes(
+            schedule_note: schedule_note,
+            exam_schedule_note: exam_schedule_note
+          )
         end
       end
     end

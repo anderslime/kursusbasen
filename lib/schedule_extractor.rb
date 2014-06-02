@@ -12,6 +12,10 @@ class ScheduleExtractor
     end.flatten.uniq
   end
 
+  def schedule_note
+    schedule_content
+  end
+
   private
 
   def extract_double_semester_schedules(schedule)

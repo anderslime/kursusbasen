@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140601171156) do
+ActiveRecord::Schema.define(version: 20140602065815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(version: 20140601171156) do
   add_index "course_pages", ["course_number"], name: "index_course_pages_on_course_number", using: :btree
 
   create_table "course_translations", force: true do |t|
-    t.integer  "course_id",         null: false
-    t.string   "locale",            null: false
+    t.integer  "course_id",          null: false
+    t.string   "locale",             null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "title"
@@ -49,13 +49,15 @@ ActiveRecord::Schema.define(version: 20140601171156) do
     t.text     "exam_form"
     t.string   "exam_aid"
     t.string   "evaluation_form"
+    t.text     "exam_schedule_note"
+    t.text     "schedule_note"
   end
 
   add_index "course_translations", ["course_id"], name: "index_course_translations_on_course_id", using: :btree
   add_index "course_translations", ["locale"], name: "index_course_translations_on_locale", using: :btree
 
   create_table "courses", force: true do |t|
-    t.string   "course_number",                  null: false
+    t.string   "course_number",                         null: false
     t.string   "language"
     t.float    "ects_points"
     t.integer  "institute_id"
@@ -63,7 +65,8 @@ ActiveRecord::Schema.define(version: 20140601171156) do
     t.string   "exam_duration"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "open_education", default: false
+    t.boolean  "open_education",        default: false
+    t.string   "schedule_season_block"
   end
 
   add_index "courses", ["course_number"], name: "index_courses_on_course_number", using: :btree
