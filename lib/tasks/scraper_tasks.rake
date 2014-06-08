@@ -4,7 +4,7 @@ namespace :scrape do
     agent = Mechanize.new
     total_courses = collector.amount_of_courses
     index = 1
-    collector.course_pages do |course_url, course_number, semester|
+    collector.course_pages.each do |course_url, course_number, semester|
       puts "#{index} / #{total_courses}"
       puts course_number
       page = agent.get(course_url)
@@ -18,6 +18,48 @@ namespace :scrape do
       end
       index += 1
     end
+  end
+
+  task :course_pages_parallel => :environment do
+    require "thread"
+
+    collector      = CourseCollector.new
+    objects        = collector.course_pages
+    object_queue   = Queue.new
+    consumer_count = 5
+
+    def create_content_corrector(object_queue)
+      corrector = Thread.new do
+        while object = object_queue.pop
+          break if object == 'quit'
+
+          course_url    = object.fetch(0)
+          course_number = object.fetch(1)
+          semester      = object.fetch(2)
+          page          = Mechanize.new.get(course_url)
+          puts course_number
+          unless CoursePage.exists_with_course_number_in_semester?(course_number, semester)
+            CoursePage.create!(
+              course_number: course_number,
+              page: page.body,
+              semester_year: "2013-2014",
+              url: course_url
+            )
+          end
+        end
+      end
+    end
+
+    producer = Thread.new do
+      objects.each {|object| object_queue << object }
+      consumer_count.times { object_queue << 'quit' }
+    end
+
+    consumers = (1..consumer_count).map do |consumer|
+      create_content_corrector(object_queue)
+    end
+
+    consumers.each { |consumer| consumer.join }
   end
 
   task :courses => :environment do

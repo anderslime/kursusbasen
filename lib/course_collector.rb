@@ -1,7 +1,7 @@
 class CourseCollector
   def course_pages
-    course_urls.each do |url|
-      yield url, extract_course_number(url), "2013-2014"
+    course_urls.map do |url|
+      [url, extract_course_number(url), "2013-2014"]
     end
   end
 
