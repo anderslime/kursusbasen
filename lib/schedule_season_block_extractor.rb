@@ -47,6 +47,6 @@ class ScheduleSeasonBlockExtractor
   end
 
   def first_letter_of_schedule_blocks
-    @first_letter_of_schedule_blocks ||= schedule_blocks.map(&:block).map(&:first)
+    @first_letter_of_schedule_blocks ||= schedule_blocks.map(&:first)
   end
 end
