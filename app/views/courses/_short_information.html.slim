@@ -1,0 +1,41 @@
+- if course_view.participant_limit
+  dt.course-participant-limit-title
+    = Course.human_attribute_name(:participant_limit)
+  dd.course-participant-limit
+    = course_view.participant_limit
+
+- if course_view.institute_title
+  dt.course-institute-long-title
+    = Course.human_attribute_name(:institute)
+  dd.course-institute-long
+    = course_view.institute_title
+
+- if course_view.schedule_note
+  dt.course-schedule-note-title
+    = Course.human_attribute_name(:schedule_note)
+  dd.course-schedule-note
+    = course_view.schedule_note
+
+- if course_view.exam_schedule_note
+  dt.course-exam-schedule-note-title
+    = Course.human_attribute_name(:exam_schedule_note)
+  dd.course-exam-schedule-nte
+    = course_view.exam_schedule_note
+
+- if course_view.registration
+  dt.course-registration-title
+    = Course.human_attribute_name(:registration)
+  dd.course-registration
+    = course_view.registration
+
+- if course_view.evaluation_form
+  dt.course-evaluation-form-title
+    = Course.human_attribute_name(:evaluation_form)
+  dd.course-evaluation-form
+    = course_view.evaluation_form
+
+- if  course_view.exam_duration
+  dt.course-exam-duration-title
+    = Course.human_attribute_name(:exam_duration)
+  dd.course-exam-duration
+    = course_view.exam_duration
