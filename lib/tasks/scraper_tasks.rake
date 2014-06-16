@@ -237,7 +237,6 @@ namespace :scrape do
           if institute_dtu_id.blank? || institute_title.blank?
             puts "no institute for #{course_number}"
           else
-            puts "persisting institute #{institute_dtu_id} #{institute_title} for #{course_number}"
             institute = Institute.create_with(
               title: institute_title.gsub("\n", " ")
             ).find_or_create_by(
