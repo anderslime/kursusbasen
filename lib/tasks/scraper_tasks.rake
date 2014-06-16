@@ -69,11 +69,6 @@ namespace :scrape do
     debug                  = ENV["DEBUG"] || false
     persist                = ENV["PERSIST"] || false
     reset_courses_db       = ENV["RESET"] || false
-    persist_institute      = ENV["PERSIST_INSTITUTE"] || false
-    persist_top_comment    = ENV["PERSIST_TOP_COMMENT"] || false
-    persist_open_education = ENV["PERSIST_OPEN_EDUCATION"] || false
-    persist_language       = ENV["PERSIST_LANGUAGE"] || false
-    persist_schedule_notes = ENV["PERSIST_SCHEDULE_NOTES"] || false
 
     if reset_courses_db
       puts "resetting course database"
@@ -237,14 +232,12 @@ namespace :scrape do
             )
             course.teachers << teacher unless course.teachers.map(&:dtu_teacher_id).include?(teacher.dtu_teacher_id)
           end
-        end
 
-        if persist_institute
+          # Institute
           if institute_dtu_id.blank? || institute_title.blank?
             puts "no institute for #{course_number}"
           else
             puts "persisting institute #{institute_dtu_id} #{institute_title} for #{course_number}"
-            course = Course.find_by_course_number!(course_number)
             institute = Institute.create_with(
               title: institute_title.gsub("\n", " ")
             ).find_or_create_by(
@@ -253,37 +246,6 @@ namespace :scrape do
             course.institute = institute
             course.save
           end
-        end
-
-        # This section is only because the top comment is added later than
-        # the other attributes and is therefore added to the existing course records
-        if persist_top_comment && !persist
-          course = Course.find_by_course_number!(course_number)
-          course.update_attributes(top_comment: top_comment)
-        end
-
-        # This section is only because the open education boolean is added later than
-        # the other attributes and is therefore added to the existing course records
-        if persist_open_education && !persist
-          course = Course.find_by_course_number!(course_number)
-          course.update_attributes(open_education: open_education)
-        end
-
-        # This section is only because the langauge is added later than
-        # the other attributes and is therefore added to the existing course records
-        if persist_language && !persist
-          course = Course.find_by_course_number!(course_number)
-          course.update_attributes(language: language)
-        end
-
-        # This section is only because the schedule notes is added later than
-        # the other attributes and is therefore added to the existing course records
-        if persist_schedule_notes && !persist
-          course = Course.find_by_course_number!(course_number)
-          course.update_attributes(
-            schedule_note: schedule_note,
-            exam_schedule_note: exam_schedule_note
-          )
         end
       end
     end
