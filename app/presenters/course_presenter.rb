@@ -101,11 +101,9 @@ class CoursePresenter < ApplicationPresenter
   end
 
   def schedule_season_block_sentence
-    course.schedule_groups.map do |schedule_group|
-      schedule_group.schedules.reject(&:unknown_season?).map do |schedule|
-        I18n.t("generic.schedule.season_types.#{schedule.season}")
-      end.uniq.to_sentence
-    end.to_sentence(words_connector: ', ', last_word_connector: " #{I18n.t('generic.or')} ")
+    course.schedules.reject(&:unknown_season?).map do |schedule|
+      I18n.t("generic.schedule.season_types.#{schedule.season}")
+    end.uniq.to_sentence
   end
 
   def rounded_ects_points
