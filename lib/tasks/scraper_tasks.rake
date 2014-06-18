@@ -74,6 +74,7 @@ namespace :scrape do
       puts "resetting course database"
       Course.destroy_all
       Teacher.destroy_all
+      Institute.destroy_all
     end
 
     teacher_report = File.open("teacher_report.log", "w")
