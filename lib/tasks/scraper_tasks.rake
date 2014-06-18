@@ -203,7 +203,7 @@ namespace :scrape do
             registration: registration,
             course_objectives: course_ojectives,
             exam_schedule: Array(exam_schedules).join(", "),
-            learn_objectives: learning_objectives.join(" "),
+            learn_objectives: learning_objectives,
             content: content,
             litteratur: litteratur,
             remarks: remarks,

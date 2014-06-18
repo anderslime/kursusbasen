@@ -3,6 +3,7 @@ class Course < ActiveRecord::Base
   include Tire::Model::Callbacks
 
   serialize :schedule_season_blocks, Array
+  serialize :learn_objectives, Array
   validates_with ScheduleSeasonBlocksValidator
 
   has_many :schedules, dependent: :destroy
