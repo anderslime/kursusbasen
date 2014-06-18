@@ -87,8 +87,9 @@ namespace :scrape do
       I18n.locale = language
 
       amount_of_course_pages = CoursePage.count
+      existing_courses = Course.all.pluck(:course_number)
 
-      CoursePage.all.each_with_index do |course_page, index|
+      CoursePage.except_courses(existing_courses).each_with_index do |course_page, index|
         page = Nokogiri::HTML(course_page.page)
         course_number = course_page.course_number
 
