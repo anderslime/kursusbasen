@@ -247,16 +247,22 @@ namespace :scrape do
   end
 
   task :schedules => :environment do
+    if ENV["RESET"].present?
+      ScheduleGroup.delete_all
+      Schedule.delete_all
+    end
+
     ListScheduleExtractor.new.courses.each do |schedule_course|
+      puts schedule_course.course_number
       course = Course.find_by!(course_number: schedule_course.course_number)
       schedule_course.course_runs.each do |course_run|
-        schedule_group = ScheduleGroup.create(course_id: course.id)
+        schedule_group = ScheduleGroup.create!(course_id: course.id)
         course_run.schedules.each do |schedule|
-          schedule_data = { season: schedule.season, block: schedule.block }
-          if schedule.season == "unknown"
-            schedule_data = schedule_data.merge(outside_dtu_schedule: true)
-          end
-          schedule_group.schedules.create(schedule_data)
+          schedule_group.schedules.create!(
+            season: schedule.season,
+            block: schedule.block,
+            outside_dtu_schedule: schedule.outside_dtu_schedule?
+          )
         end
       end
     end

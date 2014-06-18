@@ -17,10 +17,7 @@ class ListScheduleExtractor
   def extract_schedules(run_string)
     run_string.gsub(",", "og").split("og").map(&:strip).map do |schedule_string|
       extract_season_and_blocks(schedule_string).map do |season, block|
-        Schedule.new(
-          map_schedule_season_from_danish(season),
-          block
-        )
+        Schedule.new(season, block)
       end
     end.flatten
   end
@@ -79,19 +76,6 @@ class ListScheduleExtractor
     @agent ||= Mechanize.new
   end
 
-  def map_schedule_season_from_danish(season)
-    {
-      "Forår" => "spring",
-      "Efterår" => "autumn",
-      "F" => "spring",
-      "E" => "autumn",
-      "Januar" => "january",
-      "Juni" => "june",
-      "Sommerkursus" => "summer",
-      "Udenfor skema-struktur" => 'unknown'
-    }.fetch(season)
-  end
-
   class Course
     attr_reader :course_number, :course_runs
 
@@ -102,19 +86,48 @@ class ListScheduleExtractor
   end
 
   class CourseRun
-    attr_reader :schedules
-
     def initialize(schedules)
       @schedules = schedules
+    end
+
+    def schedules
+      if @schedules.any?
+        @schedules
+      else
+        Array(Schedule.new("Udenfor skema-struktur", nil))
+      end
     end
   end
 
   class Schedule
-    attr_reader :season, :block
+    attr_reader :block, :scraped_season
 
-    def initialize(season, block)
-      @season = season
-      @block  = block
+    def initialize(scraped_season, block)
+      @scraped_season = scraped_season
+      @block          = block
+    end
+
+    def season
+      map_schedule_season_from_danish
+    end
+
+    def outside_dtu_schedule?
+      ["Udenfor skema-struktur", "Forår", "Efterår"].include?(scraped_season)
+    end
+
+    private
+
+    def map_schedule_season_from_danish
+      {
+        "Forår" => "spring",
+        "Efterår" => "autumn",
+        "F" => "spring",
+        "E" => "autumn",
+        "Januar" => "january",
+        "Juni" => "june",
+        "Sommerkursus" => "summer",
+        "Udenfor skema-struktur" => 'unknown'
+      }.fetch(scraped_season)
     end
   end
 end
