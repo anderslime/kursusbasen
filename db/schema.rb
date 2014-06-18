@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 20140618181636) do
   end
 
   create_table "schedule_groups", force: true do |t|
-    t.integer  "course_id"
+    t.integer  "course_id",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 20140618181636) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "schedule_group_id"
-    t.boolean  "outside_dtu_schedule"
+    t.boolean  "outside_dtu_schedule", default: false
     t.string   "season"
   end
 

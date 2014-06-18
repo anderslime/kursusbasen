@@ -4,6 +4,7 @@ class Course < ActiveRecord::Base
 
   serialize :learn_objectives, Array
 
+  has_many :schedule_groups, :dependent => :destroy
   has_and_belongs_to_many :teachers
   belongs_to :institute
 

@@ -1,6 +1,7 @@
 class Schedule < ActiveRecord::Base
   BLOCKS = ['1A', '2A', '3A', '4A', '5A', '1B', '2B', '3B', '4B', '5B']
-  SEASONS = ['spring', 'autumn', 'summer', 'january', 'june']
+  SEASONS = ['spring', 'autumn', 'summer', 'january', 'june', 'unknown']
+
   validates_inclusion_of :block, in: BLOCKS
   validates_inclusion_of :season, in: SEASONS
 
