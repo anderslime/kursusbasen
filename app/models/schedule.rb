@@ -7,11 +7,7 @@ class Schedule < ActiveRecord::Base
 
   validates_presence_of :season, :schedule_group_id
 
-  def spring?
-    block[0] == "F"
-  end
-
-  def autumn?
-    block[0] == "E"
+  def unknown_season?
+    season == "unknown"
   end
 end

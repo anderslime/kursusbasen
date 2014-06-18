@@ -98,13 +98,15 @@ class CoursePresenter < ApplicationPresenter
 
   def schedule_season_blocks
     # TODO: Migrate to new schedule structure
-    # schedule_season_block_sentence && schedule_season_block_sentence.capitalize
+    schedule_season_block_sentence && schedule_season_block_sentence.capitalize
   end
 
   def schedule_season_block_sentence
-    course.schedule_season_blocks.map do |season_block|
-      I18n.t("generic.course.schedule_season_blocks_types.#{season_block}")
-    end.to_sentence.presence
+    course.schedule_groups.map do |schedule_group|
+      schedule_group.schedules.reject(&:unknown_season?).map do |schedule|
+        I18n.t("generic.schedule.season_types.#{schedule.season}")
+      end.uniq.to_sentence
+    end.to_sentence(words_connector: ', ', last_word_connector: " #{I18n.t('generic.or')} ")
   end
 
   def rounded_ects_points

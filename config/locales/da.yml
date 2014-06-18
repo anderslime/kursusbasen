@@ -1,15 +1,17 @@
 da:
   generic:
+    or: eller
     languages:
       en: Engelsk
       da: Dansk
-    course:
-      schedule_season_blocks_types:
+    schedule:
+      season_types:
         summer: Sommer
         autumn: Efterår
         spring: Forår
         january: Januar
         june: Juni
+        unknown: Udenfor skema-struktur
   will_paginate:
     previous_label: "&#8592; Forrige"
     next_label: "Næste &#8594;"
