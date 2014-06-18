@@ -7,7 +7,7 @@ class CourseDataExtractor
   end
 
   def title
-    /\d{5}.(.*)/.match(title_text)[1]
+    /\w{5}.(.*)/.match(title_text)[1]
   end
 
   private

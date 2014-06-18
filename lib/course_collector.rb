@@ -12,11 +12,11 @@ class CourseCollector
   private
 
   def extract_course_number(url)
-    %r{(\d{5})}.match(url)[1]
+    %r{(\w{5})\.aspx\?menulanguage=.*}.match(url)[1]
   end
 
   def course_urls
-    get_course_list_page.links_with(:href => %r{\d{5}\.aspx\?menulanguage=.*}).map do |link|
+    get_course_list_page.links_with(:href => %r{\w{5}\.aspx\?menulanguage=.*}).map do |link|
       ["http://www.kurser.dtu.dk", link.href.to_s].join("/")
     end
   end
