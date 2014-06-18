@@ -86,7 +86,8 @@ class ListScheduleExtractor
       "F" => "spring",
       "E" => "autumn",
       "Januar" => "january",
-      "Summerkursus" => "summer",
+      "Juni" => "june",
+      "Sommerkursus" => "summer",
       "Udenfor skema-struktur" => 'unknown'
     }.fetch(season)
   end
