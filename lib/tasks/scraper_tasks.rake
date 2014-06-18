@@ -245,6 +245,22 @@ namespace :scrape do
     end
   end
 
+  task :schedules => :environment do
+    ListScheduleExtractor.new.courses.each do |schedule_course|
+      course = Course.find_by!(course_number: schedule_course.course_number)
+      schedule_course.course_runs.each do |course_run|
+        schedule_group = ScheduleGroup.create(course_id: course.id)
+        course_run.schedules.each do |schedule|
+          schedule_data = { season: schedule.season, block: schedule.block }
+          if schedule.season == "unknown"
+            schedule_data = schedule_data.merge(outside_dtu_schedule: true)
+          end
+          schedule_group.schedules.create(schedule_data)
+        end
+      end
+    end
+  end
+
   task :teacher_pages => :environment do
     agent = Mechanize.new
     Teacher.all.each do |teacher|
