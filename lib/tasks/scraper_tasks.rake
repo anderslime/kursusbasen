@@ -244,7 +244,7 @@ namespace :scrape do
               dtu_institute_id: institute_dtu_id
             )
             course.institute = institute
-            course.save
+            course.save!
           end
         end
       end
