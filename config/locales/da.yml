@@ -21,6 +21,7 @@ da:
       open_education: Udbydes under åben uddannelse
       teachers_headline: "Kursusansvarlige"
       default_registration_text: "På CampusNet"
+      learning_objectives_description: "En studerende, der fuldt ud har opfyldt kursets mål, vil kunne:"
   activerecord:
     attributes:
       course:

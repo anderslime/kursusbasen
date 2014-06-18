@@ -48,6 +48,14 @@
           = Course.human_attribute_name(:content)
         dd.course-content
           = course_view.content
+        dt.course-learning-objectives-title
+          = Course.human_attribute_name(:learn_objectives)
+        dd.course-learning-objectives
+          .course-learning-objectives-description = t('.learning_objectives_description')
+          ul.course-learning-objectives-list
+            - course_view.learn_objectives.each do |learn_objective|
+              li.course-learning-objective = learn_objective
+
 
       - if course_view.any_remarks?
         dl.course-other-long-information-list

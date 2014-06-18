@@ -20,6 +20,8 @@ en:
     show:
       open_education: Taught under open university
       teachers_headline: "Kursusansvarlige"
+      default_registration_text: "On CampusNet"
+      learning_objectives_description: "A student who has met the objectives of the course will be able to:"
   activerecord:
     attributes:
       course:
