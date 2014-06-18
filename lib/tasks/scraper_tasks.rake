@@ -270,7 +270,8 @@ namespace :scrape do
 
   task :teacher_pages => :environment do
     agent = Mechanize.new
-    Teacher.all.each do |teacher|
+    existing_teacher_pages = TeacherPage.all.pluck(:dtu_teacher_id)
+    Teacher.excluding_teachers(existing_teacher_pages).each do |teacher|
       unless TeacherPage.exists?(dtu_teacher_id: teacher.dtu_teacher_id)
         puts "scraping page for teacher: #{teacher.dtu_teacher_id} #{teacher.id} #{teacher.name}"
         teacher_url = "http://www.dtu.dk/Service/Telefonbog.aspx?id=#{teacher.dtu_teacher_id}&type=person&lg=showcommon"
@@ -282,13 +283,6 @@ namespace :scrape do
           ).find_or_create_by(
             dtu_teacher_id: teacher.dtu_teacher_id
           )
-          if teacher_page.page.nil?
-            puts "need to update"
-            teacher.update_attributes(
-              url: teacher_url,
-              page: page.body
-            )
-          end
         rescue Mechanize::RedirectLimitReachedError
           puts "could not scrape teacher: #{teacher.dtu_teacher_id}"
         end

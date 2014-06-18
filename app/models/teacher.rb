@@ -9,5 +9,9 @@ class Teacher < ActiveRecord::Base
     def find_by_name(name)
       find_by(name: name)
     end
+
+    def excluding_teachers(dtu_teacher_ids)
+      where.not(dtu_teacher_id: dtu_teacher_ids)
+    end
   end
 end
