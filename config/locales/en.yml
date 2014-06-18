@@ -19,12 +19,6 @@ en:
       open_education: Taught under open university
       teachers_headline: "Kursusansvarlige"
   activerecord:
-    activerecord:
-      errors:
-        models:
-          course:
-            schedule_season_blocks:
-              block_not_in_list: Invalid season block
     attributes:
       course:
         course_objectives: General course objectives

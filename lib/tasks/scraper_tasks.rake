@@ -167,9 +167,6 @@ namespace :scrape do
         language_extractor = LanguageExtractor.new(page)
         language = language_extractor.language_locale_code
 
-        # schedule_season_extractor = ScheduleSeasonBlockExtractor.new(schedule_note, schedule_blocks)
-        # schedule_season_blocks = schedule_season_extractor.schedule_season_block
-
         # Debug output
         if debug
           [
