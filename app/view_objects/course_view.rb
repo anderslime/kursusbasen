@@ -22,12 +22,11 @@ class CourseView
     )
   end
 
-  # TODO: New schedule structure
   def render_course_schedule
-  #   view_context.render(
-  #     'course_schedule',
-  #     schedule: CourseSchedule.new(view_context, course.schedules)
-  #   )
+    view_context.render(
+      'course_schedule',
+      schedule: CourseScheduleView.new(view_context, course.schedules.including_block)
+    )
   end
 
   private

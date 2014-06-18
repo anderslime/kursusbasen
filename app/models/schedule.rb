@@ -7,6 +7,19 @@ class Schedule < ActiveRecord::Base
 
   validates_presence_of :season, :schedule_group_id
 
+  class << self
+    def including_block
+      where.not(block: nil)
+    end
+  end
+
+  def season_code
+    {
+      'autumn' => "E",
+      'spring' => "F"
+    }.fetch(season) { nil }
+  end
+
   def unknown_season?
     season == "unknown"
   end

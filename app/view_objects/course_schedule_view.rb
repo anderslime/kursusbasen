@@ -1,4 +1,4 @@
-class CourseSchedule
+class CourseScheduleView
   attr_reader :view_context, :course_schedules
 
   def initialize(view_context, course_schedules)
@@ -25,8 +25,9 @@ class CourseSchedule
   private
 
   def block_css_class(schedule_block)
-    return nil unless course_includes_block?(schedule_block)
-    season_code_to_css_class_mapping.fetch(sorted_season_codes_included(schedule_block))
+    season_code_to_css_class_mapping.fetch(
+      sorted_season_codes_included(schedule_block)
+    ) { nil }
   end
 
   def season_code_to_css_class_mapping
@@ -37,22 +38,10 @@ class CourseSchedule
     }
   end
 
-  def course_includes_block?(schedule_block)
-    course_schedule_blocks_without_season.include?(schedule_block)
-  end
-
   def sorted_season_codes_included(schedule_block)
-    course_schedule_blocks.select {|block|
-      block[1..2] == schedule_block
-    }.map(&:first).sort.join
-  end
-
-  def course_schedule_blocks_without_season
-    course_schedule_blocks.map {|block| block[1..2] }
-  end
-
-  def course_schedule_blocks
-    @course_schedule_blocks ||= course_schedules.map(&:block)
+    course_schedules.select {|schedule|
+      schedule.block == schedule_block
+    }.map(&:season_code).sort.join
   end
 
   def day_abbreviation(day)
