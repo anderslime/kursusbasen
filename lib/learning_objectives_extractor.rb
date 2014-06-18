@@ -6,7 +6,7 @@ class LearningObjectivesExtractor
   end
 
   def learning_objectives
-    objectives_content.search("td ul li").map do |objective|
+    objectives_content.search("ul li").map do |objective|
       objective.text.chomp.strip
     end.uniq
   end
