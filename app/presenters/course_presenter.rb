@@ -97,7 +97,8 @@ class CoursePresenter < ApplicationPresenter
   end
 
   def schedule_season_blocks
-    schedule_season_block_sentence && schedule_season_block_sentence.capitalize
+    # TODO: Migrate to new schedule structure
+    # schedule_season_block_sentence && schedule_season_block_sentence.capitalize
   end
 
   def schedule_season_block_sentence

@@ -1,13 +1,10 @@
 class Schedule < ActiveRecord::Base
-  validates_inclusion_of :block,
-    in: [
-      'E1A', 'E2A', 'E3A', 'E4A', 'E5A', 'F1A', 'F2A','F3A', 'F4A', 'F5A',
-      'E1B', 'E2B', 'E3B', 'E4B', 'E5B', 'F1B', 'F2B', 'F3B', 'F4B', 'F5B',
-      'Januar', 'Juni'
-    ]
+  BLOCKS = ['1A', '2A', '3A', '4A', '5A', '1B', '2B', '3B', '4B', '5B']
+  SEASONS = ['spring', 'autumn', 'summer', 'january', 'june']
+  validates_inclusion_of :block, in: BLOCKS
+  validates_inclusion_of :season, in: SEASONS
 
-  validates_uniqueness_of :block, :scope => :course_id
-  validates_presence_of :block, :course_id
+  validates_presence_of :season, :schedule_group_id
 
   def spring?
     block[0] == "F"

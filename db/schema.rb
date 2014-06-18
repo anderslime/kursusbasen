@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140602065815) do
+ActiveRecord::Schema.define(version: 20140618181636) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,14 +96,24 @@ ActiveRecord::Schema.define(version: 20140602065815) do
     t.datetime "updated_at"
   end
 
-  create_table "schedules", force: true do |t|
+  create_table "schedule_groups", force: true do |t|
     t.integer  "course_id"
-    t.string   "block"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "schedules", ["course_id"], name: "index_schedules_on_course_id", using: :btree
+  add_index "schedule_groups", ["course_id"], name: "index_schedule_groups_on_course_id", using: :btree
+
+  create_table "schedules", force: true do |t|
+    t.string   "block"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "schedule_group_id"
+    t.boolean  "outside_dtu_schedule"
+    t.string   "season"
+  end
+
+  add_index "schedules", ["schedule_group_id"], name: "index_schedules_on_schedule_group_id", using: :btree
 
   create_table "teacher_pages", force: true do |t|
     t.string   "dtu_teacher_id"

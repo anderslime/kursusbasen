@@ -148,7 +148,7 @@ namespace :scrape do
 
         # Schedule
         schedule_extractor = ScheduleExtractor.new(page, "Skemaplacering:")
-        schedule_blocks = schedule_extractor.schedules
+        # schedule_blocks = schedule_extractor.schedules
         schedule_note   = schedule_extractor.schedule_note
 
         # Exam schedule
@@ -166,8 +166,8 @@ namespace :scrape do
         language_extractor = LanguageExtractor.new(page)
         language = language_extractor.language_locale_code
 
-        schedule_season_extractor = ScheduleSeasonBlockExtractor.new(schedule_note, schedule_blocks)
-        schedule_season_blocks = schedule_season_extractor.schedule_season_block
+        # schedule_season_extractor = ScheduleSeasonBlockExtractor.new(schedule_note, schedule_blocks)
+        # schedule_season_blocks = schedule_season_extractor.schedule_season_block
 
         # Debug output
         if debug
@@ -216,14 +216,8 @@ namespace :scrape do
             open_education: open_education,
             language: language,
             schedule_note: schedule_note,
-            exam_schedule_note: exam_schedule_note,
-            schedule_season_blocks: Array(schedule_season_blocks)
+            exam_schedule_note: exam_schedule_note
           )
-
-          # Create schedules
-          Array(schedule_blocks).each do |schedule_block|
-            course.schedules.create(block: schedule_block)
-          end
 
           # Create teachers
           Array(responsibles).each do |responsible|
