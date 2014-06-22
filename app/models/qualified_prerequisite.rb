@@ -1,0 +1,2 @@
+class QualifiedPrerequisite < Prerequisite
+end

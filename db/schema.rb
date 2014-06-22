@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140618181636) do
+ActiveRecord::Schema.define(version: 20140622150313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,16 @@ ActiveRecord::Schema.define(version: 20140618181636) do
 
   add_index "courses", ["course_number"], name: "index_courses_on_course_number", using: :btree
 
+  create_table "courses_prerequisites", force: true do |t|
+    t.integer "course_id"
+    t.integer "prerequisite_id"
+  end
+
+  create_table "courses_qualified_prerequisites", force: true do |t|
+    t.integer "course_id"
+    t.integer "qualified_prerequisite_id"
+  end
+
   create_table "courses_teachers", id: false, force: true do |t|
     t.integer "course_id",  null: false
     t.integer "teacher_id", null: false
@@ -92,6 +102,19 @@ ActiveRecord::Schema.define(version: 20140618181636) do
 
   create_table "institutes", force: true do |t|
     t.string   "dtu_institute_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "prerequisites", force: true do |t|
+    t.integer  "course_id"
+    t.string   "prerequisite_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "qualified_prerequisites", force: true do |t|
+    t.integer  "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

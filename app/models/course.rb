@@ -6,6 +6,7 @@ class Course < ActiveRecord::Base
 
   has_many :schedule_groups, :dependent => :destroy
   has_many :schedules, :through => :schedule_groups
+  has_many :qualified_prerequisites
   has_and_belongs_to_many :teachers
   belongs_to :institute
 
