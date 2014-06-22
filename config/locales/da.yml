@@ -11,7 +11,6 @@ da:
         spring: Forår
         january: Januar
         june: Juni
-        unknown: Udenfor skema-struktur
   will_paginate:
     previous_label: "&#8592; Forrige"
     next_label: "Næste &#8594;"
