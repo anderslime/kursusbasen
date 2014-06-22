@@ -26,13 +26,13 @@ class CourseView
     view_context.render(
       'course_schedule',
       schedule: CourseScheduleView.new(view_context, course.schedules.including_block),
-      schedule_blocks: schedule_blocks
+      schedule_groups: schedule_groups
     )
   end
 
   private
 
-  def schedule_blocks
+  def schedule_groups
     ScheduleCollectionTranslator.new(course.schedule_groups).translated_schedules
   end
 

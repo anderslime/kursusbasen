@@ -22,7 +22,10 @@
         = schedule.block_table_column('3B')
 
   .course-schedule-time
-    span.course-schedule-time-icon
-    .course-schedule-time-blocks
-      - schedule_blocks.each do |schedule_block|
-        .course-schedule-time-block = schedule_block
+    - schedule_groups.each do |schedule_group|
+      .course-schedule-group
+        .course-schedule-time-icon
+        .course-schedule-block-code
+        .course-schedule-time-blocks
+          - schedule_group.each do |translated_schedule_block|
+              .course-schedule-time-block = translated_schedule_block

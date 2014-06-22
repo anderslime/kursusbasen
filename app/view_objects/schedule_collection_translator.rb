@@ -13,7 +13,7 @@ class ScheduleCollectionTranslator
         else
           ScheduleTranslator.new(schedule).translate
         end
-      end.to_sentence
+      end
     end
   end
 end
