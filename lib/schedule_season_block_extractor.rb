@@ -13,7 +13,7 @@ class ScheduleSeasonBlockExtractor
       'autumn'  => lambda { autumn? },
       'spring'  => lambda { spring? },
       'summer'  => lambda { summer? }
-    }.keep_if {|block, matcher| matcher.call }.keys
+    }.select {|block, matcher| matcher.call }.keys
   end
 
   private

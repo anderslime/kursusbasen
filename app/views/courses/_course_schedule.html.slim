@@ -20,3 +20,9 @@
         = schedule.block_table_column('5B')
         = schedule.block_table_column('1B')
         = schedule.block_table_column('3B')
+
+  .course-schedule-time
+    span.course-schedule-time-icon
+    .course-schedule-time-blocks
+      - schedule_blocks.each do |schedule_block|
+        .course-schedule-time-block = schedule_block

@@ -25,11 +25,16 @@ class CourseView
   def render_course_schedule
     view_context.render(
       'course_schedule',
-      schedule: CourseScheduleView.new(view_context, course.schedules.including_block)
+      schedule: CourseScheduleView.new(view_context, course.schedules.including_block),
+      schedule_blocks: schedule_blocks
     )
   end
 
   private
+
+  def schedule_blocks
+    ScheduleCollectionTranslator.new(course.schedule_groups).translated_schedules
+  end
 
   def course_teacher_presenters
     course.teachers.map do |teacher|

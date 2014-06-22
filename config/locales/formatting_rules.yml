@@ -1,0 +1,8 @@
+da:
+  time:
+    formats:
+      hour_short: ! '%k'
+en:
+  time:
+    formats:
+      hour_short: ! '%k'
