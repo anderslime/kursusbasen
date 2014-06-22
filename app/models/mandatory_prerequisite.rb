@@ -1,0 +1,2 @@
+class MandatoryPrerequisite < Prerequisite
+end
