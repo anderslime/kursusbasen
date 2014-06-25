@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140622151746) do
+ActiveRecord::Schema.define(version: 20140623053328) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20140622151746) do
     t.datetime "updated_at"
     t.boolean  "open_education",         default: false
     t.text     "schedule_season_blocks"
+    t.boolean  "removed",                default: false, null: false
   end
 
   add_index "courses", ["course_number"], name: "index_courses_on_course_number", using: :btree

@@ -14,7 +14,7 @@ module Coursewebservice
       private
 
       def default_xml_course_file
-        CourseXMLFileCLient.xml_file
+        Coursewebservice::CourseXMLFileClient.xml_file
       end
     end
   end
