@@ -1,13 +1,12 @@
 module Coursewebservice
   module Extractor
     class Prerequisites
-      attr_reader :course_list_xml, :course, :prereq_type, :prereq_class
+      attr_reader :course_list_xml, :course, :prereq_type
 
-      def initialize(course_list_xml, course, prereq_type, prereq_class)
+      def initialize(course_list_xml, course, prereq_type)
         @course_list_xml = course_list_xml
         @course          = course
         @prereq_type     = prereq_type
-        @prereq_class    = prereq_class
       end
 
       def prerequisite_text
@@ -17,12 +16,7 @@ module Coursewebservice
       def prerequisites
         return [] if prerequisite_courses.empty?
         prerequisite_courses.map do |prereq|
-          prereq_entity = prereq_class.create!(course_id: course.id)
-          prereq.split("/").map(&:strip).each do |prereq_course_number|
-            prereq_entity.course_options << find_or_create_course(prereq_course_number)
-          end
-          prereq_entity.save!
-          prereq_entity
+          prereq.split("/").map(&:strip)
         end
       end
 
@@ -30,14 +24,6 @@ module Coursewebservice
 
       def prerequisite_text_xml
         course_list_xml.xpath("//Course[@CourseCode='#{course.course_number}']//#{prereq_type}_Prerequisites_Txt[@Lang='da-DK']")
-      end
-
-      def find_or_create_course(course_number)
-        if Course.exists_with_course_number?(course_number)
-          Course.find_by_course_number!(course_number)
-        else
-          Course.create!(course_number: course_number, removed: true)
-        end
       end
 
       def prerequisite_courses
