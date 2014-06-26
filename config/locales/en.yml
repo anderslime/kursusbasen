@@ -1,6 +1,7 @@
 en:
   generic:
     or: or
+    and: and
     languages:
       en: English
       da: Danish
@@ -12,6 +13,8 @@ en:
         january: Januar
         june: Juni
         unknown: Outside schedule structure
+    courses:
+      course_removed_info: There is no information about this course.
   will_paginate:
     previous_label: "&#8592; Previous"
     next_label: "Next &#8594;"
@@ -19,9 +22,15 @@ en:
   courses:
     show:
       open_education: Taught under open university
-      teachers_headline: "Kursusansvarlige"
       default_registration_text: "On CampusNet"
       learning_objectives_description: "A student who has met the objectives of the course will be able to:"
+    course_teachers:
+      teachers_headline: "Kursusansvarlige"
+    mandatory_prerequisites:
+      header: Mandatory forudsætninger
+    qualified_prerequisites:
+      header: Qualified forudsætninger
+
   activerecord:
     attributes:
       course:

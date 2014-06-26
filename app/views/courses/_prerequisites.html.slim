@@ -1,0 +1,10 @@
+h4 = header
+.course-prerequisites
+  - prerequisites.each_with_index do |prerequisite, index|
+    .course-prerequisites-prerequisite
+      - prerequisite.course_options.each do |course|
+        - present course do |course_presenter|
+          .course-prerequisites-course
+            = course_presenter.link_to_course
+      - if (index + 1) < prerequisites.length
+        .course-prerequisites-and = t('generic.and')

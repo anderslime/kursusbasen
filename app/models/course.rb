@@ -29,6 +29,10 @@ class Course < ActiveRecord::Base
       end
     end
 
+    def present
+      where(removed: false)
+    end
+
     def none
       where(:id => nil).where.not(:id => nil)
     end
@@ -40,6 +44,14 @@ class Course < ActiveRecord::Base
     def exists_with_course_number?(course_number)
       exists?(course_number: course_number)
     end
+  end
+
+  def any_mandatory_prerequisites?
+    mandatory_prerequisites.any?
+  end
+
+  def any_qualified_prerequisites?
+    qualified_prerequisites.any?
   end
 
   def to_param

@@ -30,9 +30,12 @@
 
   section.row
     .course-sidebar
-      .course-teachers
-        h4.course-teachers-headline = t('.teachers_headline')
-      = course_view.render_teachers
+      .course-sidebar-section
+        = course_view.render_teachers
+      .course-sidebar-section
+        = course_view.render_mandatory_prerequisites
+      .course-sidebar-section
+        = course_view.render_qualified_prerequisites
 
     .course-long-information
       - if course_view.top_comment
@@ -81,3 +84,6 @@
     .course-short-information
       dl.course-short-information-list
         = render 'short_information', course_view: course_view
+
+- content_for :document_ready do
+  | views.courses.show.apply();

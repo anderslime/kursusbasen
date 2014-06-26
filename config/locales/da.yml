@@ -1,6 +1,7 @@
 da:
   generic:
     or: eller
+    and: og
     languages:
       en: Engelsk
       da: Dansk
@@ -11,6 +12,8 @@ da:
         spring: Forår
         january: Januar
         june: Juni
+    courses:
+      course_removed_info: Der er ingen information om dette kursus.
   will_paginate:
     previous_label: "&#8592; Forrige"
     next_label: "Næste &#8594;"
@@ -18,9 +21,15 @@ da:
   courses:
     show:
       open_education: Udbydes under åben uddannelse
-      teachers_headline: "Kursusansvarlige"
       default_registration_text: "På CampusNet"
       learning_objectives_description: "En studerende, der fuldt ud har opfyldt kursets mål, vil kunne:"
+    course_teachers:
+      teachers_headline: "Kursusansvarlige"
+    mandatory_prerequisites:
+      header: Obligatoriske forudsætninger
+    qualified_prerequisites:
+      header: Anbefalede forudsætninger
+
   activerecord:
     attributes:
       course:

@@ -9,6 +9,11 @@ class CoursePresenter < ApplicationPresenter
     [course.course_number, course.title].join(" ")
   end
 
+  def link_to_course
+    return removed_course_tag if course.removed?
+    h.link_to title_with_course_number, profile_url
+  end
+
   def truncated_content(length = 200)
     h.truncate(course.content, length: length)
   end
@@ -79,6 +84,16 @@ class CoursePresenter < ApplicationPresenter
   end
 
   private
+
+  def removed_course_tag
+    h.link_to(
+      title_with_course_number,
+      "#",
+      class: "removed-course",
+      data: { toggle: "tooltip"},
+      title: I18n.t("generic.courses.course_removed_info")
+    )
+  end
 
   def registration_link_to_campus_net
     h.link_to(

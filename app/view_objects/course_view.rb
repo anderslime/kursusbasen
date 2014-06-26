@@ -30,6 +30,24 @@ class CourseView
     )
   end
 
+  def render_qualified_prerequisites
+    return nil unless course.any_qualified_prerequisites?
+    view_context.render(
+      'prerequisites',
+      prerequisites: course.qualified_prerequisites,
+      header: I18n.t('courses.qualified_prerequisites.header')
+    )
+  end
+
+  def render_mandatory_prerequisites
+    return nil unless course.any_mandatory_prerequisites?
+    view_context.render(
+      'prerequisites',
+      prerequisites: course.mandatory_prerequisites,
+      header: I18n.t('courses.mandatory_prerequisites.header')
+    )
+  end
+
   private
 
   def schedule_groups
