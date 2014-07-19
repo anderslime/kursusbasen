@@ -7,4 +7,4 @@
 //= require kursusbasen
 
 # for more details see: http://emberjs.com/guides/application/
-window.Kursusbasen = Ember.Application.create()
+window.Kursusbasen = Ember.Application.create({ LOG_TRANSACTIONS: true })
