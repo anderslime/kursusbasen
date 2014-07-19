@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :students
+    resources :course_autocompletes, only: [:index]
   end
 
   root :to => "courses#index"
