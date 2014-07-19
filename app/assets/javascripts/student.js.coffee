@@ -3,6 +3,7 @@
 //= require handlebars
 //= require ember
 //= require ember-data
+//= require typeahead
 //= require_self
 //= require kursusbasen
 

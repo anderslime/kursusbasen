@@ -2,8 +2,11 @@ class Api::CourseAutocompletesController < ApplicationController
   respond_to :json
 
   def index
-    courses = Course.search(search_params, 0)
-    render json: courses, each_serializer: CourseAutocompleteSerializer
+    respond_with(
+      Course.search(search_params, 0).to_a,
+      each_serializer: CourseAutocompleteSerializer,
+      root: false
+    )
   end
 
   private

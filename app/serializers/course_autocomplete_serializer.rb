@@ -1,3 +1,3 @@
 class CourseAutocompleteSerializer < ActiveModel::Serializer
-  attributes :id, :title, :ects_points
+  attributes :id, :course_number, :title, :ects_points
 end
