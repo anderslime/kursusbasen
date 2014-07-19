@@ -1,3 +1,3 @@
 Kursusbasen.IndexRoute = Ember.Route.extend
   model: ->
-    this.store.find('student', 's103457')
+    this.store.find('student', DTUStudentNumber)
