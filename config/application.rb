@@ -23,5 +23,7 @@ module Kursusbasen
     config.i18n.available_locales = [:da, :en]
 
     config.autoload_paths += %W(#{config.root}/lib)
+
+    config.assets.precompile += %w(student.js)
   end
 end

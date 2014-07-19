@@ -33,7 +33,7 @@ gem 'font-awesome-sass'
 gem 'tire'
 
 # Ember
-gem "ember-rails", github: "emberjs/ember-rails"
+gem "ember-rails"
 
 group :development do
   gem 'better_errors'

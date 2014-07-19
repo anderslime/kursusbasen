@@ -1,0 +1,21 @@
+doctype html
+html lang="en"
+  head
+    meta charset="utf-8"
+    meta content="IE=edge" http-equiv="X-UA-Compatible"
+    meta content="width=device-width, initial-scale=1" name="viewport"
+    title Kursusbasen
+    = csrf_meta_tags
+    = stylesheet_link_tag "application", media: "all"
+    = javascript_include_tag 'student'
+    /![if lt IE 9]
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  body
+    .container
+      = yield
+
+    = javascript_tag do
+      |
+        $(document).ready(function() {
+          #{yield :document_ready}
+        })
