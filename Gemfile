@@ -32,6 +32,9 @@ gem 'font-awesome-sass'
 # Elastic search
 gem 'tire'
 
+# Ember
+gem "ember-rails", github: "emberjs/ember-rails"
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
