@@ -1,2 +1,3 @@
 javascript:
-  var DTUStudentNumber = #{@student_number.to_json.html_safe}
+  var DTUStudentId     = #{current_student.id.to_json.html_safe}
+  var DTUStudentNumber = #{current_student.student_number.to_json.html_safe}
