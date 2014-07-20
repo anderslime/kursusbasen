@@ -8,8 +8,23 @@
 
 <div class='container'>
   <h1>Hej {{studentNumber}}</h1>
+  <div class="col-sm-7">
 
-  {{#each plannedCourses}}
-    {{title}}
-  {{/each}}
+  </div>
+  <div class="col-sm-5">
+    <div class="course-basket">
+      <h4>Kursuskurv</h4>
+      {{#each plannedCourses}}
+        <div class="course-basket-course">
+          <a href="#" {{action 'coolAlert'}} class="course-basket-add-to-study-plan">
+            <i class="fa fa-plus-circle fa-2x"></i>
+          </a>
+          <div class="course-basket-course-information">
+            <div class="course-basket-course-title">{{courseNumber}} {{title}}</div>
+            <div class="course-basket-course-ects">{{ectsPoints}} ECTS</div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </div>
 </div>
