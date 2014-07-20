@@ -28,6 +28,17 @@ ActiveRecord::Schema.define(version: 20140720092652) do
   add_index "course_pages", ["course_number", "semester_year"], name: "index_course_pages_on_course_number_and_semester_year", using: :btree
   add_index "course_pages", ["course_number"], name: "index_course_pages_on_course_number", using: :btree
 
+  create_table "course_plannings", force: true do |t|
+    t.integer  "student_id"
+    t.integer  "course_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "course_plannings", ["course_id"], name: "index_course_plannings_on_course_id", using: :btree
+  add_index "course_plannings", ["student_id", "course_id"], name: "index_course_plannings_on_student_id_and_course_id", unique: true, using: :btree
+  add_index "course_plannings", ["student_id"], name: "index_course_plannings_on_student_id", using: :btree
+
   create_table "course_translations", force: true do |t|
     t.integer  "course_id",                    null: false
     t.string   "locale",                       null: false
@@ -108,17 +119,6 @@ ActiveRecord::Schema.define(version: 20140720092652) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "planned_courses", force: true do |t|
-    t.integer  "student_id"
-    t.integer  "course_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "planned_courses", ["course_id"], name: "index_planned_courses_on_course_id", using: :btree
-  add_index "planned_courses", ["student_id", "course_id"], name: "index_planned_courses_on_student_id_and_course_id", unique: true, using: :btree
-  add_index "planned_courses", ["student_id"], name: "index_planned_courses_on_student_id", using: :btree
 
   create_table "prerequisites", force: true do |t|
     t.integer  "course_id"

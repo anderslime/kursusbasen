@@ -86,8 +86,8 @@ class CoursePresenter < ApplicationPresenter
   def add_to_study_plan_button
     h.link_to(
       study_plan_button_text,
-      h.api_planned_courses_path(
-        planned_course: { course_id: course.id }
+      h.api_course_plannings_path(
+        course_planning: { course_id: course.id }
       ),
       id: "add_to_study_plan_button",
       class: "student-course-status-add-to-plan-button btn #{course_added_btn_indicator}"

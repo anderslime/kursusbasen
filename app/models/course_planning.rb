@@ -1,4 +1,4 @@
-class PlannedCourse < ActiveRecord::Base
+class CoursePlanning < ActiveRecord::Base
   belongs_to :student
   belongs_to :course
 

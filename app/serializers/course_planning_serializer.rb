@@ -1,4 +1,4 @@
-class PlannedCourseSerializer < ActiveModel::Serializer
+class CoursePlanningSerializer < ActiveModel::Serializer
   attributes :id
   has_one :student
   has_one :course
