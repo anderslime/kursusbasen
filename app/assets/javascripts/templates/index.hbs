@@ -1,1 +1,15 @@
-<h1>Hej {{studentNumber}}</h1>
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a href="#" class="navbar-brand">DTU Ninja</a>
+    </div>
+  </div>
+</nav>
+
+<div class='container'>
+  <h1>Hej {{studentNumber}}</h1>
+
+  {{#each plannedCourses}}
+    {{title}}
+  {{/each}}
+</div>
