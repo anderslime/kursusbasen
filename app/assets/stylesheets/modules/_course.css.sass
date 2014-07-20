@@ -1,4 +1,11 @@
 .course-title-section,
+.course-main-information-section,
+.course-student-status-container,
+.course-text-information-and-sidebar-row-section,
+.course-short-information-section
+  @extend .container
+
+.course-title-section,
 .course-main-information-section
   margin-top: 20px
   margin-bottom: 20px
@@ -72,6 +79,13 @@
 .course-type
   font-size: 1.2em
   color: #666
+
+.course-student-status-section
+  background-color: darken(#ffffff, 5%)
+
+.course-student-status-content
+  @extend .col-sm-offset-2
+  @extend .col-sm-10
 
 .course-top-comment
   @extend .col-xs-12

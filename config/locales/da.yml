@@ -20,6 +20,8 @@ da:
     page_gap: "&hellip;"
   courses:
     show:
+      course_added_to_course_plan: Kurset er tilføjet til din studieplan
+      add_to_course_plan: Tilføj kurset til din studieplan
       open_education: Udbydes under åben uddannelse
       default_registration_text: "På CampusNet"
       learning_objectives_description: "En studerende, der fuldt ud har opfyldt kursets mål, vil kunne:"

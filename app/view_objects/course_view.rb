@@ -9,7 +9,8 @@ class CourseView
            :short_institute_title, :language, :calendar_block_type,
            :schedule_note, :exam_schedule_note, :registration,
            :any_remarks?, :remarks, :evaluation_form,
-           :exam_duration, :learn_objectives, to: :course_presenter
+           :exam_duration, :learn_objectives, :add_to_study_plan_button,
+           to: :course_presenter
 
   def initialize(course)
     @course = course

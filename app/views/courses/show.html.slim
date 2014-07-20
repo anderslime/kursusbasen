@@ -1,89 +1,102 @@
 - course_view.view_context = self
 
 .course
-  section.course-title-section.row
-    h1.course-number-and-title
-      .course-number = course_view.course_number
-      .course-title = course_view.title
-    h2.course-translated-title
-      = course_view.title
+  section.course-title-section
+    .course-title-section-row.row
+      h1.course-number-and-title
+        .course-number = course_view.course_number
+        .course-title = course_view.title
+      h2.course-translated-title
+        = course_view.title
 
-  section.course-main-information-section.row
-    .course-important-information
-      .row
-        .course-ects-points
-          = icon 'star', course_view.ects_points
-        .course-calendar-block-type
-          = icon 'calendar', course_view.calendar_block_type
-        .course-language
-          = icon 'globe', course_view.language
-        .course-institute
-          = icon 'institution'
-          span.course-institute-text< = course_view.short_institute_title
+  section.course-main-information-section
+    .course-main-information-section-row.row
+      .course-important-information
+        .row
+          .course-ects-points
+            = icon 'star', course_view.ects_points
+          .course-calendar-block-type
+            = icon 'calendar', course_view.calendar_block_type
+          .course-language
+            = icon 'globe', course_view.language
+          .course-institute
+            = icon 'institution'
+            span.course-institute-text< = course_view.short_institute_title
 
-      .course-type-information.row
-        .course-type = course_view.main_course_type
-        - if course_view.teached_under_open_education?
-          .course-open-education = t('.open_education')
+        .course-type-information.row
+          .course-type = course_view.main_course_type
+          - if course_view.teached_under_open_education?
+            .course-open-education = t('.open_education')
 
-    = course_view.render_course_schedule
+      = course_view.render_course_schedule
 
-  section.row
-    .course-sidebar
-      .course-sidebar-section
-        = course_view.render_teachers
-      .course-sidebar-section
-        = course_view.render_mandatory_prerequisites
-      .course-sidebar-section
-        = course_view.render_qualified_prerequisites
+  - if current_student?
+    section.course-student-status-section
+      .course-student-status-container
+        .course-student-status-content-row.row
+          .course-student-status-content
+            .student-course-status
+              = course_view.add_to_study_plan_button
 
-    .course-long-information
-      - if course_view.top_comment
-        .course-top-comment
-          = course_view.top_comment
+  section.course-text-information-and-sidebar-row-section
+    .course-text-information-and-sidebar-row.row
+      .course-sidebar
+        .course-sidebar-section
+          = course_view.render_teachers
+        .course-sidebar-section
+          = course_view.render_mandatory_prerequisites
+        .course-sidebar-section
+          = course_view.render_qualified_prerequisites
 
-      dl.course-important-long-information-list
-        dt.course-general-objectives-title
-          = Course.human_attribute_name(:course_objectives)
-        dd.course-general-objectives
-          = course_view.course_objectives
-        dt.course-content-title
-          = Course.human_attribute_name(:content)
-        dd.course-content
-          = course_view.content
-        dt.course-learning-objectives-title
-          = Course.human_attribute_name(:learn_objectives)
-        dd.course-learning-objectives
-          .course-learning-objectives-description = t('.learning_objectives_description')
-          ul.course-learning-objectives-list
-            - course_view.learn_objectives.each do |learn_objective|
-              li.course-learning-objective = learn_objective
+      .course-long-information
+        - if course_view.top_comment
+          .course-top-comment
+            = course_view.top_comment
+
+        dl.course-important-long-information-list
+          dt.course-general-objectives-title
+            = Course.human_attribute_name(:course_objectives)
+          dd.course-general-objectives
+            = course_view.course_objectives
+          dt.course-content-title
+            = Course.human_attribute_name(:content)
+          dd.course-content
+            = course_view.content
+          dt.course-learning-objectives-title
+            = Course.human_attribute_name(:learn_objectives)
+          dd.course-learning-objectives
+            .course-learning-objectives-description = t('.learning_objectives_description')
+            ul.course-learning-objectives-list
+              - course_view.learn_objectives.each do |learn_objective|
+                li.course-learning-objective = learn_objective
 
 
-      - if course_view.any_remarks?
-        dl.course-other-long-information-list
-          dt.course-remarks-title
-            = Course.human_attribute_name(:remarks)
-          dd.course-remarks
-            = course_view.remarks
+        - if course_view.any_remarks?
+          dl.course-other-long-information-list
+            dt.course-remarks-title
+              = Course.human_attribute_name(:remarks)
+            dd.course-remarks
+              = course_view.remarks
 
-  section.row
-    .course-short-information
-      dl.course-short-information-list
-        dt.course-teaching-form-title
-          = Course.human_attribute_name(:teaching_form)
-        dd.course-teaching-form
-          = course_view.teaching_form
-        - if course_view.course_website_link?
-          dt.course-website-title
-            = Course.human_attribute_name(:homepage)
-          dd.course-website
-            = course_view.course_website_link
+  section.course-short-information-section
+    .course-short-information-row.row
+      .course-short-information
+        dl.course-short-information-list
+          dt.course-teaching-form-title
+            = Course.human_attribute_name(:teaching_form)
+          dd.course-teaching-form
+            = course_view.teaching_form
+          - if course_view.course_website_link?
+            dt.course-website-title
+              = Course.human_attribute_name(:homepage)
+            dd.course-website
+              = course_view.course_website_link
 
-  section.row
-    .course-short-information
-      dl.course-short-information-list
-        = render 'short_information', course_view: course_view
+  section.course-short-information-section
+    .course-short-information-row.row
+      .course-short-information
+        dl.course-short-information-list
+          = render 'short_information', course_view: course_view
 
 - content_for :document_ready do
   | views.courses.show.apply();

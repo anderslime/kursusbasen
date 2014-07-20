@@ -83,7 +83,38 @@ class CoursePresenter < ApplicationPresenter
     h.simple_format(course.remarks)
   end
 
+  def add_to_study_plan_button
+    h.link_to(
+      study_plan_button_text,
+      h.api_planned_courses_path(
+        planned_course: { course_id: course.id }
+      ),
+      id: "add_to_study_plan_button",
+      class: "student-course-status-add-to-plan-button btn #{course_added_btn_indicator}"
+    )
+  end
+
   private
+
+  def study_plan_button_text
+    if current_student_plans_to_attend?
+      h.t('courses.show.course_added_to_course_plan')
+    else
+      h.t('courses.show.add_to_course_plan')
+    end
+  end
+
+  def course_added_btn_indicator
+    if current_student_plans_to_attend?
+      'btn-success course-added'
+    else
+      'btn-primary'
+    end
+  end
+
+  def current_student_plans_to_attend?
+    h.current_student.plans_to_attend_course?(course)
+  end
 
   def removed_course_tag
     h.link_to(
