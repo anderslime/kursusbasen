@@ -1,0 +1,15 @@
+<div class="course-basket-add-to-study-plan btn-group">
+  <button type="button" class="btn btn-success dropdown-toggle
+" data-toggle="dropdown">
+    <i class="course-basket-add-to-study-plan-icon"></i>
+  </button>
+  <ul class="course-basket-add-to-study-plan-dropdown" role="menu">
+    {{#each semester in semesters}}
+      <li>
+        <a href="#" {{action 'setPlannedCourseSemester' course semester}}>
+          {{semester.title}}
+        </a>
+      </li>
+    {{/each}}
+  </ul>
+</div>

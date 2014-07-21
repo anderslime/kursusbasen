@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :students
     resources :course_autocompletes, only: [:index]
-    resources :course_plannings, only: [:create, :show]
+    resources :course_plannings, except: [:destroy]
     resources :courses, only: [:index]
   end
 

@@ -1,7 +1,6 @@
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap/tooltip
-//= require bootstrap/popover
+//= require bootstrap/dropdown
 //= require handlebars
 //= require ember
 //= require ember-data

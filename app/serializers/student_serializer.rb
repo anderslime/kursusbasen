@@ -1,6 +1,6 @@
 class StudentSerializer < ActiveModel::Serializer
-  embed :ids
+  embed :ids, include: true
 
   attributes :id, :student_number
-  has_many :planned_courses
+  has_many :course_plannings
 end

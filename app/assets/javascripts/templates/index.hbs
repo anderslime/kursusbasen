@@ -34,16 +34,24 @@
     <div class="col-sm-5">
       <div class="course-basket">
         <h4>Kursuskurv</h4>
-        {{#each plannedCourses}}
-          <div class="course-basket-course">
-            {{view Kursusbasen.AddToStudyPlanButton}}
-            <div class="course-basket-course-information">
-              <div class="course-basket-course-title">{{courseNumber}} {{title}}</div>
-              <div class="course-basket-course-ects">{{ectsPoints}} ECTS</div>
+        <div class="row">
+          {{#each coursePlanning in unscheduledCoursePlannings}}
+            {{coursePlanning.isScheduled}}
+            <div class="course-basket-course">
+              {{add-to-study-plan semesters=upcomingSemesters
+                                  course=coursePlanning
+                                  setPlannedCourseSemester='setPlannedCourseSemester'}}
+              <div class="course-basket-course-information">
+                <div class="course-basket-course-title">
+                  {{coursePlanning.course.courseNumber}} {{coursePlanning.course.title}}
+                </div>
+                <div class="course-basket-course-ects">
+                  {{coursePlanning.course.ectsPoints}} ECTS
+                </div>
+              </div>
             </div>
-
-          </div>
-        {{/each}}
+          {{/each}}
+        </div>
       </div>
     </div>
   </div>

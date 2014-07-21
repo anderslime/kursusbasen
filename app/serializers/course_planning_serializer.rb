@@ -1,7 +1,7 @@
 class CoursePlanningSerializer < ActiveModel::Serializer
   embed :ids, include: true
 
-  attributes :id
+  attributes :id, :season, :year
   has_one :student
   has_one :course
 end
