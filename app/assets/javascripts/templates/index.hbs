@@ -8,23 +8,44 @@
 
 <div class='container'>
   <h1>Hej {{studentNumber}}</h1>
-  <div class="col-sm-7">
-
-  </div>
-  <div class="col-sm-5">
-    <div class="course-basket">
-      <h4>Kursuskurv</h4>
-      {{#each plannedCourses}}
-        <div class="course-basket-course">
-          <a href="#" {{action 'coolAlert'}} class="course-basket-add-to-study-plan">
-            <i class="fa fa-plus-circle fa-2x"></i>
-          </a>
-          <div class="course-basket-course-information">
-            <div class="course-basket-course-title">{{courseNumber}} {{title}}</div>
-            <div class="course-basket-course-ects">{{ectsPoints}} ECTS</div>
+  <div class="row">
+    <div class="col-sm-7">
+      <h3>Upcoming semesters</h3>
+      <h4>Next semester (spring 2014)</h4>
+      <table class="study-plan-schedule">
+        <tr>
+          <td class="study-plan-schedule-block-time">8-12</td>
+          <td class="study-plan-schedule-block">1A</td>
+          <td class="study-plan-schedule-block">3A</td>
+          <td class="study-plan-schedule-block">5A</td>
+          <td class="study-plan-schedule-block">2B</td>
+          <td class="study-plan-schedule-block">4B</td>
+        </tr>
+        <tr>
+          <td class="study-plan-schedule-block-time">13-17</td>
+          <td class="study-plan-schedule-block">2A</td>
+          <td class="study-plan-schedule-block">4A</td>
+          <td class="study-plan-schedule-block">5B</td>
+          <td class="study-plan-schedule-block">1B</td>
+          <td class="study-plan-schedule-block">5B</td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-sm-5">
+      <div class="course-basket">
+        <h4>Kursuskurv</h4>
+        {{#each plannedCourses}}
+          <div class="course-basket-course">
+            <a href="#" {{action 'coolAlert'}} class="course-basket-add-to-study-plan">
+              <i class="fa fa-plus-circle fa-2x"></i>
+            </a>
+            <div class="course-basket-course-information">
+              <div class="course-basket-course-title">{{courseNumber}} {{title}}</div>
+              <div class="course-basket-course-ects">{{ectsPoints}} ECTS</div>
+            </div>
           </div>
-        </div>
-      {{/each}}
+        {{/each}}
+      </div>
     </div>
   </div>
 </div>
