@@ -11,25 +11,27 @@
   <div class="row">
     <div class="col-sm-7">
       <h3>Upcoming semesters</h3>
-      <h4>Next semester (spring 2014)</h4>
-      <table class="study-plan-schedule">
-        <tr>
-          <td class="study-plan-schedule-block-time">8-12</td>
-          <td class="study-plan-schedule-block">1A</td>
-          <td class="study-plan-schedule-block">3A</td>
-          <td class="study-plan-schedule-block">5A</td>
-          <td class="study-plan-schedule-block">2B</td>
-          <td class="study-plan-schedule-block">4B</td>
-        </tr>
-        <tr>
-          <td class="study-plan-schedule-block-time">13-17</td>
-          <td class="study-plan-schedule-block">2A</td>
-          <td class="study-plan-schedule-block">4A</td>
-          <td class="study-plan-schedule-block">5B</td>
-          <td class="study-plan-schedule-block">1B</td>
-          <td class="study-plan-schedule-block">5B</td>
-        </tr>
-      </table>
+      {{#each upcomingSemesters}}
+        <h4>{{title}}</h4>
+        <table class="study-plan-schedule">
+          <tr>
+            <td class="study-plan-schedule-block-time">8-12</td>
+            {{schedule-block block='1A' plannedCourses=coursePlanningsForSemester}}
+            {{schedule-block block='3A' plannedCourses=coursePlanningsForSemester}}
+            {{schedule-block block='5A' plannedCourses=coursePlanningsForSemester}}
+            {{schedule-block block='4A' plannedCourses=coursePlanningsForSemester}}
+            {{schedule-block block='3A' plannedCourses=coursePlanningsForSemester}}
+          </tr>
+          <tr>
+            <td class="study-plan-schedule-block-time">13-17</td>
+            {{schedule-block block='2A' plannedCourses=coursePlanningsForSemester}}
+            {{schedule-block block='4A' plannedCourses=coursePlanningsForSemester}}
+            {{schedule-block block='5B' plannedCourses=coursePlanningsForSemester}}
+            {{schedule-block block='1B' plannedCourses=coursePlanningsForSemester}}
+            {{schedule-block block='3B' plannedCourses=coursePlanningsForSemester}}
+          </tr>
+        </table>
+      {{/each}}
     </div>
     <div class="col-sm-5">
       <div class="course-basket">

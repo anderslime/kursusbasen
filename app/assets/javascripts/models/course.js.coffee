@@ -3,3 +3,4 @@ Kursusbasen.Course = DS.Model.extend
   ectsPoints: DS.attr 'string'
   courseNumber: DS.attr 'string'
   student: DS.belongsTo 'student'
+  scheduleBlocks: DS.attr 'raw'
