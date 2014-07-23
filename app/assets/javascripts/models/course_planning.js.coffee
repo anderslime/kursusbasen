@@ -7,3 +7,11 @@ Kursusbasen.CoursePlanning = DS.Model.extend
   isScheduled: (->
     !Ember.isEmpty(@get('year')) && !Ember.isEmpty(@get('season'))
   ).property('year', 'season')
+
+  scheduleFor: (season, year) ->
+    @set('season', season)
+    @set('year', year)
+    @save()
+
+  unschedule: ->
+    @scheduleFor(null, null)

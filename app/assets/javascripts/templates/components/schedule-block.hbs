@@ -1,5 +1,8 @@
 {{#if hasCourseScheduled}}
   {{courseNumber}} {{courseTitle}}
+  <button type="button" class="btn btn-danger" {{action 'unscheduleCourse'}}>
+    <span class="glyphicon glyphicon-remove"></span>
+  </button>
 {{else}}
   {{block}}
 {{/if}}
