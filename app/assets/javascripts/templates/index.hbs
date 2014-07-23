@@ -38,7 +38,6 @@
         <h4>Kursuskurv</h4>
         <div class="row">
           {{#each coursePlanning in unscheduledCoursePlannings}}
-            {{coursePlanning.isScheduled}}
             <div class="course-basket-course">
               {{add-to-study-plan semesters=upcomingSemesters
                                   course=coursePlanning
@@ -53,6 +52,22 @@
               </div>
             </div>
           {{/each}}
+        </div>
+      </div>
+      <div class="course-planner-status">
+        <div class="course-planner-status-counter">
+          <div class="course-planner-status-counter-amount">
+            {{ectsPointsTotal}} / {{ectsPointsInSemester}}
+          </div>
+
+          <div class="course-planner-status-counter-unit">
+            ECTS points
+          </div>
+        </div>
+        <div class="course-planner-status-progress-bar">
+          <div class="progress">
+            {{kb-progressbar progress=progress}}
+          </div>
         </div>
       </div>
     </div>
