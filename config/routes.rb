@@ -4,7 +4,8 @@ Rails.application.routes.draw do
     resources :students
     resources :course_autocompletes, only: [:index]
     resources :course_plannings, except: [:destroy]
-    resources :courses, only: [:index]
+    resources :schedule_groups, only: [:index]
+    resources :courses, only: [:index, :show]
   end
 
   root :to => "courses#index"

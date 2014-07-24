@@ -15,10 +15,10 @@ Kursusbasen.IndexController = Ember.Controller.extend
   ).property('ectsPointsTotal')
   upcomingSemesters: (->
     [
-      { season: 'autumn', year: 2014 }
-      { season: 'spring', year: 2014 },
-      { season: 'autumn', year: 2015 },
-      { season: 'spring', year: 2015 }
+      { season: 'autumn', year: '2014/2015' }
+      { season: 'spring', year: '2014/2015' },
+      { season: 'autumn', year: '2015/2016' },
+      { season: 'spring', year: '2015/2016' }
     ].map (semester_data) =>
       Kursusbasen.SemesterSchedule.create(
         season: semester_data.season,

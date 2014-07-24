@@ -1,15 +1,19 @@
 Kursusbasen.CoursePlanning = DS.Model.extend
   student: DS.belongsTo 'student', async: true
   course: DS.belongsTo 'course', async: true
-  year: DS.attr 'number'
-  season: DS.attr 'string'
+  scheduleGroup: DS.belongsTo 'scheduleGroup', async: true
+  year: DS.attr 'string'
 
   isScheduled: (->
-    !Ember.isEmpty(@get('year')) && !Ember.isEmpty(@get('season'))
-  ).property('year', 'season')
+    !Ember.isEmpty(@get('year')) && !Ember.isEmpty(@get('scheduleGroup'))
+  ).property('year', 'scheduleGroup')
 
-  scheduleFor: (season, year) ->
-    @set('season', season)
+  isScheduledFor: (block, season) ->
+    @get('scheduleGroup.schedules').any (schedule) ->
+      schedule.get('block') is block && schedule.get('season') is season
+
+  scheduleFor: (scheduleGroup, year) ->
+    @set('scheduleGroup', scheduleGroup)
     @set('year', year)
     @save()
 

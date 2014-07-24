@@ -4,10 +4,12 @@
     <i class="course-basket-add-to-study-plan-icon"></i>
   </button>
   <ul class="course-basket-add-to-study-plan-dropdown" role="menu">
-    {{#each semester in semesters}}
+    {{#each scheduleGroupSemester in scheduleGroupSemesters}}
       <li>
-        <a href="#" {{action 'setPlannedCourseSemester' course semester}}>
-          {{semester.title}}
+        <a href="#" {{action 'setPlannedCourseSemester' coursePlanning scheduleGroupSemester.scheduleGroup scheduleGroupSemester.semesterYear}}>
+          {{#each scheduleGroupSemester.scheduleGroup.schedules}}
+            <span>{{season}} {{block}} {{scheduleGroupSemester.semesterYear}}</span>
+          {{/each}}
         </a>
       </li>
     {{/each}}
