@@ -1,22 +1,42 @@
+$block-background-color: darken(#ffffff, 8%)
+$block-font-color: darken(#ffffff, 30%)
+$block-with-course-background-color: #4cae4c
+$block-with-course-font-color: #ffffff
+$block-time-column-width: 50px
+$block-border-spacing: 2px
+$block-width: 100px
+
 .study-plan-schedule
   border-spacing: 2px
   border-collapse: separate
   line-height: normal
 
 .study-plan-schedule-block
-  width: 100px
+  width: $block-width
   height: 70px
   text-align: center
-  background-color: darken(#ffffff, 8%)
+  background-color: $block-background-color
   font-size: 18px
-  color: darken(#ffffff, 30%)
+  color: $block-font-color
 
 .study-plan-schedule-block.has-course-scheduled
-  background-color: #4cae4c
-  color: #ffffff
+  background-color: $block-with-course-background-color
+  color: $block-with-course-font-color
   font-size: 14px
   padding: 2px
 
 .study-plan-schedule-block-time
   width: 50px
   font-size: 15px
+
+.study-plan-schedule-three-week-course
+  margin-left: $block-time-column-width + 2*$block-border-spacing
+  padding: 5px
+  height: 45px
+  width: 5 * $block-width + 4*$block-border-spacing
+  background-color: $block-background-color
+  color: $block-font-color
+
+.study-plan-schedule-three-week-course.has-course-scheduled
+  background-color: $block-with-course-background-color
+  color: $block-with-course-font-color

@@ -13,7 +13,5 @@ Kursusbasen.ScheduleGroup = DS.Model.extend
     @get('hasScheduleSeasonInAutumnSemester') && @get('hasScheduleSeasonInSpringSemester')
   ).property('schedules.@each')
 
-  beginsInSemesterOfSeason: (season) ->
-    @get('scheduleSeasons').contains(season) &&
-      (Kursusbasen.Semester.isSpringSemester(season) ||
-      !@get('isCrossSemester'))
+  beginsInSeason: (season) ->
+    Kursusbasen.Semester.isFirstSeasonOf(@get('scheduleSeasons'), season)

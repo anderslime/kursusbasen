@@ -3,9 +3,8 @@ Kursusbasen.ScheduleBlockComponent = Ember.Component.extend
 
   scheduledCourses: Ember.computed.mapBy('coursePlannings', 'course')
   scheduledCoursePlanning: (->
-    console.log @get('coursePlanningsForScheduleYear')
     @get('coursePlanningsForScheduleYear').find (coursePlanning) =>
-      coursePlanning.isScheduledFor(@get('block'), @get('season'))
+      coursePlanning.isScheduledFor(@get('season'), @get('block'))
   ).property('coursePlanningsForScheduleYear.@each', 'block', 'season')
   scheduledCourse: Ember.computed.alias('scheduledCoursePlanning.course')
   hasCourseScheduled: Ember.computed.notEmpty('scheduledCourse')
@@ -13,8 +12,6 @@ Kursusbasen.ScheduleBlockComponent = Ember.Component.extend
   courseNumber: Ember.computed.alias('scheduledCourse.courseNumber')
 
   classNameBindings: ['hasCourseScheduled']
-  tagName: 'td'
-  classNames: ['study-plan-schedule-block']
 
   actions:
     unscheduleCourse: ->

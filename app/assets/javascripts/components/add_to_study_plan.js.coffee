@@ -7,7 +7,13 @@ Kursusbasen.AddToStudyPlanComponent = Ember.Component.extend
     groupSemesters = []
     @get('upcomingSemesters').forEach (semester) =>
       @get('scheduleGroups').forEach (scheduleGroup) ->
-        if scheduleGroup.beginsInSemesterOfSeason(semester.season)
+        if scheduleGroup.beginsInSeason(semester.get('season'))
+          groupSemesters.push(
+            scheduleGroup: scheduleGroup,
+            semesterYear: semester.year
+          )
+
+        if scheduleGroup.beginsInSeason(semester.get('threeWeekSeason'))
           groupSemesters.push(
             scheduleGroup: scheduleGroup,
             semesterYear: semester.year

@@ -8,9 +8,9 @@ Kursusbasen.CoursePlanning = DS.Model.extend
     !Ember.isEmpty(@get('year')) && !Ember.isEmpty(@get('scheduleGroup'))
   ).property('year', 'scheduleGroup')
 
-  isScheduledFor: (block, season) ->
+  isScheduledFor: (season, block = null) ->
     @get('scheduleGroup.schedules').any (schedule) ->
-      schedule.get('block') is block && schedule.get('season') is season
+      schedule.get('season') is season && (Ember.isEmpty(block) || schedule.get('block') is block)
 
   scheduleFor: (scheduleGroup, year) ->
     @set('scheduleGroup', scheduleGroup)
