@@ -13,6 +13,8 @@ Kursusbasen.SemesterSchedule = Ember.Object.extend
   coursePlanningsForScheduleYear: Ember.computed.filter('coursePlannings', (planning) ->
     planning.get('year') is @get('year')
   ).property('coursePlannings.@each.year')
+  # coursePlanningsOffSchedule: Ember.computed.filterBy('coursePlannings', 'hasScheduleOffNormalSchedule')
+  hasAnyOffSchedulePlannings: Ember.computed.any('coursePlanningsOffSchedule')
   title: (->
     "#{@get('season')} #{@get('year')}"
   ).property('season', 'year')

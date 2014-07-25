@@ -12,9 +12,6 @@
     <div class="col-sm-7">
       <h3>Upcoming semesters</h3>
       {{#each upcomingSemesters}}
-        {{#each coursePlanningsForSemester}}
-          {{course.title}}
-        {{/each}}
         <h4>{{title}}</h4>
         <table class="study-plan-schedule">
           <tr>
@@ -78,6 +75,12 @@
         {{schedule-block season=threeWeekSeason
                          coursePlanningsForScheduleYear=coursePlanningsForScheduleYear
                          classNames='study-plan-schedule-three-week-course'}}
+
+        {{#if hasAnyOffSchedulePlannings}}
+          {{#each coursePlanningsOffSchedule}}
+            {{course.title}}
+          {{/each}}
+        {{/if}}
       {{/each}}
     </div>
     <div class="col-sm-5">

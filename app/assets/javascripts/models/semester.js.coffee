@@ -3,7 +3,7 @@ class Kursusbasen.Semester
   @autumnSemesterSeasons: ->
     @allSeasons.slice(0, 2)
   @springSemestersSeaons: =>
-    @allSeasons.slice(2, 5)
+    @allSeasons.slice(2, 4)
 
   @isSpringSemester: (season) ->
     @springSemestersSeaons().contains(season)
@@ -13,6 +13,15 @@ class Kursusbasen.Semester
 
   @isFirstSeasonOf: (seasons, season) ->
     @sortSeasonsChronologically(seasons)[0] is season
+
+  @isSummer: (season) ->
+    season is 'summer'
+
+  @isOffSchedule: (season) ->
+    season is 'unknown'
+
+  @isOffNormalSchedule: (season) ->
+    season is 'summer' || season is 'unknown'
 
   @sortSeasonsChronologically: (seasons) ->
     seasons.sort (season) =>
