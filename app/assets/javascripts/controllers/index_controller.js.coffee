@@ -26,3 +26,7 @@ Kursusbasen.IndexController = Ember.Controller.extend
         controller: @
       )
   ).property()
+
+  actions:
+    unscheduleCourse: (coursePlanning) ->
+      coursePlanning.unschedule()

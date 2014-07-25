@@ -6,9 +6,10 @@ Kursusbasen.CoursePlanning = DS.Model.extend
 
   schedules: Ember.computed.alias('scheduleGroup.schedules')
   hasScheduleOffNormalSchedule: (->
+    return false if Ember.isEmpty(@get('schedules'))
     @get('schedules').any (schedule) ->
       schedule.get('isOffNormalSchedule')
-  )
+  ).property('schedules.@each.isOffNormalSchedule')
 
   isScheduled: (->
     !Ember.isEmpty(@get('year')) && !Ember.isEmpty(@get('scheduleGroup'))
