@@ -1,5 +1,5 @@
 Kursusbasen.ScheduleGroup = DS.Model.extend
-  schedules: DS.hasMany 'schedule', async: true
+  schedules: DS.hasMany 'schedule'
   scheduleSeasons: Ember.computed.mapBy('schedules', 'season')
 
   hasScheduleSeasonInAutumnSemester: (->
@@ -17,10 +17,10 @@ Kursusbasen.ScheduleGroup = DS.Model.extend
     @get('scheduleSeasons').any (season) ->
       Kursusbasen.Semester.isSummer(season)
   ).property('schedules.@each.season')
-  hasOffSchedule: (->
+  hasOffScheduleSeason: (->
     @get('scheduleSeasons').any (season) ->
       Kursusbasen.Semester.isOffSchedule(season)
-  ).property('schedules.@each.season')
+  ).property('scheduleSeasons.@each')
 
   beginsInSeason: (season) ->
     Kursusbasen.Semester.isFirstSeasonOf(@get('scheduleSeasons'), season)

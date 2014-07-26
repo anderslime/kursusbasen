@@ -1,11 +1,14 @@
 Kursusbasen.CoursePlanning = DS.Model.extend
-  student: DS.belongsTo 'student', async: true
-  course: DS.belongsTo 'course', async: true
+  student: DS.belongsTo 'student'
+  course: DS.belongsTo 'course'
   scheduleGroup: DS.belongsTo 'scheduleGroup'
   year: DS.attr 'string'
 
   schedules: Ember.computed.alias('scheduleGroup.schedules')
-  hasScheduleOffNormalSchedule: Ember.computed.filterBy('schedules', 'isOffNormalSchedule')
+  hasScheduleOffNormalSchedule: (->
+    return false if Ember.isEmpty(@get('schedules'))
+    @get('schedules').any (schedule) -> schedule.get('isOffNormalSchedule')
+  ).property('schedules.@each.isOffNormalSchedule')
 
   isScheduled: (->
     !Ember.isEmpty(@get('year')) && !Ember.isEmpty(@get('scheduleGroup'))

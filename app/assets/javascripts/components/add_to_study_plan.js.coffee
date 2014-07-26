@@ -25,7 +25,9 @@ Kursusbasen.AddToStudyPlanComponent = Ember.Component.extend
             semesterYear: semester.year
           )
 
-        if scheduleGroup.get('hasOffSchedule')
+        console.log scheduleGroup.get('scheduleSeasons')
+
+        if scheduleGroup.get('hasOffScheduleSeason')
           groupSemesters.push(
             scheduleGroup: scheduleGroup,
             semesterYear: semester.year
