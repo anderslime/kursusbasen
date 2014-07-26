@@ -1,5 +1,5 @@
 Kursusbasen.ScheduleGroup = DS.Model.extend
-  schedules: DS.hasMany 'schedule'
+  schedules: DS.hasMany 'schedule', async: true
   scheduleSeasons: Ember.computed.mapBy('schedules', 'season')
 
   hasScheduleSeasonInAutumnSemester: (->
