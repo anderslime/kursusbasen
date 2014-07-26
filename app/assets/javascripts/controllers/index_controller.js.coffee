@@ -4,21 +4,21 @@ Kursusbasen.IndexController = Ember.Controller.extend
   scheduledCoursePlannings: Ember.computed.filterBy('coursePlannings', 'isScheduled', true)
   studentNumber: Ember.computed.alias('model.studentNumber')
   scheduledCourses: Ember.computed.mapBy('scheduledCoursePlannings', 'course')
-  ectsPointsTotal: (->
+  ectsPointsPlanned: (->
     @get('scheduledCourses').reduce((previousValue, course) ->
       previousValue + course.get('ectsPoints')
     , 0)
   ).property('scheduledCourses.@each.ectsPoints')
-  ectsPointsInSemester: 120
+  ectsPointsNeeded: 120
   progress: (->
-    @get('ectsPointsTotal') / @get('ectsPointsInSemester') * 100.0
-  ).property('ectsPointsTotal')
+    @get('ectsPointsPlanned') / @get('ectsPointsNeeded') * 100.0
+  ).property('ectsPointsPlanned')
   upcomingSemesters: (->
     [
-      { season: 'autumn', year: '2014/2015' }
-      { season: 'spring', year: '2014/2015' },
-      { season: 'autumn', year: '2015/2016' },
-      { season: 'spring', year: '2015/2016' }
+      { season: 'autumn', hasSummerCourse: false, year: '2014/2015' }
+      { season: 'spring', hasSummerCourse: false, year: '2014/2015' },
+      { season: 'autumn', hasSummerCourse: false, year: '2015/2016' },
+      { season: 'spring', hasSummerCourse: false, year: '2015/2016' }
     ].map (semester_data) =>
       Kursusbasen.SemesterSchedule.create(
         season: semester_data.season,

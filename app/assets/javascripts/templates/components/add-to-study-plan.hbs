@@ -6,7 +6,7 @@
   <ul class="course-basket-add-to-study-plan-dropdown" role="menu">
     {{#each scheduleGroupSemester in scheduleGroupSemesters}}
       <li>
-        <a href="#" {{action 'setPlannedCourseSemester' coursePlanning scheduleGroupSemester.scheduleGroup scheduleGroupSemester.semesterYear}}>
+        <a href="#" {{action 'setPlannedCourseSemester' coursePlanning scheduleGroupSemester.scheduleGroup scheduleGroupSemester.semesterYear scheduleGroupSemester.semesterSeason}}>
           {{#each scheduleGroupSemester.scheduleGroup.schedules}}
             <span>{{season}} {{block}} {{scheduleGroupSemester.semesterYear}}</span>
           {{/each}}

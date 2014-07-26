@@ -19,7 +19,8 @@ class Api::CoursePlanningsController < ApplicationController
     params.require(:course_planning).permit(
       :course_id,
       :schedule_group_id,
-      :year
+      :year,
+      :semester_season_start
     )
   end
 end

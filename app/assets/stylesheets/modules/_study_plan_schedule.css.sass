@@ -7,6 +7,22 @@ $block-border-spacing: 2px
 $block-width: 100px
 
 .study-plan-schedule
+  border-bottom: 1px solid black
+  padding-bottom: 20px
+
+.study-plan-schedule-title,
+.study-plan-schedule-ects-counter
+  @extend .col-sm-6
+
+.study-plan-schedule-ects-counter
+  font-size: 18px
+  padding-top: 5px
+  padding-bottom: 5px
+
+.study-plan-clearfix
+  +clearfix
+
+.study-plan-schedule-table
   border-spacing: 2px
   border-collapse: separate
   line-height: normal
