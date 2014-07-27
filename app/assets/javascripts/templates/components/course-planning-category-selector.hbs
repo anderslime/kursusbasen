@@ -1,0 +1,12 @@
+<button type="button" class="course-planning-category-selector-button dropdown-toggle" data-toggle="dropdown">
+  <div class="course-planning-category-selector-color-indicator"></i>
+</button>
+<ul class="course-planning-category-selector-dropdown" role="menu">
+  {{#each category in validCategories}}
+    <li>
+      <a href="#" {{action 'setCoursePlanningCategory' category}}>
+        {{category}}
+      </a>
+    </li>
+  {{/each}}
+</ul>

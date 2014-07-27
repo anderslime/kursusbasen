@@ -20,7 +20,9 @@ class Api::CoursePlanningsController < ApplicationController
       :course_id,
       :schedule_group_id,
       :year,
-      :semester_season_start
+      :semester_season_start,
+      :programme,
+      :category
     )
   end
 end
