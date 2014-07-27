@@ -87,6 +87,7 @@
               <button type="button" class="btn btn-danger" {{action 'unscheduleCourse' this}}>
                 <span class="glyphicon glyphicon-remove"></span>
               </button>
+              {{course-planning-category-selector coursePlanning=this}}
             {{/each}}
           {{/if}}
         </div>
