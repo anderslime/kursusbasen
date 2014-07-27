@@ -1,7 +1,11 @@
 Kursusbasen.CoursePlanningCategorySelectorComponent = Ember.Component.extend
   coursePlanning: null
 
-  validCategories: Ember.computed.alias('coursePlanning.validCategories')
+  coursePlanningValidCategories: Ember.computed.alias('coursePlanning.validCategories')
+  validCategories: (->
+    return [] if Ember.isEmpty(@get('coursePlanningValidCategories'))
+    @get('coursePlanningValidCategories').concat('no_category')
+  ).property('coursePlanningValidCategories.@each')
   coursePlanningCategory: Ember.computed.alias('coursePlanning.category')
   dashedCategoryName: (->
     return null if Ember.isEmpty(@get('coursePlanningCategory'))
@@ -13,4 +17,5 @@ Kursusbasen.CoursePlanningCategorySelectorComponent = Ember.Component.extend
 
   actions:
     setCoursePlanningCategory: (category) ->
-      @get('coursePlanning').updateCategory(category)
+      plannedCategory = if category isnt 'no_category' then category else null
+      @get('coursePlanning').updateCategory(plannedCategory)
