@@ -1,13 +1,13 @@
-Kursusbasen.CoursePlanning = DS.Model.extend
-  MASTER_CATEGORIES: [
-    'advanced_elective', 'thesis',
-    'general_competence', 'technological_specialization'
-  ]
-  BACHELOR_CATEGORIES: [
-    'basic_elective', 'project_and_general',
-    'natural_science', 'technological_programme_course'
-  ]
+Kursusbasen.MASTER_CATEGORIES = [
+  'advanced_elective', 'thesis',
+  'general_competence', 'technological_specialization'
+]
+Kursusbasen.BACHELOR_CATEGORIES = [
+  'basic_elective', 'project_and_general',
+  'natural_science', 'technological_programme_course'
+]
 
+Kursusbasen.CoursePlanning = DS.Model.extend
   student: DS.belongsTo 'student'
   course: DS.belongsTo 'course'
   scheduleGroup: DS.belongsTo 'scheduleGroup'
@@ -23,8 +23,8 @@ Kursusbasen.CoursePlanning = DS.Model.extend
 
   validCategories: (->
     {
-      'master': MASTER_CATEGORIES,
-      'bachelor': BACHELOR_CATEGORIES
+      'master': Kursusbasen.MASTER_CATEGORIES,
+      'bachelor': Kursusbasen.BACHELOR_CATEGORIES
     }[@get('programme')]
   ).property('programme')
 

@@ -99,7 +99,6 @@
           <div class="course-planner-status-counter-amount">
             {{ectsPointsPlanned}} / {{ectsPointsNeeded}}
           </div>
-
           <div class="course-planner-status-counter-unit">
             ECTS points
           </div>
@@ -109,6 +108,11 @@
             {{kb-progressbar progress=progress}}
           </div>
         </div>
+
+        {{#each category in studyPlannerCategories}}
+          {{course-category-planning-status category=category
+                                            scheduledCoursePlannings=scheduledCoursePlannings}}
+        {{/each}}
       </div>
       <div class="course-basket">
         <h4>Kursuskurv</h4>

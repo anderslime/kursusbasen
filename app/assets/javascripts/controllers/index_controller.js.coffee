@@ -13,6 +13,8 @@ Kursusbasen.IndexController = Ember.Controller.extend
   progress: (->
     @get('ectsPointsPlanned') / @get('ectsPointsNeeded') * 100.0
   ).property('ectsPointsPlanned')
+  studyPlannerCategories: Kursusbasen.MASTER_CATEGORIES
+
   upcomingSemesters: (->
     [
       { season: 'autumn', hasSummerCourse: false, year: '2014/2015' }
