@@ -13,6 +13,11 @@ class Api::CoursePlanningsController < ApplicationController
     respond_with :api, course_planning
   end
 
+  def destroy
+    current_student.course_plannings.find(params[:id]).destroy
+    head :ok
+  end
+
   private
 
   def course_plannings_params

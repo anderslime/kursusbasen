@@ -38,6 +38,10 @@ Kursusbasen.CoursePlanning = DS.Model.extend
     @get('schedules').any (schedule) ->
       schedule.get('season') is season && (Ember.isEmpty(block) || schedule.get('block') is block)
 
+  destroy: ->
+    @deleteRecord()
+    @save()
+
   updateCategory: (category) ->
     @set('category', category)
     @save()
