@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140726125805) do
+ActiveRecord::Schema.define(version: 20140727123847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20140726125805) do
     t.string   "semester_season_start"
     t.string   "category",              default: "master"
     t.string   "programme"
+    t.string   "course_type"
   end
 
   add_index "course_plannings", ["course_id"], name: "index_course_plannings_on_course_id", using: :btree
@@ -156,6 +157,16 @@ ActiveRecord::Schema.define(version: 20140726125805) do
   end
 
   add_index "schedules", ["schedule_group_id"], name: "index_schedules_on_schedule_group_id", using: :btree
+
+  create_table "special_courses", force: true do |t|
+    t.integer  "student_id"
+    t.string   "title"
+    t.float    "ects_points"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "special_courses", ["student_id"], name: "index_special_courses_on_student_id", using: :btree
 
   create_table "students", force: true do |t|
     t.string   "student_number"

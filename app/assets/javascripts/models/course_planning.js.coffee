@@ -9,7 +9,7 @@ Kursusbasen.BACHELOR_CATEGORIES = [
 
 Kursusbasen.CoursePlanning = DS.Model.extend
   student: DS.belongsTo 'student'
-  course: DS.belongsTo 'course'
+  course: DS.belongsTo 'course', polymorphic: true
   scheduleGroup: DS.belongsTo 'scheduleGroup'
   year: DS.attr 'string'
   semesterSeasonStart: DS.attr 'string'
@@ -23,8 +23,8 @@ Kursusbasen.CoursePlanning = DS.Model.extend
 
   validCategories: (->
     {
-      'master': Kursusbasen.MASTER_CATEGORIES,
-      'bachelor': Kursusbasen.BACHELOR_CATEGORIES
+      master: Kursusbasen.MASTER_CATEGORIES,
+      bachelor: Kursusbasen.BACHELOR_CATEGORIES
     }[@get('programme')]
   ).property('programme')
 

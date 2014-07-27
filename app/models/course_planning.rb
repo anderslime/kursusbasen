@@ -12,7 +12,7 @@ class CoursePlanning < ActiveRecord::Base
   COURSE_CATEGORIES = BACHELOR_CATEGORIES + MASTER_CATEGORIES
 
   belongs_to :student
-  belongs_to :course
+  belongs_to :course, polymorphic: true
   belongs_to :schedule_group
 
   validates_presence_of :student, :course

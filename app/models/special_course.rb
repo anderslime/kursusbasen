@@ -1,3 +1,5 @@
 class SpecialCourse < ActiveRecord::Base
-  belongs_to :student
+  def creator
+    Student.find(creator_id)
+  end
 end
