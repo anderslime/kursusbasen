@@ -4,7 +4,8 @@ class Course < ActiveRecord::Base
 
   serialize :learn_objectives, Array
 
-  has_many :schedule_groups, :dependent => :destroy
+  has_many :schedule_groups, :through => :courses_schedule_groups, :dependent => :destroy
+  has_many :courses_schedule_groups, :dependent => :destroy
   has_many :schedules, :through => :schedule_groups
   has_many :qualified_prerequisites
   has_many :mandatory_prerequisites
