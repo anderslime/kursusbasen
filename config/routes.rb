@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :course_plannings, except: [:index, :new, :edit]
     resources :schedule_groups, only: [:index]
     resources :courses, only: [:index, :show]
+    resources :special_courses, only: []
   end
 
   root :to => "courses#index"
