@@ -36,23 +36,39 @@ $block-width: 100px
   color: $block-font-color
 
 .study-plan-schedule-block.has-course-scheduled
-  background-color: $block-with-course-background-color
-  color: $block-with-course-font-color
   font-size: 14px
   padding: 2px
-
-.study-plan-schedule-block-time
-  width: 50px
-  font-size: 15px
+  color: $block-with-course-font-color
+  background-color: $block-with-course-background-color
 
 .study-plan-schedule-three-week-course
   margin-left: $block-time-column-width + 2*$block-border-spacing
   padding: 5px
   height: 45px
   width: 5 * $block-width + 4*$block-border-spacing
-  background-color: $block-background-color
   color: $block-font-color
 
 .study-plan-schedule-three-week-course.has-course-scheduled
-  background-color: $block-with-course-background-color
   color: $block-with-course-font-color
+
+.study-plan-schedule-three-week-course,
+.study-plan-schedule-block
+  &.basic-elective,
+  &.advanced-elective
+    background-color: $elective-course-color
+
+  &.thesis,
+  &.projet-and-general
+    background-color: $project-course-color
+
+  &.natural_science,
+  &.general-competence
+    background-color: $science-and-general-course-color
+
+  &.technological-programme-course,
+  &.technological-specialization
+    background-color: $tecnological-course-color
+
+.study-plan-schedule-block-time
+  width: 50px
+  font-size: 15px

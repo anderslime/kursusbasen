@@ -3,6 +3,7 @@
   <button type="button" class="btn btn-danger" {{action 'unscheduleCourse'}}>
     <span class="glyphicon glyphicon-remove"></span>
   </button>
+  {{course-planning-category-selector coursePlanning=scheduledCoursePlanning}}
 {{else}}
   {{block}}
 {{/if}}

@@ -10,8 +10,13 @@ Kursusbasen.ScheduleBlockComponent = Ember.Component.extend
   hasCourseScheduled: Ember.computed.notEmpty('scheduledCourse')
   courseTitle: Ember.computed.alias('scheduledCourse.title')
   courseNumber: Ember.computed.alias('scheduledCourse.courseNumber')
+  scheduledCoursePlanningCategory: Ember.computed.alias('scheduledCoursePlanning.category')
+  dashedCoursePlanningCategory: (->
+    return null if Ember.isEmpty(@get('scheduledCoursePlanningCategory'))
+    @get('scheduledCoursePlanningCategory').replace('_', '-')
+  ).property('scheduledCoursePlanningCategory')
 
-  classNameBindings: ['hasCourseScheduled']
+  classNameBindings: ['hasCourseScheduled', 'dashedCoursePlanningCategory']
 
   actions:
     unscheduleCourse: ->
