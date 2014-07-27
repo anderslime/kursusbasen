@@ -253,7 +253,7 @@ namespace :scrape do
       puts schedule_course.course_number
       course = Course.find_by!(course_number: schedule_course.course_number)
       schedule_course.course_runs.each do |course_run|
-        schedule_group = ScheduleGroup.create!(course_id: course.id)
+        schedule_group = course.schedule_groups.create!
         course_run.schedules.each do |schedule|
           schedule_group.schedules.create!(
             season: schedule.season,

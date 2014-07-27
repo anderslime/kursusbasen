@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 20140727191430) do
     t.integer "qualified_prerequisite_id"
   end
 
-  create_table "courses_schedule_groups", id: false, force: true do |t|
+  create_table "courses_schedule_groups", force: true do |t|
     t.integer "course_id"
     t.integer "schedule_group_id"
   end
@@ -172,7 +172,7 @@ ActiveRecord::Schema.define(version: 20140727191430) do
 
   add_index "special_courses", ["creator_id"], name: "index_special_courses_on_creator_id", using: :btree
 
-  create_table "special_courses_schedule_groups", id: false, force: true do |t|
+  create_table "special_courses_schedule_groups", force: true do |t|
     t.integer "special_course_id"
     t.integer "schedule_group_id"
   end

@@ -1,4 +1,8 @@
 class Api::SpecialCoursesController < ApplicationController
+  def show
+    SpecialCourse.find(params[:id])
+  end
+
   def create
     SpecialCourse.create(special_course_params)
   end

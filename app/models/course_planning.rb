@@ -15,6 +15,8 @@ class CoursePlanning < ActiveRecord::Base
   belongs_to :course, polymorphic: true
   belongs_to :schedule_group
 
+  after_destroy :destroy_special_course
+
   validates_presence_of :student, :course
   validates_uniqueness_of :course_id, scope: [:student_id]
   validates_inclusion_of :semester_season_start,
@@ -36,5 +38,13 @@ class CoursePlanning < ActiveRecord::Base
 
   def planned_for_bachelor?
     BACHELOR_CATEGORIES.include?(category)
+  end
+
+  private
+
+  def destroy_special_course
+    if course_type == SpecialCourse.name
+      course.destroy
+    end
   end
 end

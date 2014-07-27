@@ -29,6 +29,6 @@ class Api::CoursePlanningsController < ApplicationController
       :semester_season_start,
       :programme,
       :category
-    ).merge(programme: 'master')
+    ).merge(programme: 'master', course_type: Course.name)
   end
 end
