@@ -28,6 +28,6 @@ class Api::CoursePlanningsController < ApplicationController
       :semester_season_start,
       :programme,
       :category
-    )
+    ).merge(programme: 'master')
   end
 end
