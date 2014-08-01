@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_student?
+    return false if Rails.env.production?
     current_student.present?
   end
   helper_method :current_student, :current_student?
