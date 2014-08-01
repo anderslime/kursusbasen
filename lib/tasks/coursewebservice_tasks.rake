@@ -10,6 +10,8 @@ namespace :scrape_v2 do
       puts course_number
       course = Course.find_by_course_number(course_number)
 
+      next if course.nil?
+
       # Extract prerequisites
       mand_prereq_extractor = Coursewebservice::Extractor::Prerequisites.new(course_xml, course, "Mandatory")
       qual_prereq_extractor = Coursewebservice::Extractor::Prerequisites.new(course_xml, course, "Qualified")
