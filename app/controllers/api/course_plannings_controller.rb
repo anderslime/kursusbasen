@@ -2,8 +2,9 @@ class Api::CoursePlanningsController < ApplicationController
   respond_to :json
 
   def create
+    normal_course_plannings_params = course_plannings_params.merge(course_type: Course.name)
     course_planning =
-      current_student.course_plannings.create(course_plannings_params)
+      current_student.course_plannings.create(normal_course_plannings_params)
     respond_with :api, course_planning
   end
 
@@ -29,6 +30,6 @@ class Api::CoursePlanningsController < ApplicationController
       :semester_season_start,
       :programme,
       :category
-    ).merge(programme: 'master', course_type: Course.name)
+    ).merge(programme: 'master')
   end
 end

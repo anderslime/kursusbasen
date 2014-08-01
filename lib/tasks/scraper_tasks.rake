@@ -1,6 +1,7 @@
 namespace :scrape do
   task :course_pages => :environment do
-    collector = CourseCollector.new
+    semester_year = "2014-2015"
+    collector = CourseCollector.new(semester_year)
     agent = Mechanize.new
     total_courses = collector.amount_of_courses
     index = 1
@@ -12,7 +13,7 @@ namespace :scrape do
         CoursePage.create!(
           course_number: course_number,
           page: page.body,
-          semester_year: "2013-2014",
+          semester_year: semester_year,
           url: course_url
         )
       end
@@ -22,8 +23,10 @@ namespace :scrape do
 
   task :course_pages_parallel => :environment do
     require "thread"
+    require "course_page"
 
-    collector      = CourseCollector.new
+    semester_year  = "2014-2015"
+    collector      = CourseCollector.new(semester_year)
     objects        = collector.course_pages
     object_queue   = Queue.new
     consumer_count = 5
@@ -36,13 +39,15 @@ namespace :scrape do
           course_url    = object.fetch(0)
           course_number = object.fetch(1)
           semester      = object.fetch(2)
-          page          = Mechanize.new.get(course_url)
-          puts course_number
+
           unless CoursePage.exists_with_course_number_in_semester?(course_number, semester)
+            page          = Mechanize.new.get(course_url)
+            puts course_number
+
             CoursePage.create!(
               course_number: course_number,
               page: page.body,
-              semester_year: "2013-2014",
+              semester_year: "2014-2015",
               url: course_url
             )
           end
@@ -172,10 +177,10 @@ namespace :scrape do
           [
             :course_number, :title, :ects_points, :duration, :teaching_form, :former_course,
             :participant_limit, :registration, :content, :course_ojectives, :litteratur,
-            :remarks, :exam_schedule, :exam_form, :exam_duration, :exam_aid,
+            :remarks, :exam_schedules, :exam_form, :exam_duration, :exam_aid,
             :evaluation_form, :point_block, :mandatory_prerequisites,
             :optional_prerequisites, :recommended_prerequisites, :institute_dtu_id,
-            :institute_title, :learning_objectives, :responsibles, :website, :schedule,
+            :institute_title, :learning_objectives, :responsibles, :website,
             :top_comment
           ].each do |variable|
             puts "==========#{variable}:=========="
@@ -189,54 +194,56 @@ namespace :scrape do
         if persist
           puts "persisting #{course_number}"
 
-          # Create course
-          course = Course.create!(
-            course_number: course_number,
-            ects_points: ects_points.to_f,
-            homepage: website,
-            exam_duration: exam_duration,
-            title: title,
-            teaching_form: teaching_form,
-            duration: duration,
-            participant_limit: participant_limit,
-            registration: registration,
-            course_objectives: course_ojectives,
-            exam_schedule: Array(exam_schedules).join(", "),
-            learn_objectives: learning_objectives,
-            content: content,
-            litteratur: litteratur,
-            remarks: remarks,
-            former_course: former_course,
-            exam_form: exam_form,
-            exam_aid: exam_aid,
-            evaluation_form: evaluation_form,
-            top_comment: top_comment,
-            open_education: open_education,
-            language: language,
-            schedule_note: schedule_note,
-            exam_schedule_note: exam_schedule_note
-          )
-
-          # Create teachers
-          Array(responsibles).each do |responsible|
-            teacher_data = { name: responsible.name }
-            teacher = Teacher.create_with(teacher_data).find_or_create_by(
-              dtu_teacher_id: responsible.dtu_teacher_id
+          unless Course.exists_with_course_number?(course_number)
+            # Create course
+            course = Course.create!(
+              course_number: course_number,
+              ects_points: ects_points.to_f,
+              homepage: website,
+              exam_duration: exam_duration,
+              title: title,
+              teaching_form: teaching_form,
+              duration: duration,
+              participant_limit: participant_limit,
+              registration: registration,
+              course_objectives: course_ojectives,
+              exam_schedule: Array(exam_schedules).join(", "),
+              learn_objectives: learning_objectives,
+              content: content,
+              litteratur: litteratur,
+              remarks: remarks,
+              former_course: former_course,
+              exam_form: exam_form,
+              exam_aid: exam_aid,
+              evaluation_form: evaluation_form,
+              top_comment: top_comment,
+              open_education: open_education,
+              language: language,
+              schedule_note: schedule_note,
+              exam_schedule_note: exam_schedule_note
             )
-            course.teachers << teacher unless course.teachers.map(&:dtu_teacher_id).include?(teacher.dtu_teacher_id)
-          end
 
-          # Institute
-          if institute_dtu_id.blank? || institute_title.blank?
-            puts "no institute for #{course_number}"
-          else
-            institute = Institute.create_with(
-              title: institute_title.gsub("\n", " ")
-            ).find_or_create_by(
-              dtu_institute_id: institute_dtu_id
-            )
-            course.institute = institute
-            course.save!
+            # Create teachers
+            Array(responsibles).each do |responsible|
+              teacher_data = { name: responsible.name }
+              teacher = Teacher.create_with(teacher_data).find_or_create_by(
+                dtu_teacher_id: responsible.dtu_teacher_id
+              )
+              course.teachers << teacher unless course.teachers.map(&:dtu_teacher_id).include?(teacher.dtu_teacher_id)
+            end
+
+            # Institute
+            if institute_dtu_id.blank? || institute_title.blank?
+              puts "no institute for #{course_number}"
+            else
+              institute = Institute.create_with(
+                title: institute_title.gsub("\n", " ")
+              ).find_or_create_by(
+                dtu_institute_id: institute_dtu_id
+              )
+              course.institute = institute
+              course.save!
+            end
           end
         end
       end
@@ -249,10 +256,14 @@ namespace :scrape do
       Schedule.delete_all
     end
 
-    ListScheduleExtractor.new.courses.each do |schedule_course|
-      puts schedule_course.course_number
-      course = Course.find_by!(course_number: schedule_course.course_number)
-      schedule_course.course_runs.each do |course_run|
+    puts "Extracting xml..."
+    xml = Coursewebservice::CourseXMLFileClient.xml_file
+    puts "Done extracint xml.."
+
+    puts "Persisting course schedules.."
+    Course.present.each do |course|
+      Coursewebservice::Extractor::Schedules.new(xml, course).schedule_runs.each do |course_run|
+        puts "Persisting schedules for #{course.course_number}"
         schedule_group = course.schedule_groups.create!
         course_run.schedules.each do |schedule|
           schedule_group.schedules.create!(
@@ -263,6 +274,32 @@ namespace :scrape do
         end
       end
     end
+
+    puts "Persisting course schedule texts..."
+    Course.present.each do |course|
+      course.update_attributes(
+        schedule_note: Coursewebservice::Extractor::Schedules.new(xml, course).schedule_text
+      )
+    end
+
+    # ListScheduleExtractor.new.courses.each do |schedule_course|
+    #   puts schedule_course.course_number
+    #   course = Course.find_by(course_number: schedule_course.course_number)
+    #   unless course.present?
+    #     puts "could not do #{schedule_course.course_number}"
+    #     next
+    #   end
+    #   schedule_course.course_runs.each do |course_run|
+    #     schedule_group = course.schedule_groups.create!
+    #     course_run.schedules.each do |schedule|
+    #       schedule_group.schedules.create!(
+    #         season: schedule.season,
+    #         block: schedule.block,
+    #         outside_dtu_schedule: schedule.outside_dtu_schedule?
+    #       )
+    #     end
+    #   end
+    # end
   end
 
   task :teacher_pages => :environment do

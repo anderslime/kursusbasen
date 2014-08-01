@@ -69,7 +69,7 @@ class ListScheduleExtractor
   end
 
   def course_list_url
-    "http://www.kurser.dtu.dk/search.aspx?lstDepartment=1,10,11,12,13,23,24,25,26,27,28,30,31,33,34,41,42,46,47,48,59,IHK,83&YearGroup=2013-2014"
+    "http://www.kurser.dtu.dk/search.aspx?lstDepartment=1,10,11,12,13,23,24,25,26,27,28,30,31,33,34,41,42,46,47,48,59,IHK,83&YearGroup=2014-2015"
   end
 
   def agent
@@ -112,7 +112,7 @@ class ListScheduleExtractor
     end
 
     def outside_dtu_schedule?
-      ["Udenfor skema-struktur", "Forår", "Efterår"].include?(scraped_season)
+      ["Udenfor skema-struktur"].include?(scraped_season)
     end
 
     private
@@ -123,9 +123,9 @@ class ListScheduleExtractor
         "Efterår" => "autumn",
         "F" => "spring",
         "E" => "autumn",
-        "Januar" => "january",
-        "Juni" => "june",
-        "Sommerkursus" => "summer",
+        "January" => "january",
+        "June" => "june",
+        "SummerSchool" => "summer",
         "Udenfor skema-struktur" => 'unknown'
       }.fetch(scraped_season)
     end

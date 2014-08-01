@@ -18,7 +18,6 @@ class CoursePlanning < ActiveRecord::Base
   after_destroy :destroy_special_course
 
   validates_presence_of :student, :course
-  validates_uniqueness_of :course_id, scope: [:student_id]
   validates_inclusion_of :semester_season_start,
     in: SEMESTER_SEASONS,
     allow_blank: true

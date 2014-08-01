@@ -7,6 +7,6 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: kursusbasen
+  database: kursusbasen_2014_2015
   username: anderslime
   password:
