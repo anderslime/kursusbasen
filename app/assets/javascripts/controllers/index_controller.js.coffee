@@ -17,10 +17,12 @@ Kursusbasen.IndexController = Ember.Controller.extend
 
   upcomingSemesters: (->
     [
-      { season: 'autumn', hasSummerCourse: false, year: '2014/2015' }
-      { season: 'spring', hasSummerCourse: false, year: '2014/2015' },
+      { season: 'autumn', hasSummerCourse: false, year: '2014/2015' },
+      { season: 'spring', hasSummerCourse: false, year: '2015/2016' },
       { season: 'autumn', hasSummerCourse: false, year: '2015/2016' },
-      { season: 'spring', hasSummerCourse: false, year: '2015/2016' }
+      { season: 'spring', hasSummerCourse: false, year: '2016/2017' },
+      { season: 'autumn', hasSummerCourse: false, year: '2016/2017' }
+
     ].map (semester_data) =>
       Kursusbasen.SemesterSchedule.create(
         season: semester_data.season,
